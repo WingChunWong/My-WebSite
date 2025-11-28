@@ -31,6 +31,9 @@ jobs:
 
       - name: 執行更新腳本
         working-directory: tools/my-hw-list
+        env:
+          PORTAL_USERNAME: ${{ secrets.PORTAL_USERNAME }}
+          PORTAL_PASSWORD: ${{ secrets.PORTAL_PASSWORD }}
         run: python homework_crawler.py
 
       # --- Summary 美化 ---
