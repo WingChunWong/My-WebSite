@@ -38,26 +38,49 @@ jobs:
 
       # --- Summary 美化 ---
       - name: 產生更新摘要（Summary）
-        working-directory: tools/my-hw-list
+        if: always()
         run: |
-          echo "## 🔄 資料更新完成" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
+          {
+            echo "# 📊 家課資料更新報告"
+            echo ""
+            echo "⏱️ **執行時間：** $(date)"
+            echo ""
+            
+            echo "## 🧭 更新模式"
+            if [ "${{ github.event.inputs.force_full_update }}" = "true" ]; then
+              echo "- 🚀 **強制完整更新**"
+            else
+              echo "- 📅 **日常增量更新**"
+            fi
+            echo ""
+            
+            echo "## 📦 更新結果"
+            if [ "${{ steps.crawler.outputs.data_updated }}" = "true" ]; then
+              echo "### ✅ 資料更新成功"
+              echo ""
+              echo "| 項目 | 數值 |"
+              echo "|------|------|"
+              echo "| 🗂️ 資料筆數 | **${{ steps.crawler.outputs.record_count }} 筆** |"
+              echo "| 🔄 觸發方式 | \`${{ github.event_name }}\` |"
+              
+              if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+                echo "| 👤 手動觸發者 | \`${{ github.actor }}\` |"
+              fi
+              
+              if [ "${{ steps.git-check.outputs.has_changes }}" = "true" ]; then
+                echo "| 🚀 部署狀態 | **已自動觸發部署** |"
+              else
+                echo "| ℹ️ 部署狀態 | 無資料變更，未進行部署 |"
+              fi
+              
+            else
+              echo "### ❌ 資料更新失敗"
+              echo ""
+              echo "> ⚠️ 請檢查：GitHub Secrets、網路連線、登入資訊是否設定正確"
+            fi
+            
+          } >> $GITHUB_STEP_SUMMARY
 
-          echo "### ⏰ 最後更新時間" >> $GITHUB_STEP_SUMMARY
-          cat last_update.json >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-          echo "### 📊 作業統計" >> $GITHUB_STEP_SUMMARY
-
-          python3 - << 'EOF' >> $GITHUB_STEP_SUMMARY
-          import json
-          with open("homework_data.json") as f:
-              data = json.load(f)
-          
-          print("| 項目 | 數量 |")
-          print("| ---- | ---- |")
-          print(f"| 作業總數 | {len(data)} |")
-          EOF
 
       # --- Commit 若有變更才進行 ---
       - name: 提交更新
