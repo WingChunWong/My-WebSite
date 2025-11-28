@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WingChun's Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- 替换为太阳月亮图标按钮 -->
+    <button class="theme-toggle">🌙</button>
+    <div class="container">
+        <header>
+            <h1>WingChun's Website</h1>
+            <p>個人項目導航</p>
+        </header>
+
+        <main class="projects">
+            <section class="project-card">
+                <h2>在綫家課表</h2>
+                <p>用於管理和查看家課，便捷瀏覽作業清單。</p>
+                <a href="./tools/my-hw-list/" target="_blank">訪問項目 ➜</a>
+            </section>
+
+            <section class="project-card">
+                <h2>百分比變化練習</h2>
+                <p>專注於百分比變化計算的練習網頁工具，提供求新值、求原值、算變化百分比等題型訓練，鞏固數學知識點，提升百分比運算能力。</p>
+                <a href="./games/%-change-game/" target="_blank">訪問項目 ➜</a>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const toggleBtn = document.querySelector('.theme-toggle');
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        // 初始化主题和图标
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            toggleBtn.textContent = '🌞'; // 深色模式显示太阳图标
+        }
+
+        // 切换主题逻辑（同步更新图标）
+        toggleBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                toggleBtn.textContent = '🌙'; // 切换到浅色模式，显示月亮图标
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                toggleBtn.textContent = '🌞'; // 切换到深色模式，显示太阳图标
+            }
+        });
+    </script>
+</body>
+
+</html>
