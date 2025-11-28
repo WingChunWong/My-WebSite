@@ -1,0 +1,73 @@
+name: 更新資料
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 取得原始碼
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: 安裝 Python（含快取）
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+          cache-dependency-path: "tools/my-hw-list/requirements.txt"
+
+      - name: 安裝套件
+        working-directory: tools/my-hw-list
+        run: pip install -r requirements.txt
+
+      - name: 執行更新腳本
+        working-directory: tools/my-hw-list
+        run: python homework_crawler.py
+
+      # --- Summary 美化 ---
+      - name: 產生更新摘要（Summary）
+        working-directory: tools/my-hw-list
+        run: |
+          echo "## 🔄 資料更新完成" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          echo "### ⏰ 最後更新時間" >> $GITHUB_STEP_SUMMARY
+          cat last_update.json >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          echo "### 📊 作業統計" >> $GITHUB_STEP_SUMMARY
+
+          python3 - << 'EOF' >> $GITHUB_STEP_SUMMARY
+          import json
+          with open("homework_data.json") as f:
+              data = json.load(f)
+          
+          print("| 項目 | 數量 |")
+          print("| ---- | ---- |")
+          print(f"| 作業總數 | {len(data)} |")
+          EOF
+
+      # --- Commit 若有變更才進行 ---
+      - name: 提交更新
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add tools/my-hw-list/homework_data.json
+          git add tools/my-hw-list/last_update.json
+
+          if git diff --cached --quiet; then
+            echo "⚠️ 無變更可提交，略過 commit。"
+            exit 0
+          fi
+
+          git commit -m "自動更新資料"
+          git push
