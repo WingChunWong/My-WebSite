@@ -5,9 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 確保響應式顯示，適應不同設備螢幕 -->
     <title>百分比練習作業</title>
-    <meta name="title-zh" content="百分比轉變練習">
+    <meta name="title-zh" content="百分比轉換練習">
     <meta name="title-en" content="Percentage Change Practice">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/md3e.css">
+    <link rel="stylesheet" href="css/math-game.css">
 </head>
 
 <body>
@@ -74,16 +75,16 @@
         <div class="feedback" id="feedbackArea"></div>
     </div>
 
-    <!-- 成績單按鈕：點擊顯示練習統計數據 -->
-    <button class="btn-report" onclick="showReport()">
-        <span class="zh">📊 成績單</span>
-        <span class="en">📊 Report Card</span>
-    </button>
-    <!-- 重置進度按鈕：重置所有練習記錄 -->
-    <button class="btn-reset" id="btnReset" onclick="handleReset()">
-        <span class="zh">⚠️ 重置所有進度</span>
-        <span class="en">⚠️ Reset All Progress</span>
-    </button>
+    <div class="button-container">
+        <button class="btn-report" onclick="showReport()">
+            <span class="zh">📊 成績單</span>
+            <span class="en">📊 Report Card</span>
+        </button>
+        <button class="btn-reset" id="btnReset" onclick="handleReset()">
+            <span class="zh">⚠️ 重置所有進度</span>
+            <span class="en">⚠️ Reset All Progress</span>
+        </button>
+    </div>
 
     <!-- 報告視窗 (模態框)：顯示詳細的練習統計數據 -->
     <div class="modal-overlay" id="reportModal">
@@ -138,7 +139,7 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="js/math-game.js"></script>
 </body>
 
 </html>

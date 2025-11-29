@@ -1,9 +1,9 @@
-name: 部署網站
+name: Deploy to GitHub Pages
 
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["更新資料"]
+    workflows: ["Update Homework Data"]
     types:
       - completed
 
@@ -18,13 +18,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 調出原始碼
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: 部署至 GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
 
-      - name: 發佈 GitHub Pages
+      - name: Publish GitHub Pages
         uses: actions/deploy-pages@v4

@@ -58,13 +58,13 @@ function setupCanvas() {
 
 // === 初始化 ===
 /**
- * 初始化遊戲
- * 設定Canvas、加載狀態、註冊事件監聽器
- */
+* 初始化遊戲
+* 設定Canvas、載入狀態、註冊事件監聽器
+*/
 function init() {
     // 先設置Canvas以適應高DPI
     setupCanvas();
-    // 監聽窗口大小變化，重新調整Canvas
+    // 監聽視窗大小變化，重新調整Canvas
     window.addEventListener('resize', () => {
         setupCanvas();
         if (state.currProblem) {
@@ -72,49 +72,83 @@ function init() {
         }
     });
 
-    loadState();  // 加載保存的狀態
-    updateUI();   // 更新界面顯示
+    loadState();  // 載入保存的狀態
+    updateUI();   // 更新介面顯示
 
-    // 初始化輸入框占位符
+    // 初始化輸入框預設文字
     updateInputPlaceholder();
 
     // 語言切換功能
     document.getElementById('btn-lang').addEventListener('click', function () {
         const isEnglish = document.body.classList.contains('english');
         const langBtn = document.getElementById('btn-lang');
-        const body = document.body;
+        const html = document.documentElement; // 使用根元素控制主題
 
         // 切換語言類別
-        body.classList.toggle('english');
+        document.body.classList.toggle('english');
 
-        // 更新標籤欄標題
-        if (body.classList.contains('english')) {
+        // 更新標籤頁標題
+        if (document.body.classList.contains('english')) {
             document.title = document.querySelector('meta[name="title-en"]').content;
         } else {
             document.title = document.querySelector('meta[name="title-zh"]').content;
         }
 
+        // 同步更新按鈕狀態
         if (isEnglish) {
-            // 切換到中文
             document.body.classList.remove('english');
             langBtn.classList.remove('active');
         } else {
-            // 切換到英文
             document.body.classList.add('english');
             langBtn.classList.add('active');
         }
 
         updateInputPlaceholder();
 
-        // 更新提示文本語言
+        // 更新提示文字語言
         const fb = document.getElementById('feedbackArea');
+
         if (fb.innerHTML) {
             fb.innerHTML = fb.innerHTML
-                .replace('提交', 'Submit')
-                .replace('答案', 'Answer')
-                .replace('正確', 'Correct')
-                .replace('錯誤', 'Wrong')
-                .replace('目標完成', 'Mission Complete')
+                .replace('提交', '提交')
+                .replace('答案', '答案')
+                .replace('正确', '正確')
+                .replace('错误', '錯誤')
+                .replace('目标完成', '目標完成')
+                .replace('Please enter a number', '請輸入數字')
+                .replace('Click again to confirm reset', '再次點擊確認重置')
+                .replace('Progress reset!', '已重置進度!');
+        }
+    });
+
+    // 初始化時設置正確的主題和語言狀態
+    window.addEventListener('load', function () {
+        const langBtn = document.getElementById('btn-lang');
+        // 檢查MD3E主題設置（使用data-theme屬性）
+        const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+
+        // 同步深色模式下的文字樣式
+        if (isDarkMode) {
+            document.body.style.color = getComputedStyle(document.documentElement).getPropertyValue('--md3e-on-surface');
+        }
+
+        // 初始化語言按鈕狀態
+        if (document.body.classList.contains('english')) {
+            langBtn.classList.add('active');
+        }
+
+        updateInputPlaceholder();
+
+        // 更新提示文字語言
+        const fb = document.getElementById('feedbackArea');
+
+        if (fb.innerHTML) {
+            fb.innerHTML = fb.innerHTML
+                .replace('提交', '提交')
+                .replace('答案', '答案')
+                .replace('正確', '正確')
+                .replace('錯誤', '錯誤')
+                .replace('目標完成', '目標完成')
                 .replace('Please enter a number', '請輸入數字')
                 .replace('Click again to confirm reset', '再次點擊確認重置')
                 .replace('Progress reset!', '已重置進度!');

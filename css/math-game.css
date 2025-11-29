@@ -1,14 +1,13 @@
-/* styles.css - 扁平化風格樣式表 */
 :root {
-  --bg-color: #f0f7ff; /* 淺藍色背景，扁平化風格常用 */
-  --card-bg: #ffffff; /* 卡片背景色，純白色增強扁平化感 */
-  --primary: #3498db; /* 主色調：藍色 */
-  --success: #2ecc8a; /* 成功色：綠色 */
-  --danger: #e74c3c; /* 危險色：紅色 */
-  --text-main: #2c3e50; /* 主要文字顏色：深灰色 */
-  --border-color: #dce1e8; /* 邊框顏色：淺灰色 */
-  --accent: #9b59b6; /* 強調色：紫色 */
-  --font-family-base: system-ui, sans-serif; /* 字體設定 */
+  --bg-color: var(--md3e-surface-container);
+  --card-bg: var(--md3e-surface);
+  --primary: var(--md3e-primary);
+  --success: var(--md3e-success);
+  --danger: var(--md3e-error);
+  --text-main: var(--md3e-on-surface);
+  --border-color: var(--md3e-outline);
+  --accent: var(--md3e-tertiary);
+  --font-family-base: var(--md3e-font-family);
 }
 
 body {
@@ -39,7 +38,7 @@ body::before {
   right: -50px;
   width: 200px;
   height: 200px;
-  background: rgba(59, 130, 246, 0.1);
+  background: rgba(103, 80, 164, 0.1);
   border-radius: 50%;
   z-index: -1;
 }
@@ -67,16 +66,18 @@ body::after {
   width: 50px;
   height: 50px;
   font-size: 1.1em;
-  background-color: var(--card-bg);
-  border: 2px solid var(--border-color);
+  background-color: var(--md3e-surface);
+  border: 2px solid var(--md3e-outline);
+  color: var(--md3e-on-surface);
+  border-radius: var(--md3e-shape-corner-full); /* 使用MD3E的完全圓角 */
+  transition: var(--md3e-transition-standard); /* 標準過渡效果 */
   border-radius: 100px; /* 完全圓形 */
   box-shadow: none; /* 移除陰影 */
-  transition: all 0.2s ease; /* 簡化過渡效果 */
 }
 
 .lang-btn:hover {
-  transform: none; /* 移除懸浮動畫 */
-  border-color: var(--primary);
+  border-color: var(--md3e-primary); /* 懸浮時邊框使用主色 */
+  background-color: var(--md3e-surface-container-low); /* 輕微背景變化 */
 }
 
 /* 移除按鈕背景動畫效果 */
@@ -84,11 +85,11 @@ body::after {
   display: none;
 }
 
+/* 激活狀態（當前語言） */
 .lang-btn.active {
-  background-color: var(--primary);
-  color: white;
-  border-color: var(--primary);
-  box-shadow: none; /* 移除陰影 */
+  background-color: var(--md3e-primary); /* 主色背景 */
+  color: var(--md3e-on-primary); /* 主色文字（確保對比度） */
+  border-color: var(--md3e-primary); /* 邊框與背景一致 */
 }
 
 /* 移除選中狀態額外裝飾 */
@@ -155,13 +156,13 @@ h1 {
 /* 進度條樣式 - 扁平化調整 */
 .progress-container {
   width: 100%;
-  max-width: 600px;
+  max-width: 40%;
   height: 12px;
   border-radius: 6px; /* 小圓角 */
   background-color: #e2e8f0;
   overflow: hidden;
-  margin-bottom: 20px;
-  border: none; /* 移除邊框 */
+  margin: 20px auto;
+  border: 1px solid var(--border-color); /* 移除邊框 */
 }
 
 .progress-bar {
@@ -180,7 +181,7 @@ h1 {
 /* 主畫布區域樣式 - 扁平化調整 */
 .canvas-container {
   background: var(--card-bg);
-  padding: 10px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -192,6 +193,31 @@ h1 {
   margin-bottom: 10px;
   box-sizing: border-box;
   overflow: hidden;
+  margin: 25px auto;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.canvas-container:hover {
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+}
+
+.btn-report, .btn-reset {
+  margin: 0;
+  flex: 1;
+  max-width: 200px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.btn-report:hover, .btn-reset:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.btn-report:active, .btn-reset:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 canvas {
@@ -200,12 +226,12 @@ canvas {
   height: auto;
   max-height: 70%; /* 限制最大高度，防止溢出 */
   touch-action: none;
-  background-color: #fff;
+  background-color: var(--primary);
 }
 
 /* 輸入區樣式 */
 .input-group {
-  margin-top: 10px;
+  margin-top: 20px 0;
   display: flex;
   gap: 8px;
   align-items: center;
@@ -242,8 +268,6 @@ button {
   font-weight: 600;
   cursor: pointer;
   border: none; /* 移除默認邊框 */
-  border-radius: 10px; /* 小圓角 */
-  transition: background-color 0.2s ease; /* 簡化過渡效果 */
   font-family: var(--font-family-base);
   position: relative;
   overflow: hidden;
@@ -253,6 +277,11 @@ button {
   gap: 8px; /* 圖標與文字之間的間距 */
   box-shadow: none; /* 移除陰影 */
   background-image: none; /* 移除漸變 */
+  background-color: var(--primary);
+  color: var(--md3e-on-primary);
+  border-radius: var(--md3e-shape-corner-medium);
+  transition: var(--md3e-transition-standard);
+
 }
 
 /* 移除按鈕點擊動畫效果 */
@@ -298,7 +327,7 @@ button:active {
 
 /* 反饋資訊樣式 */
 .feedback {
-  margin-top: 10px;
+  margin-top: 15px 0;
   min-height: 30px;
   font-size: 1.4em;
   font-weight: bold;
@@ -387,23 +416,24 @@ button:active {
 .stats-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin: 20px 0;
   text-align: left;
+  gap: 20px;
+  margin: 25px 0;
 }
 
 .stat-box {
   background: #f8fafc;
   border-radius: 12px; /* 中等圓角 */
   padding: 16px;
-  transition: background-color 0.2s ease; /* 簡化過渡 */
-  box-shadow: none; /* 移除陰影 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
   border: 1px solid var(--border-color); /* 細邊框 */
 }
 
 .stat-box:hover {
-  transform: none; /* 移除懸浮效果 */
-  background-color: #f0f0f0; /* 背景色變化替代浮動效果 */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); 
+  transform: translateY(-2px);
+  background-color: #f8fafc;
 }
 
 /* 顯示答案按鈕樣式 - 扁平化調整 */
