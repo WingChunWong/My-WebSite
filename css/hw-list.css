@@ -946,242 +946,52 @@ body.dark-mode #uploadArea .alert {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
+.back-btn {
+    background: var(--md-sys-color-surface);
+    border: 1px solid var(--md-sys-color-outline);
+    color: var(--md-sys-color-on-surface);
+    padding: 0.5rem 1rem;
+    border-radius: var(--md-sys-shape-small); /* 使用系统统一圆角变量 */
+    cursor: pointer;
+    display: inline-flex; /* 改为inline-flex适应内容宽度 */
+    align-items: center;
+    gap: 0.5rem;
+    transition: all var(--md3e-transition-standard); /* 统一过渡动画 */
+    font-weight: 500; /* 增加字体重量提升可读性 */
+    min-height: 48px; /* 确保触控区域大小 */
+    box-shadow: var(--md-sys-elevation-level1); /* 增加轻微阴影提升层次感 */
+}
+
+.back-btn:hover {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+    border-color: var(--md-sys-color-primary); /* 悬停时边框色同步 */
+    transform: translateX(-3px);
+    box-shadow: var(--md-sys-elevation-level2); /* 悬停增强阴影 */
+}
+
+.back-btn:active {
+    transform: translateX(-1px); /* 调整点击反馈位置 */
+    box-shadow: var(--md-sys-elevation-level1); /* 点击时阴影减弱 */
+    filter: brightness(0.95); /* 增加亮度变化反馈 */
+}
+
+.back-btn:focus {
+    outline: 2px solid var(--md-sys-color-primary); /* 焦点状态优化，提升可访问性 */
+    outline-offset: 2px;
+}
+
+/* 深色模式适配（保持与其他元素一致性） */
+body.dark-mode .back-btn {
+    background: var(--md-sys-color-surface-container);
+    border-color: var(--md-sys-color-outline-variant);
+}
+
+body.dark-mode .back-btn:hover {
+    border-color: var(--md-sys-color-primary);
+}
+
 /* 深色模式下的切换按钮样式 */
 body.dark-mode #themeToggle:hover {
     box-shadow: 0 0 15px rgba(180, 140, 255, 0.4);
-}
-
-@media (max-width: 768px) {
-  /* 基础布局适配 */
-  .container {
-    padding: 0 15px;
-  }
-  
-  .main-navbar {
-    height: 56px;
-    padding: 0 12px;
-  }
-  
-  body {
-    padding-top: 60px;
-  }
-  
-  .navbar-brand {
-    font-size: 1.2rem;
-    text-align: center;
-    flex-grow: 1;
-    color: var(--md3e-on-primary);
-  }
-  
-  /* 卡片适配 */
-  .card-header {
-    flex-direction: column;
-    gap: 0.5rem;
-    text-align: center;
-    padding: 1rem;
-    border-radius: var(--md3e-shape-corner-medium) var(--md3e-shape-corner-medium) 0 0 !important;
-  }
-  
-  .card-header h5 {
-    justify-content: center;
-    font-size: 1rem;
-  }
-  
-  /* 筛选器适配 - 统一移动端样式 */
-  .custom-filter-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-  
-  .custom-input,
-  .custom-select,
-  .form-control,
-  .filter-input,
-  .filter-select {
-    padding: 0.65rem 0.75rem;
-    min-height: 36px;
-    font-size: 0.85rem;
-  }
-  
-  .custom-input-icon,
-  .form-input-icon {
-    left: 0.5rem;
-    font-size: 0.9rem;
-  }
-  
-  .custom-reset-btn,
-  .filter-btn,
-  .btn {
-    padding: 0.65rem 1rem;
-    font-size: 0.85rem;
-    min-height: 36px;
-    min-width: 100px;
-  }
-  
-  /* 统计项适配 */
-  .stat-item {
-    padding: 1rem 0.5rem;
-  }
-  
-  .stat-icon {
-    font-size: 1.75rem;
-    width: 52px;
-    height: 52px;
-    margin-bottom: 0.5rem;
-  }
-  
-  .stat-title {
-    font-size: 0.85rem;
-    margin-bottom: 0.25rem;
-  }
-  
-  .stat-value {
-    font-size: 1.5rem;
-  }
-  
-  .stat-item:not(:last-child)::after {
-    width: 1px;
-    top: 20%;
-    height: 60%;
-  }
-  
-  /* 表格适配 */
-  .homework-table-container {
-    font-size: 0.875rem;
-    border-radius: 0 0 var(--md3e-shape-corner-medium) var(--md3e-shape-corner-medium);
-    max-height: 60vh;
-  }
-  
-  .homework-table th,
-  .homework-table td {
-    padding: 0.75rem 0.5rem;
-    font-size: 0.875rem;
-    white-space: nowrap;
-  }
-  
-  .homework-remarks {
-    max-width: 200px;
-    font-size: 0.8rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .homework-table-wrapper {
-    border-radius: 0 0 var(--md3e-shape-corner-medium) var(--md3e-shape-corner-medium);
-  }
-  
-  [data-theme="dark"] .homework-table-container {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-}
-
-@media (max-width: 576px) {
-  /* 筛选器适配 - 移动端单列布局 */
-  .custom-filter-grid {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-  
-  .filter-card .card-body {
-    padding: 1rem;
-  }
-  
-  .custom-filter-group {
-    gap: 0.5rem;
-  }
-  
-  .custom-input,
-  .custom-select,
-  .form-control,
-  .filter-input,
-  .filter-select {
-    padding: 0.55rem 0.75rem;
-    min-height: 32px;
-    font-size: 0.8rem;
-  }
-  
-  .custom-reset-btn,
-  .filter-btn,
-  .btn {
-    padding: 0.55rem 0.75rem;
-    font-size: 0.8rem;
-    min-height: 32px;
-    min-width: 90px;
-    width: 100%;
-  }
-  
-  .filter-btn-group,
-  .btn-group {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  /* 统计项适配 */
-  .stat-item {
-    padding: 0.75rem 0.25rem;
-  }
-  
-  .stat-icon {
-    font-size: 1.5rem;
-    width: 48px;
-    height: 48px;
-  }
-  
-  .stat-title {
-    font-size: 0.75rem;
-  }
-  
-  .stat-value {
-    font-size: 1.25rem;
-  }
-  
-  .stat-desc {
-    font-size: 0.75rem;
-  }
-  
-  /* 表格适配 */
-  .homework-table th:nth-child(5),
-  .homework-table td:nth-child(5),
-  .homework-table th:nth-child(6),
-  .homework-table td:nth-child(6) {
-    display: none;
-  }
-  
-  .form-label {
-    font-size: 0.875rem;
-  }
-  
-  .navbar-brand {
-    font-size: 1.1rem;
-  }
-  
-  .homework-table-container {
-    max-height: 50vh;
-  }
-}
-
-/* 横屏适配 */
-@media (max-width: 768px) and (orientation: landscape) {
-  .stat-item {
-    padding: 1rem 0.5rem;
-  }
-  
-  .stat-icon {
-    font-size: 1.75rem;
-    margin-bottom: 0.25rem;
-  }
-  
-  .stat-value {
-    font-size: 1.5rem;
-  }
-  
-  .homework-table-container {
-    max-height: 50vh;
-  }
-  
-  .custom-filter-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }

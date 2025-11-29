@@ -453,326 +453,37 @@ body {
   overflow: hidden; /* 防止所有方向的滾動 */
 }
 
-/* 大屏幕優化 (> 1024px) */
-@media (min-width: 1024px) {
-  .status-bar {
-    margin-bottom: 0.5vh;
-    padding: 10px 20px;
-  }
-
-  .progress-container {
-    margin-bottom: 0.5vh;
-  }
-
-  .canvas-container {
-    padding: 20px;
-    margin-bottom: 10px;
-  }
-
-  .input-group {
-    margin-top: 0.5vh;
-    gap: 15px;
-  }
-
-  .btn-report {
-    margin-top: 5px;
-  }
-
-  .feedback {
-    margin-top: 10px;
-    min-height: 25px;
-  }
-}
-
-@media (min-height: 800px) {
-  .status-bar {
-    margin-bottom: 0.8vh;
-  }
-
-  .progress-container {
-    margin-bottom: 0.8vh;
-  }
-
-  .input-group {
-    margin-top: 1vh;
-  }
-
-  .btn-report {
-    margin-top: 1.2vh;
-  }
-
-  .btn-reset {
-    margin-top: 0.8vh;
-  }
-}
-
-/* 移動端適配 (螢幕寬度 ≤ 768px) */
-@media (max-width: 768px) {
-  body {
-    padding: 8px;
-    box-sizing: border-box;
-  }
-
-  /* 遊戲容器調整 */
-  .canvas-container {
-    padding: 5px 5px; /* 減少上下內邊距，直接縮短容器高度 */
-    width: 100%;
-    box-sizing: border-box;
-    margin: 0 auto;
-    max-width: 500px; /* 防止在平板等設備上變得過寬 */
-  }
-
-  /* 畫布自適應 - 核心優化點 */
-  #gameCanvas {
-    width: 100%;
-    height: auto;
-    max-height: 100px; /* 降低最大高度，使其在手機螢幕上更緊湊 */
-  }
-
-  /* 輸入區域優化 */
-  .input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 15px; /* 適當減少與畫布的間距 */
-    padding: 0 5px;
-  }
-
-  #userAnswer {
-    width: 100%;
-    padding: 12px 15px;
-    font-size: 1.1em;
-    border-radius: 12px;
-  }
-
-  /* 按鈕優化 */
-  .btn-submit,
-  .btn-show-answer {
-    padding: 14px 0;
-    width: 100%;
-    font-size: 1.1em;
-  }
-
-  .btn-report,
-  .btn-reset {
-    width: 100%;
-    padding: 12px 0;
-    margin-top: 12px;
-  }
-
-  /* 反饋區域調整 */
-  .feedback {
-    font-size: 1.1em; /* 適當調小字體，節省空間 */
-    min-height: 24px;
-    padding: 8px 0;
-  }
-
-  /* 語言按鈕優化 */
-  .lang-switch {
-    top: 10px;
-    right: 10px;
-  }
-
-  .lang-btn {
-    width: 44px;
-    height: 44px;
-    font-size: 1em;
-  }
-
-  /* 標題優化 */
-  h1 {
-    font-size: 1.4em;
-    text-align: center;
-    padding: 10px 0;
-    margin: 0 0 10px; /* 減少標題下方的間距 */
-  }
-
-  /* 進度條容器 */
-  .progress-container {
-    margin: 0 5px 10px;
-    height: 8px;
-  }
-
-  button {
-    padding: 10px 20px;
-    font-size: 1em;
-  }
-
-  .input-group button {
-    flex: 1;
-  }
-}
-
-/* 小屏手機適配 (≤ 375px) */
-@media (max-width: 375px) {
-  .lang-btn {
-    width: 40px;
-    height: 40px;
-  }
-
-  h1 {
-    font-size: 1.2em;
-  }
-
-  .feedback {
-    font-size: 1em;
-  }
-
-  /* 為最小屏手機進一步降低畫布高度 */
-  #gameCanvas {
-    max-height: 140px;
-  }
-}
-
-/* 橫屏適配 - 關鍵優化 */
-@media (max-height: 500px) and (orientation: landscape) {
-  body {
-    /* 橫屏時，整體頁面使用彈性佈局，讓遊戲區和操作區上下分布 */
-    display: flex;
-    flex-direction: column;
-    height: 100vh; /* 讓 body 占滿整個視口高度 */
-    overflow: hidden; /* 防止頁面整體滾動 */
-  }
-
-  .canvas-container {
-    /* 橫屏時，容器的高度由 flex 決定，不再依賴內容 */
-    flex: 0 1 auto;
-    padding: 2px;
-    margin-bottom: 5px;
-  }
-
-  #gameCanvas {
-    /* 使用視口高度的百分比來限制，非常有效 */
-    max-height: 45vh;
-  }
-
-  .main-content {
-    /* 讓主內容區（輸入、按鈕）也參與 flex 佈局 */
-    flex: 1;
-    overflow-y: auto; /* 如果內容太多，允許內部滾動 */
-    padding-bottom: 20px; /* 留出一些底部空間 */
-  }
-
-  .input-group {
-    margin-top: 10px;
-    gap: 8px;
-  }
-
-  /* 橫屏時可以讓按鈕橫向排列，節省垂直空間 */
-  .action-buttons {
-    display: flex;
-    gap: 8px;
-  }
-  .btn-submit,
-  .btn-show-answer {
-    flex: 1; /* 按鈕平分寬度 */
-    padding: 10px 0;
-  }
-}
-
-/* 橫屏適配 */
-@media (max-height: 480px) and (orientation: landscape) {
-  .canvas-container {
-    margin-bottom: 5px;
-  }
-
-  #gameCanvas {
-    max-height: 120px;
-  }
-
-  .input-group {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  #userAnswer {
-    flex: 1;
-    padding: 8px;
-  }
-
-  .btn-submit,
-  .btn-show-answer {
-    padding: 8px 12px;
-    width: auto;
-  }
-}
-
-/* 超小屏設備優化 (≤ 375px) */
-@media (max-width: 375px) {
-  h1 {
-    font-size: 1.3em;
-  }
-
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-
-  canvas {
-    height: 180px;
-  }
-}
-
-/* 中等寬度手機優化 (≥ 480px) and (max-width: 768px) */
-@media (min-width: 480px) and (max-width: 768px) {
-  .input-group {
-    flex-direction: row;
+.back-btn {
+    background: var(--md-sys-color-surface);
+    border: 1px solid var(--md-sys-color-outline);
+    color: var(--md-sys-color-on-surface);
+    padding: 0.5rem 1rem;
+    border-radius: var(--md-sys-shape-small); /* 使用系统统一圆角变量 */
+    cursor: pointer;
+    display: inline-flex; /* 改为inline-flex适应内容宽度 */
     align-items: center;
-  }
-
-  input[type="number"],
-  .btn-submit,
-  .btn-show-answer {
-    width: auto;
-  }
-
-  input[type="number"] {
-    width: 120px;
-  }
+    gap: 0.5rem;
+    transition: all var(--md3e-transition-standard); /* 统一过渡动画 */
+    font-weight: 500; /* 增加字体重量提升可读性 */
+    min-height: 48px; /* 确保触控区域大小 */
+    box-shadow: var(--md-sys-elevation-level1); /* 增加轻微阴影提升层次感 */
 }
 
-@media (max-width: 768px) and (orientation: portrait) {
-  .status-bar {
-    margin-bottom: 8px;
-    padding: 8px 12px;
-  }
+.back-btn:hover {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+    border-color: var(--md-sys-color-primary); /* 悬停时边框色同步 */
+    transform: translateX(-3px);
+    box-shadow: var(--md-sys-elevation-level2); /* 悬停增强阴影 */
+}
 
-  .progress-container {
-    margin-bottom: 8px;
-  }
+.back-btn:active {
+    transform: translateX(-1px); /* 调整点击反馈位置 */
+    box-shadow: var(--md-sys-elevation-level1); /* 点击时阴影减弱 */
+    filter: brightness(0.95); /* 增加亮度变化反馈 */
+}
 
-  .canvas-container {
-    padding: 8px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  canvas {
-    height: 180px;
-    flex-shrink: 0;
-  }
-
-  .input-group {
-    margin-top: 8px;
-    gap: 6px;
-  }
-
-  .btn-report {
-    margin-top: 10px;
-    padding: 8px 0;
-  }
-
-  .btn-reset {
-    margin-top: 6px;
-    margin-bottom: 0;
-    padding: 6px 0;
-    font-size: 0.85em;
-  }
-
-  .feedback {
-    margin-top: 8px;
-    min-height: 24px;
-    font-size: 1.1em;
-  }
+.back-btn:focus {
+    outline: 2px solid var(--md-sys-color-primary); /* 焦点狀態優化，提升可訪問性 */
+    outline-offset: 2px;
 }
