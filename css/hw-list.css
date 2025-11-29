@@ -98,7 +98,7 @@
     --md-sys-elevation-level3: var(--md3e-elevation-3);
 }
 
-/* 深色主题变量覆盖 */
+/* 深色主題變量覆蓋 */
 body.dark-mode {
     --md-sys-color-primary: #6750a4;
     --md-sys-color-on-primary: #381e72;
@@ -136,7 +136,7 @@ body.dark-mode {
     --md-sys-color-warning-container: #8c5100;
     --md-sys-color-on-warning-container: #ffddb7;
 
-    /* 深色模式阴影 */
+    /* 深色模式陰影 */
     --md-sys-elevation-level1: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
     --md-sys-elevation-level2: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
     --md-sys-elevation-level3: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
@@ -144,7 +144,7 @@ body.dark-mode {
     --md-sys-elevation-level5: 0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.3);
 }
 
-/* 基础样式 */
+/* 基础樣式 */
 body {
     background-color: var(--md-sys-color-surface);
     font-family: 'Roboto', system-ui, sans-serif;
@@ -154,7 +154,7 @@ body {
     transition: var(--transition-default);
 }
 
-/* 导航栏 - MD3 顶部应用栏 */
+/* 導航欄 - MD3 頂部應用欄 */
 .main-navbar {
     background-color: var(--md-sys-color-primary) !important;
     box-shadow: var(--md-sys-elevation-level2);
@@ -182,7 +182,7 @@ body {
     text-shadow: none;
 }
 
-/* 深色模式导航栏 */
+/* 深色模式導覽欄 */
 body.dark-mode .main-navbar {
     background: var(--md-sys-color-on-primary);
     border-bottom: 1px solid var(--md-sys-color-outline-variant);
@@ -192,7 +192,7 @@ body.dark-mode .navbar-text small {
     color: var(--md-sys-color-on-surface-variant);
 }
 
-/* 基础卡片样式 - MD3 卡片组件 */
+/* 基础卡片樣式 - MD3 卡片組件 */
 .card {
     background-color: var(--md-sys-color-surface);
     border-radius: var(--md-sys-shape-medium);
@@ -209,7 +209,7 @@ body.dark-mode .navbar-text small {
     background-color: var(--md-sys-color-surface);
 }
 
-/* 卡片标题 */
+/* 卡片標題 */
 .card-header {
     background-color: var(--md-sys-color-surface-variant) !important;
     border-bottom: 1px solid var(--md-sys-color-outline);
@@ -229,7 +229,7 @@ body.dark-mode .navbar-text small {
     text-shadow: none;
 }
 
-/* 筛选器卡片 */
+/* 篩選器卡片 */
 .filter-card {
     background-color: var(--md-sys-color-surface) !important;
     box-shadow: var(--md-sys-elevation-level2);
@@ -247,7 +247,7 @@ body.dark-mode .navbar-text small {
     text-shadow: none;
 }
 
-/* 自定义筛选器样式 */
+/* 自定義篩選器樣式 */
 .custom-filter-card .card-body {
     padding: 1.5rem;
 }
@@ -344,7 +344,7 @@ body.dark-mode .navbar-text small {
     transform: translateY(1px);
 }
 
-/* 统计卡片 */
+/* 統計卡片 */
 .stat-card {
     height: 100%;
     border-radius: var(--md-sys-shape-medium);
@@ -456,7 +456,7 @@ body.dark-mode .navbar-text small {
     z-index: 1;
 }
 
-/* 表格样式 */
+/* 表格樣式 */
 .homework-table-wrapper {
     background-color: var(--md-sys-color-surface);
     box-shadow: var(--md-sys-elevation-level2);
@@ -477,7 +477,7 @@ body.dark-mode .navbar-text small {
     border-collapse: collapse;
 }
 
-/* 表格滚动条样式 */
+/* 表格滾動條樣式 */
 .homework-table-container::-webkit-scrollbar {
     height: 8px;
 }
@@ -542,7 +542,7 @@ body.dark-mode .navbar-text small {
     max-width: 300px;
 }
 
-/* 按钮样式 */
+/* 按鈕樣式 */
 .btn {
     border-radius: var(--md-sys-shape-large);
     font-weight: 500;
@@ -582,7 +582,7 @@ body.dark-mode .navbar-text small {
     background-color: transparent;
 }
 
-/* 表单控件 */
+/* 表單控件 */
 .form-control, .form-select {
     background-color: var(--md-sys-color-surface) !important;
     border: 1px solid var(--md-sys-color-outline);
@@ -606,7 +606,7 @@ body.dark-mode .navbar-text small {
     text-shadow: none;
 }
 
-/* 状态徽章 */
+/* 狀態徽章 */
 .status-badge {
     display: inline-flex;
     align-items: center;
@@ -631,7 +631,7 @@ body.dark-mode .navbar-text small {
     color: var(--md-sys-color-primary);
 }
 
-/* 空状态 */
+/* 空狀態 */
 .empty-state {
     padding: 3rem 1rem;
     text-align: center;
@@ -653,7 +653,7 @@ body.dark-mode .navbar-text small {
     color: var(--md-sys-color-on-surface);
 }
 
-/* 徽章样式 */
+/* 徽章樣式 */
 .custom-badge {
     background-color: var(--md-sys-color-primary);
     color: var(--md-sys-color-on-primary);
@@ -664,7 +664,7 @@ body.dark-mode .navbar-text small {
     border: none;
 }
 
-/* 加载指示器 */
+/* 加載指示器 */
 .loading-spinner {
     display: flex;
     justify-content: center;
@@ -686,7 +686,7 @@ body.dark-mode .navbar-text small {
     border-radius: var(--md-sys-shape-medium);
 }
 
-/* 深色模式适配 */
+/* 深色模式適配 */
 body.dark-mode .custom-input,
 body.dark-mode .custom-select {
     background-color: var(--md-sys-color-surface-container);
@@ -725,13 +725,13 @@ body.dark-mode .card-header h5 {
     color: var(--md-sys-color-on-surface);
 }
 
-/* 深色模式筛选器卡片 */
+/* 深色模式篩選器卡片 */
 body.dark-mode .filter-card {
     background: var(--md-sys-color-surface-container) !important;
     border: 1px solid var(--md-sys-color-outline-variant);
 }
 
-/* 深色模式统计卡片 */
+/* 深色模式統計卡片 */
 body.dark-mode .stat-container-card,
 body.dark-mode .stat-card {
     background: var(--md-sys-color-surface-container) !important;
@@ -755,7 +755,7 @@ body.dark-mode .stat-value {
     color: var(--md-sys-color-on-surface);
 }
 
-/* 深色模式表格样式 */
+/* 深色模式表格樣式 */
 body.dark-mode .homework-table-wrapper {
     background: var(--md-sys-color-surface-container);
     border: 1px solid var(--md-sys-color-outline-variant);
@@ -808,7 +808,7 @@ body.dark-mode .homework-remarks {
     border: 1px solid var(--md-sys-color-outline-variant);
 }
 
-/* 深色模式表格滚动条 */
+/* 深色模式表格滾動條 */
 body.dark-mode .homework-table-container::-webkit-scrollbar-track {
     background: var(--md-sys-color-surface-container);
 }
@@ -822,7 +822,7 @@ body.dark-mode .homework-table-container::-webkit-scrollbar-thumb:hover {
     background: var(--md-sys-color-on-surface-variant);
 }
 
-/* 深色模式卡片样式 */
+/* 深色模式卡片樣式 */
 body.dark-mode .card {
     background: var(--md-sys-color-surface-container);
     border: 1px solid var(--md-sys-color-outline-variant);
@@ -838,7 +838,7 @@ body.dark-mode .card-header {
     border-bottom-color: var(--md-sys-color-outline-variant) !important;
 }
 
-/* 深色模式表单与按钮 */
+/* 深色模式表單與按鈕 */
 body.dark-mode .btn {
     border: 1px solid var(--md-sys-color-outline-variant);
 }
@@ -874,7 +874,7 @@ body.dark-mode .form-label {
     color: var(--md-sys-color-on-surface);
 }
 
-/* 深色模式状态与指示 */
+/* 深色模式狀態與指示 */
 body.dark-mode .status-badge.overdue {
     background-color: rgba(245, 87, 108, 0.2);
     color: var(--md-sys-color-error);
@@ -913,12 +913,12 @@ body.dark-mode #uploadArea .alert {
     color: var(--md-sys-color-on-surface-variant);
 }
 
-/* 主题切换按钮样式 */
+/* 主題切換按鈕樣式 */
 #themeToggle {
     position: relative;
     overflow: hidden;
     transition: all 0.2s ease;
-    border-radius: 50%; /* 圆形按钮 */
+    border-radius: 50%; /* 圓形按鈕 */
     width: 40px;
     height: 40px;
     display: flex;
@@ -941,7 +941,7 @@ body.dark-mode #uploadArea .alert {
     transform: scale(0.9);
 }
 
-/* 主题切换页面过渡效果 */
+/* 主題切換頁面過渡效果 */
 .theme-transition {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
@@ -951,37 +951,37 @@ body.dark-mode #uploadArea .alert {
     border: 1px solid var(--md-sys-color-outline);
     color: var(--md-sys-color-on-surface);
     padding: 0.5rem 1rem;
-    border-radius: var(--md-sys-shape-small); /* 使用系统统一圆角变量 */
+    border-radius: var(--md-sys-shape-small); /* 使用系統統一圓角變量 */
     cursor: pointer;
-    display: inline-flex; /* 改为inline-flex适应内容宽度 */
+    display: inline-flex; /* 改為inline-flex適應內容寬度 */
     align-items: center;
     gap: 0.5rem;
-    transition: all var(--md3e-transition-standard); /* 统一过渡动画 */
-    font-weight: 500; /* 增加字体重量提升可读性 */
-    min-height: 48px; /* 确保触控区域大小 */
-    box-shadow: var(--md-sys-elevation-level1); /* 增加轻微阴影提升层次感 */
+    transition: all var(--md3e-transition-standard); /* 統一過渡動畫 */
+    font-weight: 500; /* 增加字體重量提升可讀性 */
+    min-height: 48px; /* 確保觸控區域大小 */
+    box-shadow: var(--md-sys-elevation-level1); /* 增加輕微陰影提升層次感 */
 }
 
 .back-btn:hover {
     background-color: var(--md-sys-color-primary);
     color: var(--md-sys-color-on-primary);
-    border-color: var(--md-sys-color-primary); /* 悬停时边框色同步 */
+    border-color: var(--md-sys-color-primary); /* 懸停時邊框色同步 */
     transform: translateX(-3px);
-    box-shadow: var(--md-sys-elevation-level2); /* 悬停增强阴影 */
+    box-shadow: var(--md-sys-elevation-level2); /* 懸停增強陰影 */
 }
 
 .back-btn:active {
-    transform: translateX(-1px); /* 调整点击反馈位置 */
-    box-shadow: var(--md-sys-elevation-level1); /* 点击时阴影减弱 */
-    filter: brightness(0.95); /* 增加亮度变化反馈 */
+    transform: translateX(-1px); /* 調整點擊反饋位置 */
+    box-shadow: var(--md-sys-elevation-level1); /* 點擊時陰影減弱 */
+    filter: brightness(0.95); /* 增加亮度變化反饋   */
 }
 
 .back-btn:focus {
-    outline: 2px solid var(--md-sys-color-primary); /* 焦点状态优化，提升可访问性 */
+    outline: 2px solid var(--md-sys-color-primary); /* 焦點狀態優化，提升可訪問性 */
     outline-offset: 2px;
 }
 
-/* 深色模式适配（保持与其他元素一致性） */
+/* 深色模式適配（保持與其他元素一致性） */
 body.dark-mode .back-btn {
     background: var(--md-sys-color-surface-container);
     border-color: var(--md-sys-color-outline-variant);
@@ -991,7 +991,7 @@ body.dark-mode .back-btn:hover {
     border-color: var(--md-sys-color-primary);
 }
 
-/* 深色模式下的切换按钮样式 */
+/* 深色模式下的切換按鈕樣式 */
 body.dark-mode #themeToggle:hover {
     box-shadow: 0 0 15px rgba(180, 140, 255, 0.4);
 }

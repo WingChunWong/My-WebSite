@@ -128,13 +128,13 @@ h1 {
   background: var(--card-bg);
   padding: 15px 30px;
   border-radius: 6px; /* 小圓角 */
-  border: 1px solid var(--border-color); /* 細邊框 */
+  border: 1px solid var(--border-color); /* 無邊框 */
   margin-bottom: 1vh;
   font-weight: bold;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  box-shadow: none; /* 移除陰影 */
+  box-shadow: none; /* 無陰影 */
 }
 
 .status-item {
@@ -162,7 +162,7 @@ h1 {
   background-color: #e2e8f0;
   overflow: hidden;
   margin: 20px auto;
-  border: 1px solid var(--border-color); /* 移除邊框 */
+  border: 1px solid var(--border-color); /* 細邊框 */
 }
 
 .progress-bar {
@@ -458,32 +458,54 @@ body {
     border: 1px solid var(--md-sys-color-outline);
     color: var(--md-sys-color-on-surface);
     padding: 0.5rem 1rem;
-    border-radius: var(--md-sys-shape-small); /* 使用系统统一圆角变量 */
+    border-radius: var(--md-sys-shape-small); /* 使用系統統一圓角變量 */
     cursor: pointer;
-    display: inline-flex; /* 改为inline-flex适应内容宽度 */
+    display: inline-flex; /* 改為inline-flex適應內容寬度 */
     align-items: center;
     gap: 0.5rem;
-    transition: all var(--md3e-transition-standard); /* 统一过渡动画 */
-    font-weight: 500; /* 增加字体重量提升可读性 */
-    min-height: 48px; /* 确保触控区域大小 */
-    box-shadow: var(--md-sys-elevation-level1); /* 增加轻微阴影提升层次感 */
+    transition: all var(--md3e-transition-standard); /* 統一過渡動畫 */
+    font-weight: 500; /* 增加字體重量提升可讀性 */
+    min-height: 48px; /* 確保觸控區域大小 */
+    box-shadow: var(--md-sys-elevation-level1); /* 增加輕微陰影提升層次感 */
 }
 
 .back-btn:hover {
     background-color: var(--md-sys-color-primary);
     color: var(--md-sys-color-on-primary);
-    border-color: var(--md-sys-color-primary); /* 悬停时边框色同步 */
+    border-color: var(--md-sys-color-primary); /* 懸停時邊框色同步 */
     transform: translateX(-3px);
-    box-shadow: var(--md-sys-elevation-level2); /* 悬停增强阴影 */
+    box-shadow: var(--md-sys-elevation-level2); /* 懸停增強陰影 */
 }
 
 .back-btn:active {
-    transform: translateX(-1px); /* 调整点击反馈位置 */
-    box-shadow: var(--md-sys-elevation-level1); /* 点击时阴影减弱 */
-    filter: brightness(0.95); /* 增加亮度变化反馈 */
+    transform: translateX(-1px); /* 調整點擊反饋位置 */
+    box-shadow: var(--md-sys-elevation-level1); /* 點擊時陰影減弱 */
+    filter: brightness(0.95); /* 增加亮度變化反饋 */
 }
 
 .back-btn:focus {
     outline: 2px solid var(--md-sys-color-primary); /* 焦点狀態優化，提升可訪問性 */
     outline-offset: 2px;
+}
+
+.small-screen-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--md3e-surface);
+  z-index: 9999;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.small-screen-overlay i {
+  font-size: 3rem;
+  color: var(--md3e-primary);
 }

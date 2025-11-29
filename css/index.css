@@ -35,7 +35,7 @@ header p {
   font-size: 1.1rem;
 }
 
-/* 深色模式切换按钮样式 */
+/* 深色模式切換按鈕樣式 */
 .theme-toggle {
   position: absolute;
   top: 1rem;
@@ -45,7 +45,7 @@ header p {
   color: var(--md3e-on-surface);
   width: 40px;
   height: 40px;
-  border-radius: var(--md3e-shape-corner-full); /* 圆形按钮 */
+  border-radius: var(--md3e-shape-corner-full); /* 圓形按鈕 */
   font-size: 1.2rem;
   cursor: pointer;
   display: flex;
@@ -98,20 +98,42 @@ header p {
 
 .project-card a {
   display: inline-block;
-  background-color: var(--md3e-primary); /* 实色背景 */
-  color: var(--md3e-on-primary); /* 文字颜色（与背景对比） */
+  background-color: var(--md3e-primary); /* 實色背景 */
+  color: var(--md3e-on-primary); /* 文字顏色（與背景對比） */
   padding: 0.6rem 1.2rem;
-  border-radius: var(--md3e-shape-corner-full); /* 圆角设计 */
-  text-decoration: none; /* 去除下划线 */
+  border-radius: var(--md3e-shape-corner-full); /* 圓角設計 */
+  text-decoration: none; /* 去除下劃線 */
   font-weight: 500;
-  transition: var(--md3e-transition-standard); /* 平滑过渡效果 */
-  box-shadow: var(--md3e-elevation-1); /* 轻微阴影增强立体感 */
-  border: none; /* 彻底移除边框 */
+  transition: var(--md3e-transition-standard); /* 平滑過渡效果 */
+  box-shadow: var(--md3e-elevation-1); /* 輕微陰影增強立體感 */
+  border: none; /* 徹底移除邊框 */
 }
 
 .project-card a:hover {
-  background-color: var(--md3e-primary-container); /*  hover 时背景色变化 */
-  color: var(--md3e-on-primary-container); /* 文字颜色同步变化 */
-  transform: translateY(-2px); /* 轻微上浮效果 */
-  box-shadow: var(--md3e-elevation-2); /* 阴影加深 */
+  background-color: var(--md3e-primary-container); /*  hover 時背景色變化 */
+  color: var(--md3e-on-primary-container); /* 文字顏色同步變化 */
+  transform: translateY(-2px); /* 輕微上浮效果 */
+  box-shadow: var(--md3e-elevation-2); /* 陰影加深 */
+}
+
+.small-screen-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--md3e-surface);
+  z-index: 9999;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.small-screen-overlay i {
+  font-size: 3rem;
+  color: var(--md3e-primary);
 }

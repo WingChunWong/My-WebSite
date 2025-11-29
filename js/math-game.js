@@ -54,6 +54,34 @@ function setupCanvas() {
     // 設定CSS顯示尺寸（保持原有布局）
     canvas.style.width = `${rect.width}px`;
     canvas.style.height = `${rect.height}px`;
+
+    const isSmallScreen = window.innerWidth <= 768;
+    if (isSmallScreen) {
+        // 限制最大宽度为屏幕宽度的90%
+        const maxWidth = window.innerWidth * 0.9;
+        canvas.width = maxWidth * dpr;
+        canvas.height = (maxWidth * 0.3) * dpr; // 保持宽高比
+        canvas.style.width = `${maxWidth}px`;
+        canvas.style.height = `${maxWidth * 0.3}px`;
+    } else {
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        canvas.style.width = `${rect.width}px`;
+        canvas.style.height = `${rect.height}px`;
+    }
+
+    ctx.scale(dpr, dpr);
+
+    // 调整小屏设备的字体大小
+    if (isSmallScreen) {
+        fontLabel = "bold 12px 'Comic Sans MS', sans-serif";
+        fontValue = "bold 18px 'Comic Sans MS', sans-serif";
+        fontFactor = "bold 16px 'Comic Sans MS', sans-serif";
+    } else {
+        fontLabel = "bold 16px 'Comic Sans MS', sans-serif";
+        fontValue = "bold 24px 'Comic Sans MS', sans-serif";
+        fontFactor = "bold 20px 'Comic Sans MS', sans-serif";
+    }
 }
 
 // === 初始化 ===
@@ -74,6 +102,35 @@ function init() {
 
     loadState();  // 載入保存的狀態
     updateUI();   // 更新介面顯示
+    function checkScreenSize() {
+        const smallScreenOverlay = document.querySelector('.small-screen-overlay');
+        const isSmallScreen = window.innerWidth < 768;
+
+        if (isSmallScreen) {
+            smallScreenOverlay.style.display = 'flex';
+            // 隱藏原有內容
+            document.querySelector('.lang-switch').style.display = 'none';
+            document.querySelector('h1').style.display = 'none';
+            document.querySelector('.status-bar').style.display = 'none';
+            document.querySelector('.progress-container').style.display = 'none';
+            document.querySelector('.canvas-container').style.display = 'none';
+            document.querySelector('.button-container').style.display = 'none';
+        } else {
+            smallScreenOverlay.style.display = 'none';
+            // 顯示原有內容
+            document.querySelector('.lang-switch').style.display = 'block';
+            document.querySelector('h1').style.display = 'block';
+            document.querySelector('.status-bar').style.display = 'flex';
+            document.querySelector('.progress-container').style.display = 'block';
+            document.querySelector('.canvas-container').style.display = 'flex';
+            document.querySelector('.button-container').style.display = 'block';
+        }
+    }
+
+    // 初始檢測
+    checkScreenSize();
+    // 窗口大小變化時重新檢測
+    window.addEventListener('resize', checkScreenSize);
 
     // 初始化輸入框預設文字
     updateInputPlaceholder();

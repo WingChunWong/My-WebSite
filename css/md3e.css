@@ -1,5 +1,5 @@
 :root {
-  /* 核心颜色 - 符合MD3动态色彩系统 */
+  /* 核心顏色 - 符合MD3動態色彩系統 */
   --md3e-primary: #6750A4;
   --md3e-on-primary: #FFFFFF;
   --md3e-primary-container: #EADDFF;
@@ -20,7 +20,7 @@
   --md3e-error-container: #F9DEDC;
   --md3e-on-error-container: #410E0B;
   
-  /* 表面色 - 支持分层设计 */
+  /* 表面色 - 支持分層設計 */
   --md3e-surface: #FFFBFE;
   --md3e-on-surface: #1C1B1F;
   --md3e-surface-variant: #E7E0EC;
@@ -32,7 +32,7 @@
   --md3e-surface-container-high: #ECE6F0;
   --md3e-surface-container-highest: #E6E0E9;
   
-  /* 其他基础变量 */
+  /* 其他基礎變量 */
   --md3e-outline: #79747E;
   --md3e-outline-variant: #CAC4D0;
   
@@ -47,27 +47,27 @@
   --md3e-warning-container: #FFE0B2;
   --md3e-on-warning-container: #331A00;
   
-  /* 形状 - MD3圆角规范 */
+  /* 形狀 - MD3圓角規範 */
   --md3e-shape-corner-small: 4px;
   --md3e-shape-corner-medium: 8px;
   --md3e-shape-corner-large: 16px;
   --md3e-shape-corner-full: 9999px;
   
-  /* 阴影 - elevation层级 */
+  /* 陰影 - elevation層級 */
   --md3e-elevation-0: none;
   --md3e-elevation-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   --md3e-elevation-2: 0 3px 6px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.12);
   --md3e-elevation-3: 0 10px 20px rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.10);
   --md3e-elevation-4: 0 14px 28px rgba(0,0,0,0.20), 0 10px 10px rgba(0,0,0,0.10);
   
-  /* 过渡动画 - MD3标准缓动 */
+  /* 過渡動畫 - MD3標準緩動 */
   --md3e-transition-standard: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   
-  /* 字体设置 */
+  /* 字體設置 */
   --md3e-font-family: system-ui,
 }
 
-/* 深色模式变量覆盖 */
+/* 深色模式變量覆蓋 */
 [data-theme="dark"] {
   --md3e-primary: #D0BCFF;
   --md3e-on-primary: #381E72;
@@ -113,7 +113,82 @@
   --md3e-warning-container: #8C5100;
   --md3e-on-warning-container: #FFDDB7;
   
-  /* 深色模式阴影 */
+  /* 深色模式陰影 */
   --md3e-elevation-1: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.15);
   --md3e-elevation-2: 0 2px 6px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* 強制橫屏顯示設置 */
+@media screen and (max-width: 767px) {
+  /* 豎屏狀態提示層 */
+  .orientation-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--md3e-surface);
+    z-index: 9999;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .orientation-overlay i {
+    font-size: 3rem;
+    color: var(--md3e-primary);
+    animation: rotate 2s infinite ease-in-out;
+  }
+
+  @keyframes rotate {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(90deg); }
+  }
+
+  /* 豎屏狀態下顯示提示 */
+  @media (orientation: portrait) {
+    .orientation-overlay {
+      display: flex;
+    }
+    
+    /* 頁面內容旋轉適配 */
+    .app-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vh;
+      height: 100vw;
+      transform: rotate(90deg) translate(0, -100%);
+      transform-origin: 0 0;
+      overflow: hidden;
+      transition: transform 0.3s ease-out;
+    }
+  }
+
+  /* 橫屏狀態恢復正常 */
+  @media (orientation: landscape) {
+    .app-container {
+      position: static;
+      width: 100%;
+      height: 100%;
+      transform: none;
+    }
+  }
+}
+
+/* 平板及桌面設備保持默認 */
+@media screen and (min-width: 768px) {
+  body {
+    min-width: 1024px;
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+  
+  .orientation-overlay {
+    display: none !important;
+  }
 }
