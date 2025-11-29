@@ -102,35 +102,6 @@ function init() {
 
     loadState();  // 載入保存的狀態
     updateUI();   // 更新介面顯示
-    function checkScreenSize() {
-        const smallScreenOverlay = document.querySelector('.small-screen-overlay');
-        const isSmallScreen = window.innerWidth < 768;
-
-        if (isSmallScreen) {
-            smallScreenOverlay.style.display = 'flex';
-            // 隱藏原有內容
-            document.querySelector('.lang-switch').style.display = 'none';
-            document.querySelector('h1').style.display = 'none';
-            document.querySelector('.status-bar').style.display = 'none';
-            document.querySelector('.progress-container').style.display = 'none';
-            document.querySelector('.canvas-container').style.display = 'none';
-            document.querySelector('.button-container').style.display = 'none';
-        } else {
-            smallScreenOverlay.style.display = 'none';
-            // 顯示原有內容
-            document.querySelector('.lang-switch').style.display = 'block';
-            document.querySelector('h1').style.display = 'block';
-            document.querySelector('.status-bar').style.display = 'flex';
-            document.querySelector('.progress-container').style.display = 'block';
-            document.querySelector('.canvas-container').style.display = 'flex';
-            document.querySelector('.button-container').style.display = 'block';
-        }
-    }
-
-    // 初始檢測
-    checkScreenSize();
-    // 窗口大小變化時重新檢測
-    window.addEventListener('resize', checkScreenSize);
 
     // 初始化輸入框預設文字
     updateInputPlaceholder();
