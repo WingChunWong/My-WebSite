@@ -1,36 +1,49 @@
-// 动态创建小屏提示层（无需手动加HTML）
 (function () {
-    // 创建提示层元素
+    // 創建提示層元素
     function createBlocker() {
         const blocker = document.createElement('div');
-        blocker.className = 'small-screen-blocker';
+        blocker.className = 'small-screen-overlay';
         blocker.innerHTML = `
-      <div class="icon bi bi-tablet-landscape"></div>
-      <h2>请使用大屏设备访问</h2>
-      <p>建议使用平板、电脑等大屏设备打开此页面，以获得最佳体验</p>
-    `;
+            <i class="bi bi-tablet"></i>
+            <h3>請使用大屏設備訪問</h3>
+            <p>建議使用平板電腦或電腦獲得更佳體驗</p>
+        `;
         document.body.insertBefore(blocker, document.body.firstChild);
         return blocker;
     }
 
-    // 检测逻辑
+    // 檢測邏輯
     function checkScreenSize() {
-        let blocker = document.querySelector('.small-screen-blocker');
+        let blocker = document.querySelector('.small-screen-overlay');
         if (!blocker) blocker = createBlocker();
 
         const isSmallScreen = window.innerWidth < 768;
         blocker.style.display = isSmallScreen ? 'flex' : 'none';
 
-        // 隐藏/显示主内容
-        const pageContents = document.body.children;
-        for (let el of pageContents) {
-            if (!el.classList.contains('small-screen-blocker') && !el.classList.contains('orientation-overlay')) {
-                el.style.display = isSmallScreen ? 'none' : '';
+        // 隱藏/顯示主內容
+        const selectors = [
+            '.lang-switch',
+            'h1',
+            '.status-bar',
+            '.progress-container',
+            '.canvas-container',
+            '.button-container',
+            '.container',
+            '.projects',
+            '.navbar',
+            '.card',
+            '.homework-table-wrapper'
+        ];
+
+        selectors.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                element.style.display = isSmallScreen ? 'none' : '';
             }
-        }
+        });
     }
 
-    // 绑定事件
+    // 綁定事件
     document.addEventListener('DOMContentLoaded', checkScreenSize);
     window.addEventListener('resize', checkScreenSize);
     window.addEventListener('orientationchange', checkScreenSize);
