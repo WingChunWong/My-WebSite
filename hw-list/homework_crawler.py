@@ -18,29 +18,29 @@ class ColorLogger:
     
     @staticmethod
     def info(message):
-        print(f"{Fore.CYAN}[摘要]{Style.RESET_ALL} {message}")
+        print(f"{Fore.CYAN}[INFO]{Style.RESET_ALL} {message}")
     
     @staticmethod
     def success(message):
-        print(f"{Fore.GREEN}[成功]{Style.RESET_ALL} {message}")
+        print(f"{Fore.GREEN}[SUCCESS]{Style.RESET_ALL} {message}")
     
     @staticmethod
     def warning(message):
-        print(f"{Fore.YELLOW}[警告]{Style.RESET_ALL} {message}")
+        print(f"{Fore.YELLOW}[WARNING]{Style.RESET_ALL} {message}")
     
     @staticmethod
     def error(message):
-        print(f"{Fore.RED}[錯誤]{Style.RESET_ALL} {message}")
+        print(f"{Fore.RED}[ERROR]{Style.RESET_ALL} {message}")
     
     @staticmethod
     def debug(message):
-        print(f"{Fore.BLUE}[偵錯]{Style.RESET_ALL} {message}")
+        print(f"{Fore.BLUE}[DEBUG]{Style.RESET_ALL} {message}")
     
     @staticmethod
     def progress(message, current, total):
         """顯示進度資訊"""
         percent = (current / total) * 100
-        print(f"{Fore.MAGENTA}[進行中]{Style.RESET_ALL} {message} ({current}/{total} {percent:.1f}%)")
+        print(f"{Fore.MAGENTA}[PROGRESS]{Style.RESET_ALL} {message} ({current}/{total} {percent:.1f}%)")
 
 class ConfigManager:
     """設定管理員 - 處理用戶憑證的儲存和讀取"""
@@ -460,11 +460,6 @@ def show_help():
   import os
   os.environ['PORTAL_USERNAME'] = 'your_username'
   os.environ['PORTAL_PASSWORD'] = 'your_password'
-  
-{Fore.YELLOW}安全提示:{Style.RESET_ALL}
-  - 切勿在公眾場合或共用電腦上儲存密碼
-  - 定期更換密碼
-  - 使用強密碼（包含字母、數字及特殊字元）
 """)
 
 if __name__ == "__main__":
