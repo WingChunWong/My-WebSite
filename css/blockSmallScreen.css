@@ -1,0 +1,53 @@
+.small-screen-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--md3e-surface);
+  z-index: 9999;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+  overflow: hidden; /* 防止提示層自身滾動 */
+}
+
+.small-screen-overlay i {
+  font-size: 3rem;
+  color: var(--md3e-primary);
+}
+
+/* 當顯示提示層時，完全禁止頁面滾動 */
+body.blocked {
+  overflow: hidden !important;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  -webkit-overflow-scrolling: none;
+  overscroll-behavior: none;
+}
+
+/* 確保所有頁面內容在提示層顯示時都被隱藏 */
+body.blocked .container,
+body.blocked .projects,
+body.blocked .navbar,
+body.blocked .card,
+body.blocked .homework-table-wrapper,
+body.blocked .lang-switch,
+body.blocked h1,
+body.blocked .status-bar,
+body.blocked .progress-container,
+body.blocked .canvas-container,
+body.blocked .button-container {
+  display: none !important;
+}
+
+/* 防止任何可能的滾動容器 */
+body.blocked * {
+  overflow: hidden !important;
+}

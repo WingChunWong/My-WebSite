@@ -17,34 +17,26 @@
         let blocker = document.querySelector('.small-screen-overlay');
         if (!blocker) blocker = createBlocker();
 
-        const isSmallScreen = window.innerWidth < 768;
-        blocker.style.display = isSmallScreen ? 'flex' : 'none';
+        // 更嚴格的檢測條件：寬度小於767或高度小於500（考慮橫屏情況）
+        const isSmallScreen = window.innerWidth < 767 || window.innerHeight < 500;
 
-        // 隱藏/顯示主內容
-        const selectors = [
-            '.lang-switch',
-            'h1',
-            '.status-bar',
-            '.progress-container',
-            '.canvas-container',
-            '.button-container',
-            '.container',
-            '.projects',
-            '.navbar',
-            '.card',
-            '.homework-table-wrapper'
-        ];
-
-        selectors.forEach(selector => {
-            const element = document.querySelector(selector);
-            if (element) {
-                element.style.display = isSmallScreen ? 'none' : '';
-            }
-        });
+        if (isSmallScreen) {
+            blocker.style.display = 'flex';
+            document.body.classList.add('blocked'); // 添加阻止滾動的類
+        } else {
+            blocker.style.display = 'none';
+            document.body.classList.remove('blocked'); // 移除阻止滾動的類
+        }
     }
 
     // 綁定事件
     document.addEventListener('DOMContentLoaded', checkScreenSize);
     window.addEventListener('resize', checkScreenSize);
-    window.addEventListener('orientationchange', checkScreenSize);
+    window.addEventListener('orientationchange', function () {
+        // 方向變化時延遲檢查，確保尺寸已更新
+        setTimeout(checkScreenSize, 100);
+    });
+
+    // 初始檢查
+    checkScreenSize();
 })();
