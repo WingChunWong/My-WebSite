@@ -1771,5 +1771,77 @@
     "subject": "英文 -- ENG",
     "homework_name": "Reading Comprehension Book U.5-6",
     "remarks": ""
+  },
+  {
+    "id": "74680",
+    "issue_date": "2025-12-01",
+    "due_date": "2025-12-03",
+    "class_group": "全班",
+    "subject": "基教 -- RSC",
+    "homework_name": "作業二",
+    "remarks": ""
+  },
+  {
+    "id": "74676",
+    "issue_date": "2025-12-01",
+    "due_date": "2025-12-02",
+    "class_group": "全班",
+    "subject": "地理 -- GEOG",
+    "homework_name": "作 p.26-27",
+    "remarks": ""
+  },
+  {
+    "id": "74673",
+    "issue_date": "2025-12-01",
+    "due_date": "2025-12-02",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "CW37",
+    "remarks": ""
+  },
+  {
+    "id": "74672",
+    "issue_date": "2025-12-01",
+    "due_date": "2025-12-02",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "默書簽改",
+    "remarks": ""
+  },
+  {
+    "id": "記事6802",
+    "issue_date": "2025-12-01",
+    "due_date": "2025-12-02",
+    "class_group": "全班",
+    "subject": "音樂 -- MUS",
+    "homework_name": "今晚10點 笛影片ddl",
+    "remarks": ""
+  },
+  {
+    "id": "記事6800",
+    "issue_date": "2025-12-01",
+    "due_date": "2025-12-02",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Form Dictation",
+    "remarks": ""
+  },
+  {
+    "id": "記事6799",
+    "issue_date": "2025-12-01",
+    "due_date": "2025-12-02",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Bring Notebook, Dictation Sheet, Writing Plan",
+    "remarks": ""
+  },
+  {
+    "id": "74668",
+    "issue_date": "2025-12-01",
+    "due_date": "2025-12-02",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Reading Comprehension Booklet Units 4&5",
+    "remarks": ""
   }
 ]
