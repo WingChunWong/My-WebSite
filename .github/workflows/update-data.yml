@@ -35,7 +35,7 @@ jobs:
           cache: "pip"
           cache-dependency-path: "hw-list/requirements.txt"
 
-      - name: Install dependencies
+      - name: Install Dependencies
         working-directory: hw-list
         run: |
           python -m pip install --upgrade pip
@@ -43,7 +43,7 @@ jobs:
             pip install -r requirements.txt
           fi
 
-      - name: Run update script
+      - name: Run Crawler
         id: crawler
         working-directory: hw-list
         env:
@@ -87,7 +87,7 @@ jobs:
             echo "data_updated=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Create last update info
+      - name: Create Last_Update Data
         if: steps.crawler.outputs.data_updated == 'true'
         working-directory: hw-list
         run: |
@@ -118,31 +118,24 @@ jobs:
             echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "⚠️ 無資料變更，無需提交"
           else
-            # 額外檢查：確保 homework_data.json 有變化才提交
-            if git diff --staged --quiet -- hw-list/homework_data.json; then
-              echo "has_changes=false" >> $GITHUB_OUTPUT
-              echo "⚠️ 僅 last_update.json 變化，無需提交"
-              git reset # 撤销暂存，避免提交时间戳变更
-            else
               echo "has_changes=true" >> $GITHUB_OUTPUT
               echo "✅ 檢測到資料變更，準備提交"
-            fi
           fi
 
-      - name: Commit and push updates
+      - name: Commit Change
         if: steps.git-check.outputs.has_changes == 'true'
         run: |
           COMMIT_MSG="📚 自動更新家課數據（${{ steps.crawler.outputs.record_count }}條）- $(date +"%Y-%m-%d")"
           git commit -m "$COMMIT_MSG"
           git push
 
-      - name: Trigger deployment
+      - name: Trigger Deployment
         if: steps.git-check.outputs.has_changes == 'true'
         run: |
           # 觸發部署工作流（兼容現有deploy.yml的workflow_run觸發）
           echo "✅ 數據已更新，將觸發部署流程"
 
-      - name: Generate update summary
+      - name: Create Summary
         if: always()
         run: |
           {
