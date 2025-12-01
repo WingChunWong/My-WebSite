@@ -1575,21 +1575,21 @@
     "remarks": ""
   },
   {
-    "id": "74479",
-    "issue_date": "2025-11-19",
-    "due_date": "2025-11-20",
-    "class_group": "全班",
-    "subject": "數學 -- MATH",
-    "homework_name": "CW34",
-    "remarks": ""
-  },
-  {
     "id": "74478",
     "issue_date": "2025-11-19",
     "due_date": "2025-11-20",
     "class_group": "全班",
     "subject": "音樂 -- MUS",
     "homework_name": "創作拍子",
+    "remarks": ""
+  },
+  {
+    "id": "74479",
+    "issue_date": "2025-11-19",
+    "due_date": "2025-11-20",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "CW34",
     "remarks": ""
   },
   {
@@ -1629,15 +1629,6 @@
     "remarks": ""
   },
   {
-    "id": "74578",
-    "issue_date": "2025-11-25",
-    "due_date": "2025-11-26",
-    "class_group": "全班",
-    "subject": "中文 -- CHIN",
-    "homework_name": "詞解工作紙",
-    "remarks": ""
-  },
-  {
     "id": "記事6779",
     "issue_date": "2025-11-25",
     "due_date": "2025-11-26",
@@ -1647,21 +1638,30 @@
     "remarks": "范圍見VLE"
   },
   {
-    "id": "74577",
-    "issue_date": "2025-11-25",
-    "due_date": "2025-11-26",
-    "class_group": "全班",
-    "subject": "英文 -- ENG",
-    "homework_name": "Grammar WS (Adj. -ed & -ing)",
-    "remarks": ""
-  },
-  {
     "id": "記事6778",
     "issue_date": "2025-11-25",
     "due_date": "2025-11-28",
     "class_group": "全班",
     "subject": "英文 -- ENG",
     "homework_name": "Grammar Quzi",
+    "remarks": ""
+  },
+  {
+    "id": "74578",
+    "issue_date": "2025-11-25",
+    "due_date": "2025-11-26",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "詞解工作紙",
+    "remarks": ""
+  },
+  {
+    "id": "74577",
+    "issue_date": "2025-11-25",
+    "due_date": "2025-11-26",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Grammar WS (Adj. -ed & -ing)",
     "remarks": ""
   },
   {
@@ -1701,21 +1701,21 @@
     "remarks": ""
   },
   {
-    "id": "74622",
-    "issue_date": "2025-11-27",
-    "due_date": "2025-11-28",
-    "class_group": "全班",
-    "subject": "地理 -- GEOG",
-    "homework_name": "HW p.23",
-    "remarks": ""
-  },
-  {
     "id": "74621",
     "issue_date": "2025-11-27",
     "due_date": "2025-11-28",
     "class_group": "全班",
     "subject": "英文 -- ENG",
     "homework_name": "WR WS p.9-12",
+    "remarks": ""
+  },
+  {
+    "id": "74622",
+    "issue_date": "2025-11-27",
+    "due_date": "2025-11-28",
+    "class_group": "全班",
+    "subject": "地理 -- GEOG",
+    "homework_name": "HW p.23",
     "remarks": ""
   },
   {
@@ -1746,12 +1746,12 @@
     "remarks": ""
   },
   {
-    "id": "74647",
+    "id": "74644",
     "issue_date": "2025-11-28",
     "due_date": "2025-12-01",
     "class_group": "全班",
-    "subject": "中文 -- CHIN",
-    "homework_name": "步步升 4",
+    "subject": "英文 -- ENG",
+    "homework_name": "Reading Comprehension Book U.5-6",
     "remarks": ""
   },
   {
@@ -1764,12 +1764,12 @@
     "remarks": ""
   },
   {
-    "id": "74644",
+    "id": "74647",
     "issue_date": "2025-11-28",
     "due_date": "2025-12-01",
     "class_group": "全班",
-    "subject": "英文 -- ENG",
-    "homework_name": "Reading Comprehension Book U.5-6",
+    "subject": "中文 -- CHIN",
+    "homework_name": "步步升 4",
     "remarks": ""
   },
   {
