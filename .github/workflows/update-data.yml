@@ -95,14 +95,14 @@ jobs:
           if git diff --quiet -- hw-list/homework_data.json; then
             echo "⚠️ 家課數據無實質變化，跳過更新 last_update.json"
           else
-            cat > last_update.json << EOF
-            {
-              "last_updated": "$(date -Iseconds)",
-              "run_id": "${{ github.run_id }}",
-              "trigger": "${{ github.event_name }}",
-              "records": ${{ steps.crawler.outputs.record_count }}
-            }
-            EOF
+              cat > last_update.json << EOF
+              {
+                "last_updated": "$(date -Iseconds)",
+                "run_id": "${{ github.run_id }}",
+                "trigger": "${{ github.event_name }}",
+                "records": ${{ steps.crawler.outputs.record_count }}
+              }
+              EOF
             echo "✅ 已更新最後更新數據文件"
           fi
 
