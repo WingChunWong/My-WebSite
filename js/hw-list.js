@@ -410,6 +410,151 @@ function renderHomeworkTable(data) {
 }
 
 /****************************************
+ * 圖片導出功能
+ ****************************************/
+/**
+ * 初始化下載按鈕事件
+ */
+function initDownloadButton() {
+    const downloadBtn = document.getElementById('downloadTableBtn');
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', downloadTableAsImage);
+    } else {
+        // 處理DOM加載時序問題
+        setTimeout(initDownloadButton, 100);
+    }
+}
+
+/**
+ * 將作業表格轉換為圖片並下載
+ */
+async function downloadTableAsImage() {
+    const tableWrapper = document.getElementById('homeworkTableContainer');
+    const tableContainer = document.querySelector('.homework-table-container');
+    const noDataElement = document.getElementById('noData');
+    const downloadBtn = document.getElementById('downloadTableBtn');
+    const originalText = downloadBtn.innerHTML;
+
+    try {
+        // 檢查數據狀態
+        if (noDataElement && noDataElement.style.display !== 'none') {
+            alert(document.body.classList.contains('english') ?
+                'No data to download' : '沒有可下載的數據');
+            return;
+        }
+
+        if (!tableContainer || !tableWrapper) {
+            throw new Error(document.body.classList.contains('english') ?
+                'Table container not found' : '未找到表格容器');
+        }
+
+        // ========== 關鍵修復：臨時展開所有容器 ==========
+        const styleBackup = {
+            wrapper: {
+                overflow: tableWrapper.style.overflow,
+                height: tableWrapper.style.height,
+                maxHeight: tableWrapper.style.maxHeight
+            },
+            container: {
+                overflow: tableContainer.style.overflow,
+                height: tableContainer.style.height,
+                maxHeight: tableContainer.style.maxHeight,
+                width: tableContainer.style.width,
+                maxWidth: tableContainer.style.maxWidth
+            },
+            body: {
+                overflow: document.body.style.overflow
+            },
+            html: {
+                overflow: document.documentElement.style.overflow
+            }
+        };
+
+        // 臨時展開所有容器
+        tableWrapper.style.overflow = 'visible';
+        tableWrapper.style.height = 'auto';
+        tableWrapper.style.maxHeight = 'none';
+
+        tableContainer.style.overflow = 'visible';
+        tableContainer.style.height = 'auto';
+        tableContainer.style.maxHeight = 'none';
+        tableContainer.style.width = 'auto';
+        tableContainer.style.maxWidth = 'none';
+
+        document.body.style.overflow = 'visible';
+        document.documentElement.style.overflow = 'visible';
+
+        // 強制重新計算布局
+        await new Promise(resolve => setTimeout(resolve, 300));
+
+        // ========== 優化html2canvas配置 ==========
+        const canvas = await html2canvas(tableContainer, {
+            scale: 3, // 高分辨率
+            useCORS: true,
+            logging: false,
+            backgroundColor: '#ffffff',
+            windowWidth: tableContainer.scrollWidth,
+            windowHeight: tableContainer.scrollHeight,
+            x: 0,
+            y: 0,
+            scrollX: 0,
+            scrollY: 0,
+            allowTaint: true,
+            removeContainer: false
+        });
+
+        // ========== 下載圖片 ==========
+        const link = document.createElement('a');
+        const today = new Date();
+        const formattedDate = `${today.getFullYear()}${String(today.getMonth() + 1).padStart(2, '0')}${String(today.getDate()).padStart(2, '0')}_${String(today.getHours()).padStart(2, '0')}${String(today.getMinutes()).padStart(2, '0')}`;
+        const fileName = `作業表_${formattedDate}.png`;
+
+        link.download = fileName;
+        link.href = canvas.toDataURL('image/png', 1.0);
+        link.click();
+
+    } catch (error) {
+        console.error('下載圖片失敗:', error);
+        alert(document.body.classList.contains('english') ?
+            'Failed to download image: ' + error.message :
+            '下載圖片失敗: ' + error.message);
+    } finally {
+        // 恢復所有樣式
+        if (tableWrapper) {
+            tableWrapper.style.overflow = styleBackup.wrapper.overflow;
+            tableWrapper.style.height = styleBackup.wrapper.height;
+            tableWrapper.style.maxHeight = styleBackup.wrapper.maxHeight;
+        }
+        if (tableContainer) {
+            tableContainer.style.overflow = styleBackup.container.overflow;
+            tableContainer.style.height = styleBackup.container.height;
+            tableContainer.style.maxHeight = styleBackup.container.maxHeight;
+            tableContainer.style.width = styleBackup.container.width;
+            tableContainer.style.maxWidth = styleBackup.container.maxWidth;
+        }
+        document.body.style.overflow = styleBackup.body.overflow;
+        document.documentElement.style.overflow = styleBackup.html.overflow;
+
+        // 恢復按鈕原始狀態（無動畫）
+        downloadBtn.disabled = false;
+        downloadBtn.innerHTML = originalText;
+    }
+}
+
+// 初始化按鈕事件
+function initDownloadButton() {
+    const downloadBtn = document.getElementById('downloadTableBtn');
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', downloadTableAsImage);
+    } else {
+        setTimeout(initDownloadButton, 100);
+    }
+}
+
+// 頁面加載後初始化
+window.addEventListener('load', initDownloadButton);
+
+/****************************************
  * 主應用程序入口
  ****************************************/
 // 等待DOM完全加載後執行初始化操作

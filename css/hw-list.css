@@ -468,6 +468,8 @@ body.dark-mode .navbar-text small {
     background-color: var(--md-sys-color-surface);
     -webkit-overflow-scrolling: touch;
     max-height: 60vh;
+    position: relative;
+    z-index: 1;
 }
 
 .homework-table {
@@ -994,4 +996,41 @@ body.dark-mode .back-btn:hover {
 /* 深色模式下的切換按鈕樣式 */
 body.dark-mode #themeToggle:hover {
     box-shadow: 0 0 15px rgba(180, 140, 255, 0.4);
+}
+
+/* Badge下載按鈕核心樣式 */
+.download-badge {
+    /* 主色改為md-sys-color-primary */
+    background-color: var(--md-sys-color-primary);
+    color: white; /* 文字白色保證對比度 */
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 20px; /* 圓角Badge */
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease; /* 僅保留背景色過渡，移除位移/陰影動畫 */
+    gap: 4px; /* 圖標與文字間距 */
+}
+
+/* 懸浮效果（僅調整背景色深淺） */
+.download-badge:hover {
+    background-color: var(--md-sys-color-primary-dark, rgba(0,0,0,0.1) + var(--md-sys-color-primary));
+    /* 兼容無dark變量的情況：加深主色 */
+    background-color: color-mix(in srgb, var(--md-sys-color-primary), black 10%);
+}
+
+/* 禁用狀態（去掉動畫，僅改顏色） */
+.download-badge:disabled {
+    background-color: var(--md-sys-color-on-surface-variant); /* MD系統禁用色 */
+    cursor: not-allowed;
+    opacity: 0.7; /* 禁用透明度 */
+}
+
+/* 布局調整 */
+.d-flex.align-items-center.justify-content-between {
+    flex-wrap: nowrap;
+    gap: 10px;
 }
