@@ -1,121 +1,127 @@
 :root {
   /* 核心顏色 - 符合MD3動態色彩系統 */
-  --md3e-primary: #6750A4;
-  --md3e-on-primary: #FFFFFF;
-  --md3e-primary-container: #EADDFF;
-  --md3e-on-primary-container: #21005D;
-  
-  --md3e-secondary: #625B71;
-  --md3e-on-secondary: #FFFFFF;
-  --md3e-secondary-container: #E8DEF8;
-  --md3e-on-secondary-container: #1D192B;
-  
-  --md3e-tertiary: #7D5260;
-  --md3e-on-tertiary: #FFFFFF;
-  --md3e-tertiary-container: #FFD8E4;
-  --md3e-on-tertiary-container: #31111D;
-  
-  --md3e-error: #B3261E;
-  --md3e-on-error: #FFFFFF;
-  --md3e-error-container: #F9DEDC;
-  --md3e-on-error-container: #410E0B;
-  
+  --md3e-primary: #6750a4;
+  --md3e-on-primary: #ffffff;
+  --md3e-primary-container: #eaddff;
+  --md3e-on-primary-container: #21005d;
+
+  --md3e-secondary: #625b71;
+  --md3e-on-secondary: #ffffff;
+  --md3e-secondary-container: #e8def8;
+  --md3e-on-secondary-container: #1d192b;
+
+  --md3e-tertiary: #7d5260;
+  --md3e-on-tertiary: #ffffff;
+  --md3e-tertiary-container: #ffd8e4;
+  --md3e-on-tertiary-container: #31111d;
+
+  --md3e-error: #b3261e;
+  --md3e-on-error: #ffffff;
+  --md3e-error-container: #f9dedc;
+  --md3e-on-error-container: #410e0b;
+
   /* 表面色 - 支持分層設計 */
-  --md3e-surface: #FFFBFE;
-  --md3e-on-surface: #1C1B1F;
-  --md3e-surface-variant: #E7E0EC;
-  --md3e-on-surface-variant: #49454F;
-  
-  --md3e-surface-container-lowest: #FFFFFF;
-  --md3e-surface-container-low: #F7F2FA;
-  --md3e-surface-container: #F3EDF7;
-  --md3e-surface-container-high: #ECE6F0;
-  --md3e-surface-container-highest: #E6E0E9;
-  
+  --md3e-surface: #fffbfe;
+  --md3e-on-surface: #1c1b1f;
+  --md3e-surface-variant: #e7e0ec;
+  --md3e-on-surface-variant: #49454f;
+
+  --md3e-surface-container-lowest: #ffffff;
+  --md3e-surface-container-low: #f7f2fa;
+  --md3e-surface-container: #f3edf7;
+  --md3e-surface-container-high: #ece6f0;
+  --md3e-surface-container-highest: #e6e0e9;
+
   /* 其他基礎變量 */
-  --md3e-outline: #79747E;
-  --md3e-outline-variant: #CAC4D0;
-  
+  --md3e-outline: #79747e;
+  --md3e-outline-variant: #cac4d0;
+
   /* 功能色 */
-  --md3e-success: #2E7D32;
-  --md3e-on-success: #FFFFFF;
-  --md3e-success-container: #C8E6C9;
+  --md3e-success: #2e7d32;
+  --md3e-on-success: #ffffff;
+  --md3e-success-container: #c8e6c9;
   --md3e-on-success-container: #002205;
-  
-  --md3e-warning: #F57C00;
-  --md3e-on-warning: #FFFFFF;
-  --md3e-warning-container: #FFE0B2;
-  --md3e-on-warning-container: #331A00;
-  
+
+  --md3e-warning: #f57c00;
+  --md3e-on-warning: #ffffff;
+  --md3e-warning-container: #ffe0b2;
+  --md3e-on-warning-container: #331a00;
+
   /* 形狀 - MD3圓角規範 */
   --md3e-shape-corner-small: 4px;
   --md3e-shape-corner-medium: 8px;
   --md3e-shape-corner-large: 16px;
   --md3e-shape-corner-full: 9999px;
-  
+
   /* 陰影 - elevation層級 */
   --md3e-elevation-0: none;
-  --md3e-elevation-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  --md3e-elevation-2: 0 3px 6px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.12);
-  --md3e-elevation-3: 0 10px 20px rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.10);
-  --md3e-elevation-4: 0 14px 28px rgba(0,0,0,0.20), 0 10px 10px rgba(0,0,0,0.10);
-  
+  --md3e-elevation-1: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  --md3e-elevation-2: 0 3px 6px rgba(0, 0, 0, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.12);
+  --md3e-elevation-3: 0 10px 20px rgba(0, 0, 0, 0.15),
+    0 3px 6px rgba(0, 0, 0, 0.1);
+  --md3e-elevation-4: 0 14px 28px rgba(0, 0, 0, 0.2),
+    0 10px 10px rgba(0, 0, 0, 0.1);
+
   /* 過渡動畫 - MD3標準緩動 */
   --md3e-transition-standard: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   /* 字體設置 */
-  --md3e-font-family: system-ui,
+  --md3e-font-family: system-ui;
 }
 
 /* 深色模式變量覆蓋 */
 [data-theme="dark"] {
-  --md3e-primary: #D0BCFF;
-  --md3e-on-primary: #381E72;
-  --md3e-primary-container: #4F378B;
-  --md3e-on-primary-container: #EADDFF;
-  
-  --md3e-secondary: #CCC2DC;
-  --md3e-on-secondary: #332D41;
-  --md3e-secondary-container: #4A4458;
-  --md3e-on-secondary-container: #E8DEF8;
-  
-  --md3e-tertiary: #EFB8C8;
+  --md3e-primary: #d0bcff;
+  --md3e-on-primary: #381e72;
+  --md3e-primary-container: #4f378b;
+  --md3e-on-primary-container: #eaddff;
+
+  --md3e-secondary: #ccc2dc;
+  --md3e-on-secondary: #332d41;
+  --md3e-secondary-container: #4a4458;
+  --md3e-on-secondary-container: #e8def8;
+
+  --md3e-tertiary: #efb8c8;
   --md3e-on-tertiary: #492532;
-  --md3e-tertiary-container: #633B48;
-  --md3e-on-tertiary-container: #FFD8E4;
-  
-  --md3e-error: #F2B8B5;
+  --md3e-tertiary-container: #633b48;
+  --md3e-on-tertiary-container: #ffd8e4;
+
+  --md3e-error: #f2b8b5;
   --md3e-on-error: #601410;
-  --md3e-error-container: #8C1D18;
-  --md3e-on-error-container: #F9DEDC;
-  
-  --md3e-surface: #1C1B1F;
-  --md3e-on-surface: #E6E0E9;
-  --md3e-surface-variant: #49454F;
-  --md3e-on-surface-variant: #CAC4D0;
-  
+  --md3e-error-container: #8c1d18;
+  --md3e-on-error-container: #f9dedc;
+
+  --md3e-surface: #1c1b1f;
+  --md3e-on-surface: #e6e0e9;
+  --md3e-surface-variant: #49454f;
+  --md3e-on-surface-variant: #cac4d0;
+
   --md3e-surface-container-lowest: #141218;
-  --md3e-surface-container-low: #1D1B20;
-  --md3e-surface-container: #211F26;
-  --md3e-surface-container-high: #2B2930;
-  --md3e-surface-container-highest: #36343B;
-  
-  --md3e-outline: #938F99;
-  --md3e-outline-variant: #49454F;
-  
-  --md3e-success: #AEC6FF;
-  --md3e-on-success: #002D66;
-  --md3e-success-container: #00439B;
-  --md3e-on-success-container: #D8E2FF;
-  
-  --md3e-warning: #FFB74D;
-  --md3e-on-warning: #4A2500;
-  --md3e-warning-container: #8C5100;
-  --md3e-on-warning-container: #FFDDB7;
-  
+  --md3e-surface-container-low: #1d1b20;
+  --md3e-surface-container: #211f26;
+  --md3e-surface-container-high: #2b2930;
+  --md3e-surface-container-highest: #36343b;
+
+  --md3e-outline: #938f99;
+  --md3e-outline-variant: #49454f;
+
+  --md3e-success: #aec6ff;
+  --md3e-on-success: #002d66;
+  --md3e-success-container: #00439b;
+  --md3e-on-success-container: #d8e2ff;
+
+  --md3e-warning: #ffb74d;
+  --md3e-on-warning: #4a2500;
+  --md3e-warning-container: #8c5100;
+  --md3e-on-warning-container: #ffddb7;
+
   /* 深色模式陰影 */
-  --md3e-elevation-1: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.15);
-  --md3e-elevation-2: 0 2px 6px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.15);
+  --md3e-elevation-1: 0 1px 3px rgba(0, 0, 0, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.15);
+  --md3e-elevation-2: 0 2px 6px rgba(0, 0, 0, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 /* 強制橫屏顯示設置 */
@@ -145,8 +151,13 @@
   }
 
   @keyframes rotate {
-    0%, 100% { transform: rotate(0deg); }
-    50% { transform: rotate(90deg); }
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(90deg);
+    }
   }
 
   /* 豎屏狀態下顯示提示 */
@@ -154,7 +165,7 @@
     .orientation-overlay {
       display: flex;
     }
-    
+
     /* 頁面內容旋轉適配 */
     .app-container {
       position: fixed;
@@ -187,7 +198,7 @@
     max-width: 1920px;
     margin: 0 auto;
   }
-  
+
   .orientation-overlay {
     display: none !important;
   }

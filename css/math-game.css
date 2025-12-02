@@ -202,7 +202,8 @@ h1 {
   box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
 }
 
-.btn-report, .btn-reset {
+.btn-report,
+.btn-reset {
   margin: 0;
   flex: 1;
   max-width: 200px;
@@ -210,12 +211,14 @@ h1 {
   transition: all 0.2s ease;
 }
 
-.btn-report:hover, .btn-reset:hover {
+.btn-report:hover,
+.btn-reset:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   transform: translateY(-1px);
 }
 
-.btn-report:active, .btn-reset:active {
+.btn-report:active,
+.btn-reset:active {
   transform: translateY(1px);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
@@ -281,7 +284,6 @@ button {
   color: var(--md3e-on-primary);
   border-radius: var(--md3e-shape-corner-medium);
   transition: var(--md3e-transition-standard);
-
 }
 
 /* 移除按鈕點擊動畫效果 */
@@ -431,7 +433,7 @@ button:active {
 }
 
 .stat-box:hover {
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
   background-color: #f8fafc;
 }
@@ -454,38 +456,38 @@ body {
 }
 
 .back-btn {
-    background: var(--md-sys-color-surface);
-    border: 1px solid var(--md-sys-color-outline);
-    color: var(--md-sys-color-on-surface);
-    padding: 0.5rem 1rem;
-    border-radius: var(--md-sys-shape-small); /* 使用系統統一圓角變量 */
-    cursor: pointer;
-    display: inline-flex; /* 改為inline-flex適應內容寬度 */
-    align-items: center;
-    gap: 0.5rem;
-    transition: all var(--md3e-transition-standard); /* 統一過渡動畫 */
-    font-weight: 500; /* 增加字體重量提升可讀性 */
-    min-height: 48px; /* 確保觸控區域大小 */
-    box-shadow: var(--md-sys-elevation-level1); /* 增加輕微陰影提升層次感 */
+  background: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline);
+  color: var(--md-sys-color-on-surface);
+  padding: 0.5rem 1rem;
+  border-radius: var(--md-sys-shape-small); /* 使用系統統一圓角變量 */
+  cursor: pointer;
+  display: inline-flex; /* 改為inline-flex適應內容寬度 */
+  align-items: center;
+  gap: 0.5rem;
+  transition: all var(--md3e-transition-standard); /* 統一過渡動畫 */
+  font-weight: 500; /* 增加字體重量提升可讀性 */
+  min-height: 48px; /* 確保觸控區域大小 */
+  box-shadow: var(--md-sys-elevation-level1); /* 增加輕微陰影提升層次感 */
 }
 
 .back-btn:hover {
-    background-color: var(--md-sys-color-primary);
-    color: var(--md-sys-color-on-primary);
-    border-color: var(--md-sys-color-primary); /* 懸停時邊框色同步 */
-    transform: translateX(-3px);
-    box-shadow: var(--md-sys-elevation-level2); /* 懸停增強陰影 */
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  border-color: var(--md-sys-color-primary); /* 懸停時邊框色同步 */
+  transform: translateX(-3px);
+  box-shadow: var(--md-sys-elevation-level2); /* 懸停增強陰影 */
 }
 
 .back-btn:active {
-    transform: translateX(-1px); /* 調整點擊反饋位置 */
-    box-shadow: var(--md-sys-elevation-level1); /* 點擊時陰影減弱 */
-    filter: brightness(0.95); /* 增加亮度變化反饋 */
+  transform: translateX(-1px); /* 調整點擊反饋位置 */
+  box-shadow: var(--md-sys-elevation-level1); /* 點擊時陰影減弱 */
+  filter: brightness(0.95); /* 增加亮度變化反饋 */
 }
 
 .back-btn:focus {
-    outline: 2px solid var(--md-sys-color-primary); /* 焦点狀態優化，提升可訪問性 */
-    outline-offset: 2px;
+  outline: 2px solid var(--md-sys-color-primary); /* 焦点狀態優化，提升可訪問性 */
+  outline-offset: 2px;
 }
 
 .small-screen-overlay {

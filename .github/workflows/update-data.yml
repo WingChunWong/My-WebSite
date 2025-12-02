@@ -2,18 +2,18 @@ name: Update Homework Data
 
 on:
   schedule:
-    - cron: '0 9 * * *'  # 每天UTC 09:00（香港时间17:00）觸發
+    - cron: "0 9 * * *" # 每天UTC 09:00（香港时间17:00）觸發
   workflow_dispatch:
     inputs:
       force_full_update:
-        description: '強制完整更新（忽略增量更新邏輯）'
+        description: "強制完整更新（忽略增量更新邏輯）"
         required: false
         default: false
         type: boolean
 
 permissions:
   contents: write
-  actions: write  # 允許觸發其他工作流
+  actions: write # 允許觸發其他工作流
 
 jobs:
   update-data:
@@ -26,7 +26,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           persist-credentials: true
-          fetch-depth: 0  # 獲取完整Git歷史，確保提交對比準確
+          fetch-depth: 0 # 獲取完整Git歷史，確保提交對比準確
 
       - name: Install Python
         uses: actions/setup-python@v5
@@ -100,7 +100,6 @@ jobs:
             }
           EOF
             echo "✅ 已更新最後更新數據文件"
-
 
       - name: Configure Git
         if: steps.crawler.outputs.data_updated == 'true'
