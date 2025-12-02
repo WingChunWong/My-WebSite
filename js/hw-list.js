@@ -530,17 +530,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 const issuedHomeworkCount = getHomeworkIssuedCountByDate(targetDateStr);
                 const dueHomeworkCount = getHomeworkDueCountByDate(targetDateStr);
 
-                // 2. 建立高質量的MD3風格標題區域
+                // 2. 建立MD3風格標題區域（縮小版）
                 const headerContainer = document.createElement('div');
                 headerContainer.id = 'screenshot-header-temp';
                 headerContainer.style.cssText = `
                 background-color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-surface-container-highest').trim() || '#ffffff'};
-                border-radius: 16px;
-                margin: 24px 0 32px;
-                padding: 32px;
+                border-radius: 12px;
+                margin: 16px 0 24px;
+                padding: 24px;
                 text-align: center;
                 font-family: 'Roboto', system-ui, sans-serif;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                box-shadow: 0 2px 4px rgba(0,0,0,0.08);
                 transition: all 0.3s ease;
                 border: 1px solid ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-outline-variant').trim() || '#e0e0e0'};
                 color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface').trim() || '#000000'};
@@ -552,35 +552,35 @@ document.addEventListener('DOMContentLoaded', function () {
                 const mainTitle = document.createElement('h2');
                 mainTitle.textContent = '功課表';
                 mainTitle.style.cssText = `
-                margin: 0 0 8px;
-                font-size: 32px;
+                margin: 0 0 4px;
+                font-size: 24px;
                 font-weight: 500;
                 color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-primary').trim() || '#6750a4'};
                 letter-spacing: -0.01em;
                 line-height: 1.2;
-                font-family: 'Roboto', sans-serif;
+                font-family: system-ui
             `;
 
                 // 日期標題
                 const dateTitle = document.createElement('h3');
                 dateTitle.textContent = targetZhDate;
                 dateTitle.style.cssText = `
-                margin: 0 0 24px;
-                font-size: 20px;
+                margin: 0 0 20px;
+                font-size: 16px;
                 font-weight: 400;
                 color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface-variant').trim() || '#666666'};
                 opacity: 0.9;
                 line-height: 1.4;
-                font-family: 'Roboto', sans-serif;
+                font-family: system-ui
             `;
 
-                // 統計信息容器
+                // 統計信息容器（縮小版）
                 const statsContainer = document.createElement('div');
                 statsContainer.style.cssText = `
                 display: flex;
                 justify-content: center;
-                gap: 24px;
-                margin: 32px 0;
+                gap: 16px;
+                margin: 16px 0 20px;
                 flex-wrap: wrap;
             `;
 
@@ -603,16 +603,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 statsContainer.appendChild(issuedCard);
                 statsContainer.appendChild(dueCard);
 
-                // 輔助函數：創建統計卡片
+                // 輔助函數：創建統計卡片（縮小版）
                 function createStatCard({ label, value, icon, color }) {
                     const card = document.createElement('div');
                     card.style.cssText = `
                     background: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-surface-container-low').trim() || '#f5f5f5'};
-                    border-radius: 12px;
-                    padding: 24px;
-                    min-width: 160px;
+                    border-radius: 8px;
+                    padding: 12px;
+                    min-width: 100px;
                     text-align: center;
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
                     border: 1px solid ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-outline-variant').trim() || '#e0e0e0'};
                     display: flex;
                     flex-direction: column;
@@ -622,40 +622,40 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     const iconContainer = document.createElement('div');
                     iconContainer.style.cssText = `
-                    width: 48px;
-                    height: 48px;
-                    background-color: ${color}20;
+                    width: 32px;
+                    height: 32px;
+                    background-color: ${color}15;
                     border-radius: 50%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    margin-bottom: 16px;
+                    margin-bottom: 8px;
                 `;
 
                     const iconEl = document.createElement('i');
                     iconEl.className = `bi ${icon}`;
                     iconEl.style.cssText = `
-                    font-size: 24px;
+                    font-size: 16px;
                     color: ${color};
                 `;
 
                     const valueEl = document.createElement('div');
                     valueEl.textContent = value;
                     valueEl.style.cssText = `
-                    font-size: 28px;
-                    font-weight: 700;
+                    font-size: 18px;
+                    font-weight: 600;
                     color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface').trim() || '#000000'};
-                    margin: 8px 0;
+                    margin: 4px 0;
                     line-height: 1.2;
                 `;
 
                     const labelEl = document.createElement('div');
                     labelEl.textContent = label;
                     labelEl.style.cssText = `
-                    font-size: 14px;
+                    font-size: 12px;
                     color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface-variant').trim() || '#666666'};
-                    font-weight: 500;
-                    opacity: 0.8;
+                    font-weight: 400;
+                    opacity: 0.7;
                 `;
 
                     iconContainer.appendChild(iconEl);
@@ -671,22 +671,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 divider.style.cssText = `
                 height: 1px;
                 background: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-outline').trim() || '#cccccc'};
-                margin: 32px 0;
-                opacity: 0.5;
+                margin: 16px 0;
+                opacity: 0.3;
             `;
 
                 // 表格標題
                 const tableTitle = document.createElement('div');
                 tableTitle.textContent = '詳細功課列表';
                 tableTitle.style.cssText = `
-                font-size: 20px;
+                font-size: 16px;
                 font-weight: 500;
                 color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface').trim() || '#000000'};
-                margin: 32px 0 16px;
+                margin: 16px 0 12px;
                 text-align: left;
-                padding-left: 12px;
-                border-left: 4px solid ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-primary').trim() || '#6750a4'};
-                font-family: 'Roboto', sans-serif;
+                padding-left: 8px;
+                border-left: 3px solid ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-primary').trim() || '#6750a4'};
+                font-family: system-ui
             `;
 
                 // 組合標題容器
@@ -703,11 +703,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 position: fixed;
                 top: -9999px;
                 left: -9999px;
-                width: 1000px;
+                width: 1400px;
                 padding: 20px;
                 background-color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-surface').trim() || '#ffffff'};
                 z-index: 10000;
                 opacity: 1;
+                max-width: none;
             `;
 
                 // 複製表格到臨時容器
@@ -718,16 +719,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const clonedTable = table.cloneNode(true);
 
-                // 優化表格樣式
+                // 優化表格樣式（修復圓角問題）
                 clonedTable.style.cssText = `
                 border-radius: 12px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
                 margin: 0 0 32px 0;
-                border: 1px solid ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-outline-variant').trim() || '#e0e0e0'};
+                border: 2px solid ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-outline-variant').trim() || '#e0e0e0'};
                 background-color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-surface').trim() || '#ffffff'};
                 width: 100%;
-                border-collapse: collapse;
-                font-family: 'Roboto', sans-serif;
+                border-collapse: separate;  /* 改為 separate 才能顯示圓角 */
+                border-spacing: 0;          /* 設置間距為0 */
+                font-family: system-ui
+                font-size: 15px;
+                line-height: 1.5;
+                overflow: hidden;           /* 確保圓角內內容不溢出 */
             `;
 
                 // 優化表格頭部
@@ -737,22 +742,44 @@ document.addEventListener('DOMContentLoaded', function () {
                     background-color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-surface-container-high').trim() || '#f0f0f0'} !important;
                     color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface').trim() || '#000000'} !important;
                     font-weight: 600 !important;
-                    padding: 16px !important;
+                    padding: 16px 20px !important;
                     border-bottom: 2px solid ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-outline').trim() || '#cccccc'} !important;
-                    font-family: 'Roboto', sans-serif;
+                    font-family: system-ui
+                    font-size: 15px !important;
                 `;
                 });
 
                 // 優化表格內容
-                const tableCells = clonedTable.querySelectorAll('td');
-                tableCells.forEach(td => {
-                    td.style.cssText = `
-                    padding: 14px 16px !important;
-                    border-bottom: 1px solid ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-outline-variant').trim() || '#e0e0e0'} !important;
-                    color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface').trim() || '#000000'} !important;
-                    font-family: 'Roboto', sans-serif;
-                `;
+                const tableRows = clonedTable.querySelectorAll('tbody tr');
+                tableRows.forEach((row, rowIndex) => {
+                    const cells = row.querySelectorAll('td');
+                    cells.forEach((td, cellIndex) => {
+                        td.style.cssText = `
+                        padding: 14px 20px !important;
+                        border-bottom: 1px solid ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-outline-variant').trim() || '#e0e0e0'} !important;
+                        color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface').trim() || '#000000'} !important;
+                        font-family: system-ui
+                        font-size: 15px !important;
+                        line-height: 1.5 !important;
+                    `;
+
+                        // 設置第一列和最後一列的圓角
+                        if (rowIndex === tableRows.length - 1) { // 最後一行
+                            if (cellIndex === 0) { // 第一個單元格
+                                td.style.borderBottomLeftRadius = '10px !important';
+                            }
+                            if (cellIndex === cells.length - 1) { // 最後一個單元格
+                                td.style.borderBottomRightRadius = '10px !important';
+                            }
+                        }
+                    });
                 });
+
+                // 設置表頭單元格的圓角
+                if (tableHeaders.length > 0) {
+                    tableHeaders[0].style.borderTopLeftRadius = '10px !important';
+                    tableHeaders[tableHeaders.length - 1].style.borderTopRightRadius = '10px !important';
+                }
 
                 // 確保所有圖標都能顯示
                 const icons = clonedTable.querySelectorAll('i');
@@ -761,6 +788,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     display: inline-block !important;
                     font-family: 'bootstrap-icons' !important;
                     font-style: normal !important;
+                    font-size: 14px !important;
                 `;
                 });
 
@@ -780,11 +808,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     logging: true,
                     allowTaint: true,
                     removeContainer: true,
-                    foreignObjectRendering: false, // 關閉foreignObjectRendering
+                    foreignObjectRendering: false,
                     imageTimeout: 0,
-                    ignoreElements: (element) => {
-                        return false;
-                    },
+                    windowWidth: 1200,
+                    quality: 1,
                     onclone: null
                 });
 
@@ -853,54 +880,54 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // 優化下載成功提示函數
+    // 優化下載成功提示函數（縮小版）
     function showDownloadToast(fileName, width, height) {
         const toast = document.createElement('div');
         toast.id = 'download-success-toast';
         toast.innerHTML = `
+    <div style="
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        background: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-surface-container-high').trim() || '#f5f5f5'};
+        color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface').trim() || '#000000'};
+        padding: 16px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 1050;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        max-width: 400px;
+        animation: slideIn 0.4s ease-out;
+        border: 1px solid ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-outline-variant').trim() || '#e0e0e0'};
+        font-family: system-ui
+    ">
         <div style="
-            position: fixed;
-            top: 24px;
-            right: 24px;
-            background: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-surface-container-high').trim() || '#f5f5f5'};
-            color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface').trim() || '#000000'};
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 1050;
+            width: 40px;
+            height: 40px;
+            background: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-primary').trim() || '#6750a4'};
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 16px;
-            max-width: 480px;
-            animation: slideIn 0.4s ease-out;
-            border: 1px solid ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-outline-variant').trim() || '#e0e0e0'};
-            font-family: 'Roboto', sans-serif;
+            justify-content: center;
+            flex-shrink: 0;
         ">
-            <div style="
-                width: 48px;
-                height: 48px;
-                background: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-primary').trim() || '#6750a4'};
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-shrink: 0;
-            ">
-                <i class="bi bi-check-lg" style="color: white; font-size: 20px;"></i>
+            <i class="bi bi-check-lg" style="color: white; font-size: 18px;"></i>
+        </div>
+        <div style="flex: 1;">
+            <div style="font-size: 14px; font-weight: 600; margin-bottom: 2px; color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface').trim() || '#000000'};">
+                圖片生成成功
             </div>
-            <div style="flex: 1;">
-                <div style="font-size: 16px; font-weight: 600; margin-bottom: 4px; color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface').trim() || '#000000'};">
-                    圖片生成成功
-                </div>
-                <div style="font-size: 14px; color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface-variant').trim() || '#666666'}; margin-bottom: 8px; opacity: 0.9;">
-                    檔案：${fileName}
-                </div>
-                <div style="font-size: 12px; color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface-variant').trim() || '#666666'}; opacity: 0.7;">
-                    解析度：${width} × ${height} 像素
-                </div>
+            <div style="font-size: 13px; color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface-variant').trim() || '#666666'}; margin-bottom: 4px; opacity: 0.9;">
+                檔案：${fileName}
+            </div>
+            <div style="font-size: 11px; color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface-variant').trim() || '#666666'}; opacity: 0.7;">
+                解析度：${width} × ${height} 像素
             </div>
         </div>
-    `;
+    </div>
+`;
 
         // 移除現有的提示
         const existingToast = document.getElementById('download-success-toast');
@@ -923,51 +950,51 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 3000);
     }
 
-    // 優化錯誤提示函數
+    // 優化錯誤提示函數（縮小版）
     function showErrorToast(message) {
         const toast = document.createElement('div');
         toast.id = 'download-error-toast';
         toast.innerHTML = `
+    <div style="
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        background: #f8d7da;
+        color: #721c24;
+        padding: 16px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 1050;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        max-width: 400px;
+        animation: slideIn 0.4s ease-out;
+        border: 1px solid #f5c6cb;
+        font-family: system-ui
+    ">
         <div style="
-            position: fixed;
-            top: 24px;
-            right: 24px;
-            background: #f8d7da;
-            color: #721c24;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 1050;
+            width: 40px;
+            height: 40px;
+            background-color: #dc3545;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 16px;
-            max-width: 480px;
-            animation: slideIn 0.4s ease-out;
-            border: 1px solid #f5c6cb;
-            font-family: 'Roboto', sans-serif;
+            justify-content: center;
+            flex-shrink: 0;
         ">
-            <div style="
-                width: 48px;
-                height: 48px;
-                background-color: #dc3545;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-shrink: 0;
-            ">
-                <i class="bi bi-exclamation-triangle-fill" style="color: white; font-size: 20px;"></i>
+            <i class="bi bi-exclamation-triangle-fill" style="color: white; font-size: 18px;"></i>
+        </div>
+        <div style="flex: 1;">
+            <div style="font-size: 14px; font-weight: 600; margin-bottom: 2px;">
+                操作失敗
             </div>
-            <div style="flex: 1;">
-                <div style="font-size: 16px; font-weight: 600; margin-bottom: 4px;">
-                    操作失敗
-                </div>
-                <div style="font-size: 14px; opacity: 0.9;">
-                    ${message}
-                </div>
+            <div style="font-size: 13px; opacity: 0.9;">
+                ${message}
             </div>
         </div>
-    `;
+    </div>
+`;
 
         // 移除現有的提示
         const existingToast = document.getElementById('download-error-toast');
@@ -993,47 +1020,69 @@ document.addEventListener('DOMContentLoaded', function () {
     // 添加動畫樣式
     const style = document.createElement('style');
     style.textContent = `
-    @keyframes slideIn {
-        from {
-            transform: translateX(100%) translateY(-20px);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0) translateY(0);
-            opacity: 1;
-        }
+@keyframes slideIn {
+    from {
+        transform: translateX(100%) translateY(-20px);
+        opacity: 0;
     }
-    
-    @keyframes slideOut {
-        from {
-            transform: translateX(0) translateY(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(100%) translateY(-20px);
-            opacity: 0;
-        }
+    to {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
     }
-    
-    /* 確保截圖時文字清晰 */
-    #screenshot-header-temp * {
-        -webkit-font-smoothing: antialiased !important;
-        -moz-osx-font-smoothing: grayscale !important;
-        text-rendering: optimizeLegibility !important;
-        font-smooth: always !important;
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
     }
-    
-    /* 提高表格在截圖中的質量 */
-    #temp-screenshot-container table {
-        font-smooth: always !important;
-        image-rendering: crisp-edges;
+    to {
+        transform: translateX(100%) translateY(-20px);
+        opacity: 0;
     }
-    
-    #temp-screenshot-container th,
-    #temp-screenshot-container td {
-        font-weight: 500 !important;
-        font-family: 'Roboto', sans-serif !important;
-    }
+}
+
+/* 確保截圖時文字清晰 */
+#screenshot-header-temp * {
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
+    font-smooth: always !important;
+}
+
+/* 提高表格在截圖中的質量 */
+#temp-screenshot-container table {
+    font-smooth: always !important;
+    image-rendering: crisp-edges;
+}
+
+#temp-screenshot-container th,
+#temp-screenshot-container td {
+    font-weight: 500 !important;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+/* 確保表格圓角顯示 */
+#temp-screenshot-container table {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+}
+
+#temp-screenshot-container th:first-child {
+    border-top-left-radius: 10px !important;
+}
+
+#temp-screenshot-container th:last-child {
+    border-top-right-radius: 10px !important;
+}
+
+#temp-screenshot-container tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 10px !important;
+}
+
+#temp-screenshot-container tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 10px !important;
+}
 `;
     document.head.appendChild(style);
 
