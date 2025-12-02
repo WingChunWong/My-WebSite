@@ -1,4 +1,7 @@
-// 全局存儲作業數據
+/****************************************
+ * 全域變數
+ ****************************************/
+// 全域存儲作業數據
 let homeworkData = [];
 
 /****************************************
@@ -14,6 +17,86 @@ function formatDate(date) {
     const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份從0開始，補零至2位
     const day = String(date.getDate()).padStart(2, '0');        // 日期補零至2位
     return `${year}-${month}-${day}`;
+}
+
+/**
+ * 取得頁面上選擇的日期（兼容<input type="date">元件）
+ * @returns {Object} 包含選擇的Date物件與格式化字串
+ *   - dateObj: Date實例
+ *   - ymdStr: YYYY-MM-DD格式字串
+ *   - zhStr: 繁體中文日期字串（例：2025年12月2日 星期二）
+ */
+function getSelectedDate() {
+    // 取得日期選擇器元素
+    const datePicker = document.getElementById('issueDateFilter');
+    let selectedDateObj, selectedYmdStr;
+
+    // 若有選擇日期則使用，否則預設為今日
+    if (datePicker && datePicker.value) {
+        selectedYmdStr = datePicker.value;
+        // 處理Date物件的時區問題（避免因時區偏移導致日期錯亂）
+        const [year, month, day] = selectedYmdStr.split('-').map(Number);
+        selectedDateObj = new Date(year, month - 1, day);
+    } else {
+        // 預設為今日
+        selectedDateObj = new Date();
+        // 格式化為YYYY-MM-DD
+        selectedYmdStr = `${selectedDateObj.getFullYear()}-${String(selectedDateObj.getMonth() + 1).padStart(2, '0')}-${String(selectedDateObj.getDate()).padStart(2, '0')}`;
+    }
+
+    // 格式化為繁體中文日期字串
+    const zhDateStr = selectedDateObj.toLocaleDateString('zh-Hant', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        weekday: 'long'
+    });
+
+    return {
+        dateObj: selectedDateObj,
+        ymdStr: selectedYmdStr,
+        zhStr: zhDateStr
+    };
+}
+
+/**
+ * 計算指定日期發出的功課數量
+ * @param {string} targetDateStr - YYYY-MM-DD格式的目標日期
+ * @returns {number} 該日期發出的功課數量
+ */
+function getHomeworkIssuedCountByDate(targetDateStr) {
+    if (!homeworkData || homeworkData.length === 0) {
+        return 0;
+    }
+
+    // 從全域作業資料中計算該日期發出的功課數量
+    const count = homeworkData.filter(item => {
+        // 比對發布日期是否等於目標日期
+        const issueDateStr = item.issue_date;
+        return issueDateStr === targetDateStr;
+    }).length;
+
+    return count;
+}
+
+/**
+ * 計算指定日期截止的功課數量
+ * @param {string} targetDateStr - YYYY-MM-DD格式的目標日期
+ * @returns {number} 該日期截止的功課數量
+ */
+function getHomeworkDueCountByDate(targetDateStr) {
+    if (!homeworkData || homeworkData.length === 0) {
+        return 0;
+    }
+
+    // 從全域作業資料中計算該日期截止的功課數量
+    const count = homeworkData.filter(item => {
+        // 比對截止日期是否等於目標日期
+        const dueDateStr = item.due_date;
+        return dueDateStr === targetDateStr;
+    }).length;
+
+    return count;
 }
 
 /****************************************
@@ -291,7 +374,7 @@ function applyFilters() {
     });
 
     renderHomeworkTable(filteredData);
-    updateStatistics(filteredData);
+    updateStatistics();
 }
 
 /**
@@ -316,30 +399,24 @@ function resetFilters() {
  * 統計信息模塊
  ****************************************/
 /**
- * 更新統計信息
- * @param {Array} data - 經過篩選的作業數據
- */
-function updateStatistics(data) {
+ 更新統計信息
+ * */
+function updateStatistics() {
     const issuedTodayCountElement = document.getElementById('issuedTodayCount');
     const dueTodayCountElement = document.getElementById('dueTodayCount');
 
     if (!issuedTodayCountElement || !dueTodayCountElement) return;
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    // 使用選擇的日期
+    const issueDateFilter = document.getElementById('issueDateFilter');
+    const selectedDate = issueDateFilter ? issueDateFilter.value : formatDate(new Date());
 
-    const issuedTodayCount = data.filter(item => {
-        const issueDate = new Date(item.issue_date);
-        return issueDate.toDateString() === today.toDateString();
-    }).length;
+    // 分別計算發布和截止的功課數量
+    const issuedCount = getHomeworkIssuedCountByDate(selectedDate);
+    const dueCount = getHomeworkDueCountByDate(selectedDate);
 
-    const dueTodayCount = data.filter(item => {
-        const dueDate = new Date(item.due_date);
-        return dueDate.toDateString() === today.toDateString();
-    }).length;
-
-    issuedTodayCountElement.textContent = issuedTodayCount;
-    dueTodayCountElement.textContent = dueTodayCount;
+    issuedTodayCountElement.textContent = issuedCount;
+    dueTodayCountElement.textContent = dueCount;
 }
 
 /****************************************
@@ -394,7 +471,7 @@ function renderHomeworkTable(data) {
                 <td>${item.subject}</td>
                 <td>${item.homework_name}</td>
                 <td>${item.issue_date}</td>
-                <td>${item.due_date}</td>
+                <td class="deadline-cell" data-deadline="${item.due_date}">${item.due_date}</td>
                 <td>${item.class_group}</td>
                 <td>
                     <span class="status-badge ${statusClass}">
@@ -410,154 +487,10 @@ function renderHomeworkTable(data) {
 }
 
 /****************************************
- * 圖片導出功能
- ****************************************/
-/**
- * 初始化下載按鈕事件
- */
-function initDownloadButton() {
-    const downloadBtn = document.getElementById('downloadTableBtn');
-    if (downloadBtn) {
-        downloadBtn.addEventListener('click', downloadTableAsImage);
-    } else {
-        // 處理DOM加載時序問題
-        setTimeout(initDownloadButton, 100);
-    }
-}
-
-/**
- * 將作業表格轉換為圖片並下載
- */
-async function downloadTableAsImage() {
-    const tableWrapper = document.getElementById('homeworkTableContainer');
-    const tableContainer = document.querySelector('.homework-table-container');
-    const noDataElement = document.getElementById('noData');
-    const downloadBtn = document.getElementById('downloadTableBtn');
-    const originalText = downloadBtn.innerHTML;
-
-    try {
-        // 檢查數據狀態
-        if (noDataElement && noDataElement.style.display !== 'none') {
-            alert(document.body.classList.contains('english') ?
-                'No data to download' : '沒有可下載的數據');
-            return;
-        }
-
-        if (!tableContainer || !tableWrapper) {
-            throw new Error(document.body.classList.contains('english') ?
-                'Table container not found' : '未找到表格容器');
-        }
-
-        // ========== 關鍵修復：臨時展開所有容器 ==========
-        const styleBackup = {
-            wrapper: {
-                overflow: tableWrapper.style.overflow,
-                height: tableWrapper.style.height,
-                maxHeight: tableWrapper.style.maxHeight
-            },
-            container: {
-                overflow: tableContainer.style.overflow,
-                height: tableContainer.style.height,
-                maxHeight: tableContainer.style.maxHeight,
-                width: tableContainer.style.width,
-                maxWidth: tableContainer.style.maxWidth
-            },
-            body: {
-                overflow: document.body.style.overflow
-            },
-            html: {
-                overflow: document.documentElement.style.overflow
-            }
-        };
-
-        // 臨時展開所有容器
-        tableWrapper.style.overflow = 'visible';
-        tableWrapper.style.height = 'auto';
-        tableWrapper.style.maxHeight = 'none';
-
-        tableContainer.style.overflow = 'visible';
-        tableContainer.style.height = 'auto';
-        tableContainer.style.maxHeight = 'none';
-        tableContainer.style.width = 'auto';
-        tableContainer.style.maxWidth = 'none';
-
-        document.body.style.overflow = 'visible';
-        document.documentElement.style.overflow = 'visible';
-
-        // 強制重新計算布局
-        await new Promise(resolve => setTimeout(resolve, 300));
-
-        // ========== 優化html2canvas配置 ==========
-        const canvas = await html2canvas(tableContainer, {
-            scale: 3, // 高分辨率
-            useCORS: true,
-            logging: false,
-            backgroundColor: '#ffffff',
-            windowWidth: tableContainer.scrollWidth,
-            windowHeight: tableContainer.scrollHeight,
-            x: 0,
-            y: 0,
-            scrollX: 0,
-            scrollY: 0,
-            allowTaint: true,
-            removeContainer: false
-        });
-
-        // ========== 下載圖片 ==========
-        const link = document.createElement('a');
-        const today = new Date();
-        const formattedDate = `${today.getFullYear()}${String(today.getMonth() + 1).padStart(2, '0')}${String(today.getDate()).padStart(2, '0')}_${String(today.getHours()).padStart(2, '0')}${String(today.getMinutes()).padStart(2, '0')}`;
-        const fileName = `作業表_${formattedDate}.png`;
-
-        link.download = fileName;
-        link.href = canvas.toDataURL('image/png', 1.0);
-        link.click();
-
-    } catch (error) {
-        console.error('下載圖片失敗:', error);
-        alert(document.body.classList.contains('english') ?
-            'Failed to download image: ' + error.message :
-            '下載圖片失敗: ' + error.message);
-    } finally {
-        // 恢復所有樣式
-        if (tableWrapper) {
-            tableWrapper.style.overflow = styleBackup.wrapper.overflow;
-            tableWrapper.style.height = styleBackup.wrapper.height;
-            tableWrapper.style.maxHeight = styleBackup.wrapper.maxHeight;
-        }
-        if (tableContainer) {
-            tableContainer.style.overflow = styleBackup.container.overflow;
-            tableContainer.style.height = styleBackup.container.height;
-            tableContainer.style.maxHeight = styleBackup.container.maxHeight;
-            tableContainer.style.width = styleBackup.container.width;
-            tableContainer.style.maxWidth = styleBackup.container.maxWidth;
-        }
-        document.body.style.overflow = styleBackup.body.overflow;
-        document.documentElement.style.overflow = styleBackup.html.overflow;
-
-        // 恢復按鈕原始狀態（無動畫）
-        downloadBtn.disabled = false;
-        downloadBtn.innerHTML = originalText;
-    }
-}
-
-// 初始化按鈕事件
-function initDownloadButton() {
-    const downloadBtn = document.getElementById('downloadTableBtn');
-    if (downloadBtn) {
-        downloadBtn.addEventListener('click', downloadTableAsImage);
-    } else {
-        setTimeout(initDownloadButton, 100);
-    }
-}
-
-// 頁面加載後初始化
-window.addEventListener('load', initDownloadButton);
-
-/****************************************
  * 主應用程序入口
  ****************************************/
 // 等待DOM完全加載後執行初始化操作
+
 document.addEventListener('DOMContentLoaded', function () {
     // 初始化日期選擇器（默認選中今天）
     setTodayDate();
@@ -577,72 +510,604 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 初始化主題切換功能
     initializeThemeToggle();
-});
 
-/****************************************
- * 主題切換模塊
- ****************************************/
-function initializeThemeToggle() {
-    const themeToggle = document.getElementById('themeToggle');
-    if (!themeToggle) return;
+    // 綁定下載按鈕點擊事件
+    const downloadBtn = document.getElementById('downloadTableBtn');
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', async function () {
+            // 顯示載入指示器
+            const originalBtnText = this.innerHTML;
+            this.innerHTML = '<i class="bi bi-hourglass-split me-1"></i>正在生成圖片...';
+            this.disabled = true;
 
-    // 添加ARIA屬性提升可訪問性
-    themeToggle.setAttribute('aria-label', '切換深色/淺色模式');
-    themeToggle.setAttribute('role', 'switch');
+            try {
+                // 1. 取得選擇的日期資訊
+                const selectedDateInfo = getSelectedDate();
+                const targetDateStr = selectedDateInfo.ymdStr;
+                const targetZhDate = selectedDateInfo.zhStr;
 
-    // 初始化主題狀態
-    function initTheme() {
-        const isDarkMode = localStorage.getItem('darkMode') === 'true';
-        if (isDarkMode) {
-            document.body.classList.add('dark-mode');
-        }
-        updateToggleState(isDarkMode);
+                // 計算選擇日期的數據
+                const issuedHomeworkCount = getHomeworkIssuedCountByDate(targetDateStr);
+                const dueHomeworkCount = getHomeworkDueCountByDate(targetDateStr);
+
+                // 2. 建立高質量的MD3風格標題區域
+                const headerContainer = document.createElement('div');
+                headerContainer.id = 'screenshot-header-temp';
+                headerContainer.style.cssText = `
+                background-color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-surface-container-highest').trim() || '#ffffff'};
+                border-radius: 16px;
+                margin: 24px 0 32px;
+                padding: 32px;
+                text-align: center;
+                font-family: 'Roboto', system-ui, sans-serif;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                transition: all 0.3s ease;
+                border: 1px solid ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-outline-variant').trim() || '#e0e0e0'};
+                color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface').trim() || '#000000'};
+                position: relative;
+                z-index: 1000;
+            `;
+
+                // 主標題
+                const mainTitle = document.createElement('h2');
+                mainTitle.textContent = '功課表';
+                mainTitle.style.cssText = `
+                margin: 0 0 8px;
+                font-size: 32px;
+                font-weight: 500;
+                color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-primary').trim() || '#6750a4'};
+                letter-spacing: -0.01em;
+                line-height: 1.2;
+                font-family: 'Roboto', sans-serif;
+            `;
+
+                // 日期標題
+                const dateTitle = document.createElement('h3');
+                dateTitle.textContent = targetZhDate;
+                dateTitle.style.cssText = `
+                margin: 0 0 24px;
+                font-size: 20px;
+                font-weight: 400;
+                color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface-variant').trim() || '#666666'};
+                opacity: 0.9;
+                line-height: 1.4;
+                font-family: 'Roboto', sans-serif;
+            `;
+
+                // 統計信息容器
+                const statsContainer = document.createElement('div');
+                statsContainer.style.cssText = `
+                display: flex;
+                justify-content: center;
+                gap: 24px;
+                margin: 32px 0;
+                flex-wrap: wrap;
+            `;
+
+                // 發布統計卡片
+                const issuedCard = createStatCard({
+                    label: '發布功課',
+                    value: `${issuedHomeworkCount} 項`,
+                    icon: 'bi-journal-plus',
+                    color: getComputedStyle(document.body).getPropertyValue('--md-sys-color-secondary').trim() || '#625b71'
+                });
+
+                // 截止統計卡片
+                const dueCard = createStatCard({
+                    label: '截止功課',
+                    value: `${dueHomeworkCount} 項`,
+                    icon: 'bi-clock',
+                    color: getComputedStyle(document.body).getPropertyValue('--md-sys-color-warning').trim() || '#ffb74d'
+                });
+
+                statsContainer.appendChild(issuedCard);
+                statsContainer.appendChild(dueCard);
+
+                // 輔助函數：創建統計卡片
+                function createStatCard({ label, value, icon, color }) {
+                    const card = document.createElement('div');
+                    card.style.cssText = `
+                    background: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-surface-container-low').trim() || '#f5f5f5'};
+                    border-radius: 12px;
+                    padding: 24px;
+                    min-width: 160px;
+                    text-align: center;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    border: 1px solid ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-outline-variant').trim() || '#e0e0e0'};
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                `;
+
+                    const iconContainer = document.createElement('div');
+                    iconContainer.style.cssText = `
+                    width: 48px;
+                    height: 48px;
+                    background-color: ${color}20;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 16px;
+                `;
+
+                    const iconEl = document.createElement('i');
+                    iconEl.className = `bi ${icon}`;
+                    iconEl.style.cssText = `
+                    font-size: 24px;
+                    color: ${color};
+                `;
+
+                    const valueEl = document.createElement('div');
+                    valueEl.textContent = value;
+                    valueEl.style.cssText = `
+                    font-size: 28px;
+                    font-weight: 700;
+                    color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface').trim() || '#000000'};
+                    margin: 8px 0;
+                    line-height: 1.2;
+                `;
+
+                    const labelEl = document.createElement('div');
+                    labelEl.textContent = label;
+                    labelEl.style.cssText = `
+                    font-size: 14px;
+                    color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface-variant').trim() || '#666666'};
+                    font-weight: 500;
+                    opacity: 0.8;
+                `;
+
+                    iconContainer.appendChild(iconEl);
+                    card.appendChild(iconContainer);
+                    card.appendChild(valueEl);
+                    card.appendChild(labelEl);
+
+                    return card;
+                }
+
+                // 分割線
+                const divider = document.createElement('div');
+                divider.style.cssText = `
+                height: 1px;
+                background: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-outline').trim() || '#cccccc'};
+                margin: 32px 0;
+                opacity: 0.5;
+            `;
+
+                // 表格標題
+                const tableTitle = document.createElement('div');
+                tableTitle.textContent = '詳細功課列表';
+                tableTitle.style.cssText = `
+                font-size: 20px;
+                font-weight: 500;
+                color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface').trim() || '#000000'};
+                margin: 32px 0 16px;
+                text-align: left;
+                padding-left: 12px;
+                border-left: 4px solid ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-primary').trim() || '#6750a4'};
+                font-family: 'Roboto', sans-serif;
+            `;
+
+                // 組合標題容器
+                headerContainer.appendChild(mainTitle);
+                headerContainer.appendChild(dateTitle);
+                headerContainer.appendChild(statsContainer);
+                headerContainer.appendChild(divider);
+                headerContainer.appendChild(tableTitle);
+
+                // 3. 創建臨時容器用於截圖
+                const tempContainer = document.createElement('div');
+                tempContainer.id = 'temp-screenshot-container';
+                tempContainer.style.cssText = `
+                position: fixed;
+                top: -9999px;
+                left: -9999px;
+                width: 1000px;
+                padding: 20px;
+                background-color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-surface').trim() || '#ffffff'};
+                z-index: 10000;
+                opacity: 1;
+            `;
+
+                // 複製表格到臨時容器
+                const table = document.querySelector('.homework-table');
+                if (!table) {
+                    throw new Error('找不到功課表格');
+                }
+
+                const clonedTable = table.cloneNode(true);
+
+                // 優化表格樣式
+                clonedTable.style.cssText = `
+                border-radius: 12px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                margin: 0 0 32px 0;
+                border: 1px solid ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-outline-variant').trim() || '#e0e0e0'};
+                background-color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-surface').trim() || '#ffffff'};
+                width: 100%;
+                border-collapse: collapse;
+                font-family: 'Roboto', sans-serif;
+            `;
+
+                // 優化表格頭部
+                const tableHeaders = clonedTable.querySelectorAll('th');
+                tableHeaders.forEach(th => {
+                    th.style.cssText = `
+                    background-color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-surface-container-high').trim() || '#f0f0f0'} !important;
+                    color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface').trim() || '#000000'} !important;
+                    font-weight: 600 !important;
+                    padding: 16px !important;
+                    border-bottom: 2px solid ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-outline').trim() || '#cccccc'} !important;
+                    font-family: 'Roboto', sans-serif;
+                `;
+                });
+
+                // 優化表格內容
+                const tableCells = clonedTable.querySelectorAll('td');
+                tableCells.forEach(td => {
+                    td.style.cssText = `
+                    padding: 14px 16px !important;
+                    border-bottom: 1px solid ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-outline-variant').trim() || '#e0e0e0'} !important;
+                    color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface').trim() || '#000000'} !important;
+                    font-family: 'Roboto', sans-serif;
+                `;
+                });
+
+                // 確保所有圖標都能顯示
+                const icons = clonedTable.querySelectorAll('i');
+                icons.forEach(icon => {
+                    icon.style.cssText = `
+                    display: inline-block !important;
+                    font-family: 'bootstrap-icons' !important;
+                    font-style: normal !important;
+                `;
+                });
+
+                // 將標題和表格添加到臨時容器
+                tempContainer.appendChild(headerContainer);
+                tempContainer.appendChild(clonedTable);
+                document.body.appendChild(tempContainer);
+
+                // 4. 等待DOM更新
+                await new Promise(resolve => setTimeout(resolve, 100));
+
+                // 5. 執行高質量截圖
+                const canvas = await html2canvas(tempContainer, {
+                    scale: 6,
+                    useCORS: true,
+                    backgroundColor: getComputedStyle(document.body).getPropertyValue('--md-sys-color-surface').trim() || '#ffffff',
+                    logging: true,
+                    allowTaint: true,
+                    removeContainer: true,
+                    foreignObjectRendering: false, // 關閉foreignObjectRendering
+                    imageTimeout: 0,
+                    ignoreElements: (element) => {
+                        return false;
+                    },
+                    onclone: null
+                });
+
+                // 6. 移除臨時容器
+                if (tempContainer.parentNode) {
+                    tempContainer.parentNode.removeChild(tempContainer);
+                }
+
+                // 檢查canvas是否為空
+                if (canvas.width === 0 || canvas.height === 0) {
+                    throw new Error('生成的圖片尺寸為0');
+                }
+
+                // 7. 創建高質量圖片並下載
+                const link = document.createElement('a');
+                const fileName = `功課表_${targetDateStr.replace(/-/g, '')}.png`;
+                link.download = fileName;
+
+                // 轉換為數據URL
+                link.href = canvas.toDataURL('image/png', 1.0);
+
+                // 模擬點擊下載
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                // 8. 顯示下載成功提示
+                showDownloadToast(fileName, canvas.width, canvas.height);
+
+            } catch (error) {
+                console.error('功課表截圖失敗：', error);
+                showErrorToast('生成圖片時發生錯誤：' + error.message);
+
+                // 清理可能殘留的臨時元素
+                const tempContainer = document.getElementById('temp-screenshot-container');
+                if (tempContainer && tempContainer.parentNode) {
+                    tempContainer.parentNode.removeChild(tempContainer);
+                }
+            } finally {
+                // 恢復按鈕狀態
+                this.innerHTML = originalBtnText;
+                this.disabled = false;
+            }
+        });
+    } else {
+        console.warn('未找到下載按鈕（ID: downloadTableBtn），請檢查頁面元素');
     }
 
-    // 更新切換按鈕狀態（圖標+ARIA）
-    function updateToggleState(isDark) {
-        const icon = themeToggle.querySelector('i');
-        // 移除所有圖標類並添加過渡效果
-        icon.className = 'bi transition-all duration-300 ease-in-out';
-
-        if (isDark) {
-            icon.classList.add('bi-sun', 'text-yellow-300', 'scale-110');
-            themeToggle.setAttribute('aria-checked', 'true');
-        } else {
-            icon.classList.add('bi-moon', 'text-blue-200');
-            themeToggle.setAttribute('aria-checked', 'false');
+    // 確保載入Bootstrap Icons字體
+    function ensureFontsLoaded() {
+        if (!document.querySelector('link[href*="bootstrap-icons"]')) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css';
+            document.head.appendChild(link);
         }
     }
 
-    // 切換主題模式（添加平滑過渡）
-    function toggleDarkMode() {
-        const isDarkMode = document.body.classList.toggle('dark-mode');
-        localStorage.setItem('darkMode', isDarkMode);
-        // 添加主題切換時的頁面過渡效果
-        document.body.classList.add('theme-transition');
+    // 確保Roboto字體載入
+    function ensureRobotoFont() {
+        if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap';
+            document.head.appendChild(link);
+        }
+    }
+
+    // 優化下載成功提示函數
+    function showDownloadToast(fileName, width, height) {
+        const toast = document.createElement('div');
+        toast.id = 'download-success-toast';
+        toast.innerHTML = `
+        <div style="
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            background: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-surface-container-high').trim() || '#f5f5f5'};
+            color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface').trim() || '#000000'};
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1050;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            max-width: 480px;
+            animation: slideIn 0.4s ease-out;
+            border: 1px solid ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-outline-variant').trim() || '#e0e0e0'};
+            font-family: 'Roboto', sans-serif;
+        ">
+            <div style="
+                width: 48px;
+                height: 48px;
+                background: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-primary').trim() || '#6750a4'};
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            ">
+                <i class="bi bi-check-lg" style="color: white; font-size: 20px;"></i>
+            </div>
+            <div style="flex: 1;">
+                <div style="font-size: 16px; font-weight: 600; margin-bottom: 4px; color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface').trim() || '#000000'};">
+                    圖片生成成功
+                </div>
+                <div style="font-size: 14px; color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface-variant').trim() || '#666666'}; margin-bottom: 8px; opacity: 0.9;">
+                    檔案：${fileName}
+                </div>
+                <div style="font-size: 12px; color: ${getComputedStyle(document.body).getPropertyValue('--md-sys-color-on-surface-variant').trim() || '#666666'}; opacity: 0.7;">
+                    解析度：${width} × ${height} 像素
+                </div>
+            </div>
+        </div>
+    `;
+
+        // 移除現有的提示
+        const existingToast = document.getElementById('download-success-toast');
+        if (existingToast) {
+            existingToast.remove();
+        }
+
+        document.body.appendChild(toast);
+
+        // 自動移除提示
         setTimeout(() => {
-            document.body.classList.remove('theme-transition');
-        }, 300);
-        updateToggleState(isDarkMode);
-
-        // 觸發表格重新渲染以適應主題
-        if (typeof applyFilters === 'function') {
-            applyFilters();
-        }
+            if (toast.parentNode) {
+                toast.style.animation = 'slideOut 0.4s ease-in';
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 400);
+            }
+        }, 3000);
     }
 
-    // 綁定事件（添加點擊反饋）
-    themeToggle.addEventListener('click', toggleDarkMode);
-    themeToggle.addEventListener('mousedown', () => {
-        themeToggle.classList.add('active');
-    });
-    themeToggle.addEventListener('mouseup', () => {
-        themeToggle.classList.remove('active');
-    });
-    themeToggle.addEventListener('mouseleave', () => {
-        themeToggle.classList.remove('active');
+    // 優化錯誤提示函數
+    function showErrorToast(message) {
+        const toast = document.createElement('div');
+        toast.id = 'download-error-toast';
+        toast.innerHTML = `
+        <div style="
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1050;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            max-width: 480px;
+            animation: slideIn 0.4s ease-out;
+            border: 1px solid #f5c6cb;
+            font-family: 'Roboto', sans-serif;
+        ">
+            <div style="
+                width: 48px;
+                height: 48px;
+                background-color: #dc3545;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            ">
+                <i class="bi bi-exclamation-triangle-fill" style="color: white; font-size: 20px;"></i>
+            </div>
+            <div style="flex: 1;">
+                <div style="font-size: 16px; font-weight: 600; margin-bottom: 4px;">
+                    操作失敗
+                </div>
+                <div style="font-size: 14px; opacity: 0.9;">
+                    ${message}
+                </div>
+            </div>
+        </div>
+    `;
+
+        // 移除現有的提示
+        const existingToast = document.getElementById('download-error-toast');
+        if (existingToast) {
+            existingToast.remove();
+        }
+
+        document.body.appendChild(toast);
+
+        // 自動移除提示
+        setTimeout(() => {
+            if (toast.parentNode) {
+                toast.style.animation = 'slideOut 0.4s ease-in';
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 400);
+            }
+        }, 5000);
+    }
+
+    // 添加動畫樣式
+    const style = document.createElement('style');
+    style.textContent = `
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%) translateY(-20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0) translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOut {
+        from {
+            transform: translateX(0) translateY(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%) translateY(-20px);
+            opacity: 0;
+        }
+    }
+    
+    /* 確保截圖時文字清晰 */
+    #screenshot-header-temp * {
+        -webkit-font-smoothing: antialiased !important;
+        -moz-osx-font-smoothing: grayscale !important;
+        text-rendering: optimizeLegibility !important;
+        font-smooth: always !important;
+    }
+    
+    /* 提高表格在截圖中的質量 */
+    #temp-screenshot-container table {
+        font-smooth: always !important;
+        image-rendering: crisp-edges;
+    }
+    
+    #temp-screenshot-container th,
+    #temp-screenshot-container td {
+        font-weight: 500 !important;
+        font-family: 'Roboto', sans-serif !important;
+    }
+`;
+    document.head.appendChild(style);
+
+    // 在頁面載入時確保字體載入
+    document.addEventListener('DOMContentLoaded', function () {
+        ensureFontsLoaded();
+        ensureRobotoFont();
     });
 
-    // 頁面加載時初始化
-    document.addEventListener('DOMContentLoaded', initTheme);
-}
+    /****************************************
+     * 主題切換模塊
+     ****************************************/
+    function initializeThemeToggle() {
+        const themeToggle = document.getElementById('themeToggle');
+        if (!themeToggle) return;
+
+        // 添加ARIA屬性提升可訪問性
+        themeToggle.setAttribute('aria-label', '切換深色/淺色模式');
+        themeToggle.setAttribute('role', 'switch');
+
+        // 初始化主題狀態
+        function initTheme() {
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+            }
+            updateToggleState(isDarkMode);
+        }
+
+        // 更新切換按鈕狀態（圖標+ARIA）
+        function updateToggleState(isDark) {
+            const icon = themeToggle.querySelector('i');
+            // 移除所有圖標類並添加過渡效果
+            icon.className = 'bi transition-all duration-300 ease-in-out';
+
+            if (isDark) {
+                icon.classList.add('bi-sun', 'text-yellow-300', 'scale-110');
+                themeToggle.setAttribute('aria-checked', 'true');
+            } else {
+                icon.classList.add('bi-moon', 'text-blue-200');
+                themeToggle.setAttribute('aria-checked', 'false');
+            }
+        }
+
+        // 切換主題模式（添加平滑過渡）
+        function toggleDarkMode() {
+            const isDarkMode = document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+            // 添加主題切換時的頁面過渡效果
+            document.body.classList.add('theme-transition');
+            setTimeout(() => {
+                document.body.classList.remove('theme-transition');
+            }, 300);
+            updateToggleState(isDarkMode);
+
+            // 觸發表格重新渲染以適應主題
+            if (typeof applyFilters === 'function') {
+                applyFilters();
+            }
+        }
+
+        // 綁定事件（添加點擊反饋）
+        themeToggle.addEventListener('click', toggleDarkMode);
+        themeToggle.addEventListener('mousedown', () => {
+            themeToggle.classList.add('active');
+        });
+        themeToggle.addEventListener('mouseup', () => {
+            themeToggle.classList.remove('active');
+        });
+        themeToggle.addEventListener('mouseleave', () => {
+            themeToggle.classList.remove('active');
+        });
+
+        // 頁面加載時初始化
+        document.addEventListener('DOMContentLoaded', initTheme);
+    }
+});
