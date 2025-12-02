@@ -1843,5 +1843,59 @@
     "subject": "英文 -- ENG",
     "homework_name": "Reading Comprehension Booklet Units 4&5",
     "remarks": ""
+  },
+  {
+    "id": "記事6814",
+    "issue_date": "2025-12-02",
+    "due_date": "2025-12-03",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "筆記 p.1",
+    "remarks": ""
+  },
+  {
+    "id": "記事6813",
+    "issue_date": "2025-12-02",
+    "due_date": "2025-12-03",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Form Dictation 4-12",
+    "remarks": ""
+  },
+  {
+    "id": "74730",
+    "issue_date": "2025-12-02",
+    "due_date": "2025-12-03",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Bring Notebook, Writing WS and File",
+    "remarks": ""
+  },
+  {
+    "id": "74729",
+    "issue_date": "2025-12-02",
+    "due_date": "2025-12-03",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Reading Journal",
+    "remarks": "Paste the article p.4"
+  },
+  {
+    "id": "74728",
+    "issue_date": "2025-12-02",
+    "due_date": "2025-12-03",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "CW38",
+    "remarks": ""
+  },
+  {
+    "id": "74722",
+    "issue_date": "2025-12-02",
+    "due_date": "2025-12-03",
+    "class_group": "全班",
+    "subject": "地理 -- GEOG",
+    "homework_name": "作業p.26-27",
+    "remarks": ""
   }
 ]
