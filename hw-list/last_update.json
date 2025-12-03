@@ -1,14 +1,6 @@
 {
-<<<<<<< HEAD
-  "last_updated": "2025-12-01T09:54:19+00:00",
-  "run_id": "19818406344",
-  "trigger": "workflow_dispatch",
-  "records": 205
-}
-=======
-    "last_updated": "2025-12-02T09:17:14+00:00",
-    "run_id": "19853350236",
+    "last_updated": "2025-12-03T09:15:56+00:00",
+    "run_id": "19888557298",
     "trigger": "schedule",
-    "records": 211
+    "records": 216
   }
->>>>>>> 8a181ac0098ff8ba67fc4366feb3a749eedf3c34

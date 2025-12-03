@@ -1897,5 +1897,50 @@
     "subject": "地理 -- GEOG",
     "homework_name": "作業p.26-27",
     "remarks": ""
+  },
+  {
+    "id": "記事6818",
+    "issue_date": "2025-12-03",
+    "due_date": "2025-12-05",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "明帶步步升",
+    "remarks": ""
+  },
+  {
+    "id": "記事6817",
+    "issue_date": "2025-12-03",
+    "due_date": "2025-12-05",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "明天級測，請溫習",
+    "remarks": ""
+  },
+  {
+    "id": "74758",
+    "issue_date": "2025-12-03",
+    "due_date": "2025-12-05",
+    "class_group": "全班",
+    "subject": "科學 -- SCI",
+    "homework_name": "WB p.42-45",
+    "remarks": ""
+  },
+  {
+    "id": "74757",
+    "issue_date": "2025-12-03",
+    "due_date": "2025-12-04",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "Bring Ch.6",
+    "remarks": ""
+  },
+  {
+    "id": "74756",
+    "issue_date": "2025-12-03",
+    "due_date": "2025-12-04",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "CW39",
+    "remarks": ""
   }
 ]
