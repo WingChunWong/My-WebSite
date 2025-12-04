@@ -1942,5 +1942,59 @@
     "subject": "數學 -- MATH",
     "homework_name": "CW39",
     "remarks": ""
+  },
+  {
+    "id": "記事6833",
+    "issue_date": "2025-12-04",
+    "due_date": "2025-12-05",
+    "class_group": "全班",
+    "subject": "地理 -- GEOG",
+    "homework_name": "11/12 級測",
+    "remarks": "On VLE"
+  },
+  {
+    "id": "74800",
+    "issue_date": "2025-12-04",
+    "due_date": "2025-12-05",
+    "class_group": "全班",
+    "subject": "地理 -- GEOG",
+    "homework_name": "作 p.29, 30,32",
+    "remarks": ""
+  },
+  {
+    "id": "74796",
+    "issue_date": "2025-12-04",
+    "due_date": "2025-12-05",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Bring all the English materials",
+    "remarks": ""
+  },
+  {
+    "id": "74791",
+    "issue_date": "2025-12-04",
+    "due_date": "2025-12-05",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Reading Booklet Ex. 6-7",
+    "remarks": ""
+  },
+  {
+    "id": "74788",
+    "issue_date": "2025-12-04",
+    "due_date": "2025-12-09",
+    "class_group": "全班",
+    "subject": "科學 -- SCI",
+    "homework_name": "WB",
+    "remarks": ""
+  },
+  {
+    "id": "74786",
+    "issue_date": "2025-12-04",
+    "due_date": "2025-12-05",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "Ch.6 Revision p.4-7 11-12",
+    "remarks": ""
   }
 ]
