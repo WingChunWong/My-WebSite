@@ -1996,5 +1996,50 @@
     "subject": "數學 -- MATH",
     "homework_name": "Ch.6 Revision p.4-7 11-12",
     "remarks": ""
+  },
+  {
+    "id": "74829",
+    "issue_date": "2025-12-05",
+    "due_date": "2025-12-09",
+    "class_group": "全班",
+    "subject": "公經社 -- CES",
+    "homework_name": "級測改正",
+    "remarks": "9/12 交 放入黃色file"
+  },
+  {
+    "id": "74830",
+    "issue_date": "2025-12-05",
+    "due_date": "2025-12-09",
+    "class_group": "全班",
+    "subject": "公經社 -- CES",
+    "homework_name": "評分功課",
+    "remarks": "9/12 交 放入黃色file"
+  },
+  {
+    "id": "記事6841",
+    "issue_date": "2025-12-05",
+    "due_date": "2025-12-06",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Form DICT",
+    "remarks": ""
+  },
+  {
+    "id": "74828",
+    "issue_date": "2025-12-05",
+    "due_date": "2025-12-06",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Speaking WS p.2-4",
+    "remarks": ""
+  },
+  {
+    "id": "74827",
+    "issue_date": "2025-12-05",
+    "due_date": "2025-12-06",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "CW40",
+    "remarks": ""
   }
 ]
