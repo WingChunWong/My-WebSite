@@ -2041,5 +2041,59 @@
     "subject": "數學 -- MATH",
     "homework_name": "CW40",
     "remarks": ""
+  },
+  {
+    "id": "74904",
+    "issue_date": "2025-12-10",
+    "due_date": "2025-12-11",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Vocabulary Reading Test",
+    "remarks": ""
+  },
+  {
+    "id": "記事6861",
+    "issue_date": "2025-12-10",
+    "due_date": "2025-12-11",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Positive Voice WS p.2",
+    "remarks": ""
+  },
+  {
+    "id": "記事6860",
+    "issue_date": "2025-12-10",
+    "due_date": "2025-12-11",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "準備短講",
+    "remarks": ""
+  },
+  {
+    "id": "記事6859",
+    "issue_date": "2025-12-10",
+    "due_date": "2025-12-11",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "下星期一默 岳飛（1-2段）+ 中國數字",
+    "remarks": ""
+  },
+  {
+    "id": "74890",
+    "issue_date": "2025-12-10",
+    "due_date": "2025-12-11",
+    "class_group": "全班",
+    "subject": "科學 -- SCI",
+    "homework_name": "Dictation Textbook p.89",
+    "remarks": ""
+  },
+  {
+    "id": "74881",
+    "issue_date": "2025-12-10",
+    "due_date": "2025-12-10",
+    "class_group": "全班",
+    "subject": "普話 -- PTH",
+    "homework_name": "第二課語文知識測驗（VLE）欠交",
+    "remarks": ""
   }
 ]
