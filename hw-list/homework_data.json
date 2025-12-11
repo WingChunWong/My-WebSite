@@ -2095,5 +2095,68 @@
     "subject": "普話 -- PTH",
     "homework_name": "第二課語文知識測驗（VLE）欠交",
     "remarks": ""
+  },
+  {
+    "id": "記事6864",
+    "issue_date": "2025-12-11",
+    "due_date": "2025-12-15",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "下星期一作文及默書 岳飛 及 創默",
+    "remarks": ""
+  },
+  {
+    "id": "74932",
+    "issue_date": "2025-12-11",
+    "due_date": "2025-12-15",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "作文改正",
+    "remarks": ""
+  },
+  {
+    "id": "74931",
+    "issue_date": "2025-12-11",
+    "due_date": "2026-01-01",
+    "class_group": "全班",
+    "subject": "公經社 -- CES",
+    "homework_name": "VLE 電子學習計劃",
+    "remarks": ""
+  },
+  {
+    "id": "74930",
+    "issue_date": "2025-12-11",
+    "due_date": "2026-01-05",
+    "class_group": "全班",
+    "subject": "公經社 -- CES",
+    "homework_name": "我的學業檔案",
+    "remarks": ""
+  },
+  {
+    "id": "74929",
+    "issue_date": "2025-12-11",
+    "due_date": "2025-12-15",
+    "class_group": "全班",
+    "subject": "公經社 -- CES",
+    "homework_name": "評分功課改正",
+    "remarks": ""
+  },
+  {
+    "id": "記事6863",
+    "issue_date": "2025-12-11",
+    "due_date": "2025-12-15",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Form Dictation 3",
+    "remarks": "Next Wed"
+  },
+  {
+    "id": "74926",
+    "issue_date": "2025-12-11",
+    "due_date": "2025-12-15",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "Term Exam Paper 1A",
+    "remarks": "(MC Only)"
   }
 ]
