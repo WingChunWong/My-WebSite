@@ -2158,5 +2158,68 @@
     "subject": "數學 -- MATH",
     "homework_name": "Term Exam Paper 1A",
     "remarks": "(MC Only)"
+  },
+  {
+    "id": "74977",
+    "issue_date": "2025-12-15",
+    "due_date": "2025-12-16",
+    "class_group": "全班",
+    "subject": "普話 -- PTH",
+    "homework_name": "VLE listening 3",
+    "remarks": ""
+  },
+  {
+    "id": "74975",
+    "issue_date": "2025-12-15",
+    "due_date": "2025-12-16",
+    "class_group": "全班",
+    "subject": "地理 -- GEOG",
+    "homework_name": "WB p.33-34(1,3,4a)",
+    "remarks": ""
+  },
+  {
+    "id": "74967",
+    "issue_date": "2025-12-15",
+    "due_date": "2025-12-16",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "WS #10-14",
+    "remarks": ""
+  },
+  {
+    "id": "74966",
+    "issue_date": "2025-12-15",
+    "due_date": "2025-12-17",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "星期三共閱圖書測驗",
+    "remarks": "帶iPad 及 圖書"
+  },
+  {
+    "id": "74960",
+    "issue_date": "2025-12-15",
+    "due_date": "2025-12-16",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Writing WS p.4-5",
+    "remarks": ""
+  },
+  {
+    "id": "74959",
+    "issue_date": "2025-12-15",
+    "due_date": "2025-12-16",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Writing WS p.4-5",
+    "remarks": ""
+  },
+  {
+    "id": "記事6876",
+    "issue_date": "2025-12-15",
+    "due_date": "2025-12-18",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Form Dictation",
+    "remarks": ""
   }
 ]
