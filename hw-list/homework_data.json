@@ -2221,5 +2221,41 @@
     "subject": "英文 -- ENG",
     "homework_name": "Form Dictation",
     "remarks": ""
+  },
+  {
+    "id": "75001",
+    "issue_date": "2025-12-16",
+    "due_date": "2025-12-17",
+    "class_group": "全班",
+    "subject": "科學 -- SCI",
+    "homework_name": "Correction",
+    "remarks": ""
+  },
+  {
+    "id": "75000",
+    "issue_date": "2025-12-16",
+    "due_date": "2025-12-17",
+    "class_group": "全班",
+    "subject": "科學 -- SCI",
+    "homework_name": "WB p.46",
+    "remarks": ""
+  },
+  {
+    "id": "記事6886",
+    "issue_date": "2025-12-16",
+    "due_date": "2025-12-17",
+    "class_group": "全班",
+    "subject": "中史 -- CHIS",
+    "homework_name": "共閲圖書測驗",
+    "remarks": "帶iPad 書"
+  },
+  {
+    "id": "記事6885",
+    "issue_date": "2025-12-16",
+    "due_date": "2025-12-17",
+    "class_group": "全班",
+    "subject": "中史 -- CHIS",
+    "homework_name": "明個人短講",
+    "remarks": ""
   }
 ]
