@@ -2257,5 +2257,50 @@
     "subject": "中史 -- CHIS",
     "homework_name": "明個人短講",
     "remarks": ""
+  },
+  {
+    "id": "75032",
+    "issue_date": "2025-12-17",
+    "due_date": "2025-12-18",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Dictionary Book",
+    "remarks": ""
+  },
+  {
+    "id": "75030",
+    "issue_date": "2025-12-17",
+    "due_date": "2025-12-18",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Revision Ex p.1",
+    "remarks": ""
+  },
+  {
+    "id": "75027",
+    "issue_date": "2025-12-17",
+    "due_date": "2025-12-18",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Dictation Correction",
+    "remarks": ""
+  },
+  {
+    "id": "75026",
+    "issue_date": "2025-12-17",
+    "due_date": "2025-12-18",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "Form Test Signature",
+    "remarks": ""
+  },
+  {
+    "id": "75025",
+    "issue_date": "2025-12-17",
+    "due_date": "2025-12-18",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "WS MC(Odd Number Only)",
+    "remarks": ""
   }
 ]
