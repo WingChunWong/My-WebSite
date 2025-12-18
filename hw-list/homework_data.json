@@ -2302,5 +2302,77 @@
     "subject": "數學 -- MATH",
     "homework_name": "WS MC(Odd Number Only)",
     "remarks": ""
+  },
+  {
+    "id": "75070",
+    "issue_date": "2025-12-18",
+    "due_date": "2025-12-29",
+    "class_group": "全班",
+    "subject": "地理 -- GEOG",
+    "homework_name": "長題目 WS",
+    "remarks": "VLE"
+  },
+  {
+    "id": "75068",
+    "issue_date": "2025-12-18",
+    "due_date": "2026-01-05",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "步步升 5",
+    "remarks": ""
+  },
+  {
+    "id": "75065",
+    "issue_date": "2025-12-18",
+    "due_date": "2026-01-05",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Passive Voice",
+    "remarks": ""
+  },
+  {
+    "id": "75064",
+    "issue_date": "2025-12-18",
+    "due_date": "2026-01-05",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Revision Ex",
+    "remarks": ""
+  },
+  {
+    "id": "75063",
+    "issue_date": "2025-12-18",
+    "due_date": "2026-01-05",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "TSA Reading Booklet",
+    "remarks": ""
+  },
+  {
+    "id": "75060",
+    "issue_date": "2025-12-18",
+    "due_date": "2026-01-05",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "HW 4B 5A 5B",
+    "remarks": ""
+  },
+  {
+    "id": "75058",
+    "issue_date": "2025-12-18",
+    "due_date": "2026-01-05",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "Christmas Assignment WS",
+    "remarks": ""
+  },
+  {
+    "id": "75059",
+    "issue_date": "2025-12-18",
+    "due_date": "2026-01-05",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "Christmas Assignment WS",
+    "remarks": ""
   }
 ]
