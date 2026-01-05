@@ -13,22 +13,18 @@ on:
 
 permissions:
   contents: write
-  actions: write # 允許觸發其他工作流
 
 jobs:
   update-data:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           persist-credentials: true
-          fetch-depth: 0 # 獲取完整Git歷史，確保提交對比準確
+          fetch-depth: 0
 
-      - name: Install Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
@@ -38,68 +34,113 @@ jobs:
       - name: Install Dependencies
         working-directory: hw-list
         run: |
-          python -m pip install --upgrade pip
+          pip install --upgrade pip
           if [ -f "requirements.txt" ]; then
             pip install -r requirements.txt
+          else
+            echo "Installing minimal dependencies..."
+            pip install requests beautifulsoup4
           fi
 
-      - name: Run Crawler
+      - name: Run Homework Crawler
         id: crawler
         working-directory: hw-list
         env:
           PORTAL_USERNAME: ${{ secrets.PORTAL_USERNAME }}
           PORTAL_PASSWORD: ${{ secrets.PORTAL_PASSWORD }}
+          FORCE_FULL_UPDATE: ${{ github.event.inputs.force_full_update }}
         run: |
+          echo "::group::初始化檢查"
+          
           # 檢查爬蟲腳本是否存在
           if [ ! -f "homework_crawler.py" ]; then
-            echo "❌ 未找到homework_crawler.py"
+            echo "❌ 錯誤：未找到 homework_crawler.py"
+            exit 1
+          fi
+          
+          echo "✅ 爬蟲腳本存在"
+          
+          # 檢查憑證是否設置
+          if [ -z "$PORTAL_USERNAME" ] || [ -z "$PORTAL_PASSWORD" ]; then
+            echo "❌ 錯誤：PORTAL_USERNAME 或 PORTAL_PASSWORD 環境變數未設置"
+            exit 1
+          fi
+          
+          echo "✅ 登入憑證已設置"
+          
+          if [ "$FORCE_FULL_UPDATE" = "true" ]; then
+            echo "🚀 模式：強制完整更新"
+          else
+            echo "📅 模式：日常增量更新"
+          fi
+          
+          echo "::endgroup::"
+          
+          echo "::group::執行爬蟲"
+          # 執行爬蟲腳本
+          python homework_crawler.py
+          CRAWLER_EXIT_CODE=$?
+          echo "爬蟲退出碼: $CRAWLER_EXIT_CODE"
+          echo "::endgroup::"
+          
+          # 檢查結果
+          if [ $CRAWLER_EXIT_CODE -eq 0 ] && [ -f "homework_data.json" ]; then
+            echo "::group::驗證資料"
+            # 檢查JSON文件是否有效
+            if python -c "import json, sys; json.load(open('homework_data.json')); print('✅ JSON格式有效')" 2>/dev/null; then
+              # 計算記錄數量
+              RECORD_COUNT=$(python -c "import json; data = json.load(open('homework_data.json')); print(len(data))")
+              echo "✅ 資料驗證通過，共 $RECORD_COUNT 條記錄"
+              echo "data_updated=true" >> $GITHUB_OUTPUT
+              echo "record_count=$RECORD_COUNT" >> $GITHUB_OUTPUT
+              
+              # 檢查資料完整性
+              echo "::notice title=資料摘要::共取得 $RECORD_COUNT 條家課記錄"
+              
+              # 如果有資料，顯示科目統計
+              if [ $RECORD_COUNT -gt 0 ]; then
+                python -c "
+import json
+data = json.load(open('homework_data.json'))
+subjects = {}
+for item in data:
+    subject = item.get('subject', '未知')
+    subjects[subject] = subjects.get(subject, 0) + 1
+print('📊 科目統計:')
+for subject, count in sorted(subjects.items()):
+    print(f'  - {subject}: {count}項')
+"
+              fi
+            else
+              echo "❌ homework_data.json 格式錯誤"
+              echo "data_updated=false" >> $GITHUB_OUTPUT
+              exit 1
+            fi
+            echo "::endgroup::"
+          else
+            echo "❌ 爬蟲執行失敗或未生成資料文件"
             echo "data_updated=false" >> $GITHUB_OUTPUT
             exit 1
           fi
 
-          # 構建運行命令（根據輸入參數選擇更新模式）
-          if [ "${{ github.event.inputs.force_full_update }}" = "true" ]; then
-            echo "🚀 執行強制完整更新"
-            CRAWLER_CMD="python homework_crawler.py -ffu"
-          else
-            echo "📅 執行日常增量更新"
-            CRAWLER_CMD="python homework_crawler.py"
-          fi
-
-          # 運行爬蟲腳本
-          echo "▶️ 運行命令：$CRAWLER_CMD"
-          $CRAWLER_CMD
-
-          # 驗證資料文件
-          if [ -f "homework_data.json" ]; then
-            # 檢查JSON格式有效性
-            if python -c "import json; json.load(open('homework_data.json'))" 2>/dev/null; then
-              RECORD_COUNT=$(python -c "import json; print(len(json.load(open('homework_data.json'))))")
-              echo "data_updated=true" >> $GITHUB_OUTPUT
-              echo "record_count=$RECORD_COUNT" >> $GITHUB_OUTPUT
-              echo "✅ 數據文件驗證通過，共$RECORD_COUNT條記錄"
-            else
-              echo "❌ homework_data.json格式錯誤"
-              echo "data_updated=false" >> $GITHUB_OUTPUT
-            fi
-          else
-            echo "❌ 未生成homework_data.json"
-            echo "data_updated=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Create Last_Update Data
+      - name: Create Last Update Info
         if: steps.crawler.outputs.data_updated == 'true'
         working-directory: hw-list
         run: |
+          echo "::group::生成最後更新資訊"
           cat > last_update.json << EOF
           {
-              "last_updated": "$(date -Iseconds)",
-              "run_id": "${{ github.run_id }}",
-              "trigger": "${{ github.event_name }}",
-              "records": ${{ steps.crawler.outputs.record_count }}
-            }
+            "last_updated": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")",
+            "run_id": "${{ github.run_id }}",
+            "run_number": ${{ github.run_number }},
+            "trigger": "${{ github.event_name }}",
+            "records": ${{ steps.crawler.outputs.record_count }},
+            "force_update": ${{ github.event.inputs.force_full_update || 'false' }}
+          }
           EOF
-            echo "✅ 已更新最後更新數據文件"
+          echo "✅ 已生成 last_update.json"
+          cat last_update.json
+          echo "::endgroup::"
 
       - name: Configure Git
         if: steps.crawler.outputs.data_updated == 'true'
@@ -107,73 +148,143 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Check for changes
+      - name: Check for Changes
         id: git-check
         if: steps.crawler.outputs.data_updated == 'true'
         run: |
+          echo "::group::檢查檔案變更"
           git add hw-list/homework_data.json hw-list/last_update.json
-          # 檢查是否有實際變更（排除空提交）
+          
+          # 檢查是否有實際變更
           if git diff --staged --quiet; then
-            echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "⚠️ 無資料變更，無需提交"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
           else
-              echo "has_changes=true" >> $GITHUB_OUTPUT
-              echo "✅ 檢測到資料變更，準備提交"
+            CHANGES=$(git diff --staged --stat)
+            echo "✅ 檢測到資料變更："
+            echo "$CHANGES"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
           fi
+          echo "::endgroup::"
 
-      - name: Commit Change
+      - name: Commit and Push Changes
         if: steps.git-check.outputs.has_changes == 'true'
         run: |
-          COMMIT_MSG="📚 自動更新家課數據（${{ steps.crawler.outputs.record_count }}條）- $(date +"%Y-%m-%d")"
+          echo "::group::提交並推送變更"
+          COMMIT_MSG="📚 自動更新家課數據（${{ steps.crawler.outputs.record_count }}條記錄）"
+          
+          # 添加詳細的提交訊息
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ github.event.inputs.force_full_update }}" = "true" ]; then
+            COMMIT_MSG="$COMMIT_MSG [強制完整更新]"
+          fi
+          
+          COMMIT_MSG="$COMMIT_MSG - $(date +'%Y-%m-%d %H:%M')"
+          
+          echo "提交訊息: $COMMIT_MSG"
           git commit -m "$COMMIT_MSG"
           git push
+          echo "✅ 變更已提交並推送"
+          echo "::endgroup::"
 
-      - name: Trigger Deployment
-        if: steps.git-check.outputs.has_changes == 'true'
-        run: |
-          # 觸發部署工作流（兼容現有deploy.yml的workflow_run觸發）
-          echo "✅ 數據已更新，將觸發部署流程"
-
-      - name: Create Summary
+      - name: Workflow Summary
         if: always()
         run: |
-          {
-            echo "# 📊 家課資料更新報告"
+          echo "::group::📊 工作流執行摘要"
+          
+          echo "# 🏫 家課資料更新報告"
+          echo ""
+          echo "## 📅 執行資訊"
+          echo "- **執行時間:** $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          echo "- **工作流運行 ID:** \`${{ github.run_id }}\` (#${{ github.run_number }})"
+          echo "- **觸發方式:** \`${{ github.event_name }}\`"
+          
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "- **觸發者:** \`${{ github.actor }}\`"
+            echo "- **強制更新模式:** ${{ github.event.inputs.force_full_update }}"
+          fi
+          
+          echo ""
+          echo "## 📈 執行結果"
+          
+          if [ "${{ steps.crawler.outputs.data_updated }}" = "true" ]; then
+            echo "### ✅ 資料更新成功"
             echo ""
-            echo "⏱️ **執行時間：** $(date)"
-            echo ""
+            echo "| 項目 | 結果 |"
+            echo "|------|------|"
+            echo "| 📊 資料筆數 | **${{ steps.crawler.outputs.record_count }} 筆** |"
+            echo "| 💾 資料文件 | [homework_data.json](hw-list/homework_data.json) |"
+            echo "| ⏱️ 最後更新 | [last_update.json](hw-list/last_update.json) |"
             
-            echo "## 🧭 更新模式"
-            if [ "${{ github.event.inputs.force_full_update }}" = "true" ]; then
-              echo "- 🚀 **強制完整更新**"
+            if [ "${{ steps.git-check.outputs.has_changes }}" = "true" ]; then
+              echo "| 🔄 倉庫變更 | **已提交並推送** |"
             else
-              echo "- 📅 **日常增量更新**"
+              echo "| 🔄 倉庫變更 | 無變更（資料未更新） |"
             fi
-            echo ""
             
-            echo "## 📦 更新結果"
+          else
+            echo "### ❌ 資料更新失敗"
+            echo ""
+            echo "可能的原因："
+            echo "1. 登入憑證錯誤"
+            echo "2. 網站暫時無法訪問"
+            echo "3. 網站結構已變更"
+            echo ""
+            echo "**建議操作：**"
+            echo "1. 檢查 GitHub Secrets 中的 PORTAL_USERNAME 和 PORTAL_PASSWORD"
+            echo "2. 手動執行工作流進行測試"
+            echo "3. 查看完整日誌以獲取詳細錯誤訊息"
+          fi
+          
+          echo ""
+          echo "## 🔗 相關連結"
+          echo "- [工作流運行詳情](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+          echo "- [源代碼](hw-list/homework_crawler.py)"
+          
+          if [ "${{ steps.crawler.outputs.data_updated }}" = "true" ] && [ "${{ steps.git-check.outputs.has_changes }}" = "true" ]; then
+            echo "- [查看變更](https://github.com/${{ github.repository }}/commit/$(git rev-parse HEAD))"
+          fi
+          
+          echo "::endgroup::"
+          
+          # 將摘要輸出到 GitHub Summary
+          {
+            echo "# 🏫 家課資料更新報告"
+            echo ""
+            echo "## 📅 執行資訊"
+            echo "- **執行時間:** $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+            echo "- **工作流運行 ID:** \`${{ github.run_id }}\` (#${{ github.run_number }})"
+            echo "- **觸發方式:** \`${{ github.event_name }}\`"
+            
+            if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+              echo "- **觸發者:** \`${{ github.actor }}\`"
+              echo "- **強制更新模式:** ${{ github.event.inputs.force_full_update }}"
+            fi
+            
+            echo ""
+            echo "## 📈 執行結果"
+            
             if [ "${{ steps.crawler.outputs.data_updated }}" = "true" ]; then
               echo "### ✅ 資料更新成功"
-              echo ""
-              echo "| 項目 | 數值 |"
-              echo "|------|------|"
-              echo "| 🗂️ 資料筆數 | **${{ steps.crawler.outputs.record_count }} 筆** |"
-              echo "| 🔄 觸發方式 | \`${{ github.event_name }}\` |"
-              
-              if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-                echo "| 👤 手動觸發者 | \`${{ github.actor }}\` |"
-              fi
+              echo "- **資料筆數:** ${{ steps.crawler.outputs.record_count }} 筆"
               
               if [ "${{ steps.git-check.outputs.has_changes }}" = "true" ]; then
-                echo "| 🚀 部署狀態 | **已自動觸發部署** |"
+                echo "- **倉庫變更:** 已提交並推送"
               else
-                echo "| ℹ️ 部署狀態 | 無資料變更，未進行部署 |"
+                echo "- **倉庫變更:** 無變更（資料未更新）"
               fi
               
             else
               echo "### ❌ 資料更新失敗"
-              echo ""
-              echo "> ⚠️ 請檢查：GitHub Secrets、網路連線、登入資訊是否設定正確"
+              echo "請查看工作流日誌以獲取詳細錯誤訊息。"
             fi
-            
           } >> $GITHUB_STEP_SUMMARY
+
+      - name: Notify Failure
+        if: failure()
+        run: |
+          echo "❌ 工作流執行失敗"
+          echo "請檢查以下可能的原因："
+          echo "1. 登入憑證錯誤"
+          echo "2. 網路連接問題"
+          echo "3. 網站結構變更"
+          echo "4. Python依賴安裝失敗"
