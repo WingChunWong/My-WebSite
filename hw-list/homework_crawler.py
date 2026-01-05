@@ -5,6 +5,10 @@ import json
 import os
 import re
 from datetime import datetime, timedelta
+import io
+
+# 設置標準輸出編碼為UTF-8，確保在GitHub Actions中正確顯示中文
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
 class Logger:
     """GitHub Actions 日誌輸出類"""
@@ -67,7 +71,8 @@ def login_to_portal(username, password):
             'from': 'profile'
         }
         
-        response = session.post(login_url, data=login_data)
+        # 添加超時設置：連接超時10秒，讀取超時30秒
+        response = session.post(login_url, data=login_data, timeout=(10, 30))
         
         if '登入' in response.text and '帳號' in response.text:
             Logger.error("登入失敗：用戶名稱或密碼錯誤")
@@ -76,6 +81,12 @@ def login_to_portal(username, password):
             Logger.success("登入成功！")
             return session
             
+    except requests.exceptions.Timeout:
+        Logger.error("登入超時：連接或讀取超時")
+        return None
+    except requests.exceptions.ConnectionError:
+        Logger.error("連接錯誤：無法連接到入口門戶")
+        return None
     except Exception as e:
         Logger.error(f"登入過程中出現錯誤: {e}")
         return None
@@ -118,7 +129,8 @@ def get_homework_by_date(session, date_str):
     
     try:
         Logger.info(f"正在取得 {date_str} 的家課資料...")
-        response = session.post(ajax_url, data=data, headers=headers)
+        # 添加超時設置：連接超時10秒，讀取超時30秒
+        response = session.post(ajax_url, data=data, headers=headers, timeout=(10, 30))
         
         if response.status_code != 200:
             Logger.error(f"請求失敗，狀態碼: {response.status_code}")
@@ -136,6 +148,12 @@ def get_homework_by_date(session, date_str):
             Logger.error(f"JSON解析失敗: {e}")
             return None
             
+    except requests.exceptions.Timeout:
+        Logger.error(f"請求超時：取得 {date_str} 家課資料時連接或讀取超時")
+        return None
+    except requests.exceptions.ConnectionError:
+        Logger.error(f"連接錯誤：無法連接到伺服器")
+        return None
     except Exception as e:
         Logger.error(f"取得 {date_str} 家課資料失敗: {e}")
         return None
