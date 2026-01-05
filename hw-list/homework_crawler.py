@@ -6,7 +6,7 @@ import os
 import re
 from datetime import datetime, timedelta
 
-class GitHubActionsLogger:
+class Logger:
     """GitHub Actions 日誌輸出類"""
     
     @staticmethod
@@ -39,11 +39,11 @@ def get_credentials():
     password = os.getenv('PORTAL_PASSWORD')
     
     if not username or not password:
-        GitHubActionsLogger.error("無法從環境變數取得登入憑證")
-        GitHubActionsLogger.error("請設定 PORTAL_USERNAME 和 PORTAL_PASSWORD 環境變數")
+        Logger.error("無法從環境變數取得登入憑證")
+        Logger.error("請設定 PORTAL_USERNAME 和 PORTAL_PASSWORD 環境變數")
         return None, None
     
-    GitHubActionsLogger.info("成功從環境變數取得登入憑證")
+    Logger.info("成功從環境變數取得登入憑證")
     return username, password
 
 def login_to_portal(username, password):
@@ -58,7 +58,7 @@ def login_to_portal(username, password):
     })
     
     try:
-        GitHubActionsLogger.info("正在登入...")
+        Logger.info("正在登入...")
         login_data = {
             'uname': username,
             'pass': password,
@@ -70,14 +70,14 @@ def login_to_portal(username, password):
         response = session.post(login_url, data=login_data)
         
         if '登入' in response.text and '帳號' in response.text:
-            GitHubActionsLogger.error("登入失敗：用戶名稱或密碼錯誤")
+            Logger.error("登入失敗：用戶名稱或密碼錯誤")
             return None
         else:
-            GitHubActionsLogger.success("登入成功！")
+            Logger.success("登入成功！")
             return session
             
     except Exception as e:
-        GitHubActionsLogger.error(f"登入過程中出現錯誤: {e}")
+        Logger.error(f"登入過程中出現錯誤: {e}")
         return None
 
 def clean_subject_name(subject_text):
@@ -117,27 +117,27 @@ def get_homework_by_date(session, date_str):
     }
     
     try:
-        GitHubActionsLogger.info(f"正在取得 {date_str} 的家課資料...")
+        Logger.info(f"正在取得 {date_str} 的家課資料...")
         response = session.post(ajax_url, data=data, headers=headers)
         
         if response.status_code != 200:
-            GitHubActionsLogger.error(f"請求失敗，狀態碼: {response.status_code}")
+            Logger.error(f"請求失敗，狀態碼: {response.status_code}")
             return None
             
         try:
             result = response.json()
             html_content = result.get('html')
             if html_content:
-                GitHubActionsLogger.success(f"成功取得 {date_str} 的家課資料")
+                Logger.success(f"成功取得 {date_str} 的家課資料")
             else:
-                GitHubActionsLogger.info(f"{date_str} 沒有家課資料")
+                Logger.info(f"{date_str} 沒有家課資料")
             return html_content
         except ValueError as e:
-            GitHubActionsLogger.error(f"JSON解析失敗: {e}")
+            Logger.error(f"JSON解析失敗: {e}")
             return None
             
     except Exception as e:
-        GitHubActionsLogger.error(f"取得 {date_str} 家課資料失敗: {e}")
+        Logger.error(f"取得 {date_str} 家課資料失敗: {e}")
         return None
 
 def parse_homework_data(html_content):
@@ -163,9 +163,9 @@ def parse_homework_data(html_content):
                     'homework_name': cells[5].get_text(strip=True),
                     'remarks': cells[6].get_text(strip=True),
                 })
-        GitHubActionsLogger.success(f"取得 {len(homework_data)} 條家課記錄")
+        Logger.success(f"取得 {len(homework_data)} 條家課記錄")
     else:
-        GitHubActionsLogger.warning("未找到家課表格")
+        Logger.warning("未找到家課表格")
     
     return homework_data
 
@@ -186,22 +186,22 @@ def get_date_range():
 def save_data_to_json(homework_data, filename='homework_data.json'):
     """儲存家課資料到JSON檔案"""
     if not homework_data:
-        GitHubActionsLogger.warning("沒有資料可儲存")
+        Logger.warning("沒有資料可儲存")
         return False
     
     try:
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(homework_data, f, ensure_ascii=False, indent=2)
         
-        GitHubActionsLogger.success(f"資料已儲存到 {filename}: {len(homework_data)} 條記錄")
+        Logger.success(f"資料已儲存到 {filename}: {len(homework_data)} 條記錄")
         return True
     except Exception as e:
-        GitHubActionsLogger.error(f"儲存資料失敗: {e}")
+        Logger.error(f"儲存資料失敗: {e}")
         return False
 
 def main():
     """主函數"""
-    GitHubActionsLogger.group("家課資料爬蟲開始執行")
+    Logger.group("家課資料爬蟲開始執行")
     
     # 取得登入憑證
     username, password = get_credentials()
@@ -217,31 +217,31 @@ def main():
     force_full_update = os.getenv('FORCE_FULL_UPDATE', 'false').lower() == 'true'
     
     if force_full_update:
-        GitHubActionsLogger.info("強制完整更新模式已啟用")
+        Logger.info("強制完整更新模式已啟用")
     
     # 取得今日日期
     today = datetime.now().strftime('%Y-%m-%d')
     
     # 判斷是否為首次運行或需要完整更新
     if force_full_update or not os.path.exists('homework_data.json'):
-        GitHubActionsLogger.info("取得從9月1日至現時的所有家課資料...")
+        Logger.info("取得從9月1日至現時的所有家課資料...")
         date_list = get_date_range()
-        GitHubActionsLogger.info(f"將查詢 {len(date_list)} 天的家課資料")
+        Logger.info(f"將查詢 {len(date_list)} 天的家課資料")
         
         homework_data = []
         for i, date_str in enumerate(date_list):
             if i % 10 == 0:  # 每10天輸出一次進度
-                GitHubActionsLogger.info(f"查詢進度: {i+1}/{len(date_list)} - {date_str}")
+                Logger.info(f"查詢進度: {i+1}/{len(date_list)} - {date_str}")
             
             homework_html = get_homework_by_date(session, date_str)
             if homework_html:
                 daily_homework = parse_homework_data(homework_html)
                 homework_data.extend(daily_homework)
         
-        GitHubActionsLogger.success(f"完整更新完成，共取得 {len(homework_data)} 條記錄")
+        Logger.success(f"完整更新完成，共取得 {len(homework_data)} 條記錄")
     
     else:
-        GitHubActionsLogger.info("增量更新模式")
+        Logger.info("增量更新模式")
         
         # 讀取現有資料
         try:
@@ -249,7 +249,7 @@ def main():
                 existing_data = json.load(f)
             existing_ids = {item['id'] for item in existing_data if 'id' in item}
         except Exception as e:
-            GitHubActionsLogger.error(f"讀取現有資料失敗: {e}")
+            Logger.error(f"讀取現有資料失敗: {e}")
             existing_data = []
             existing_ids = set()
         
@@ -265,14 +265,14 @@ def main():
                 new_count += 1
         
         homework_data = existing_data
-        GitHubActionsLogger.success(f"新增 {new_count} 條記錄，總計 {len(homework_data)} 條記錄")
+        Logger.success(f"新增 {new_count} 條記錄，總計 {len(homework_data)} 條記錄")
     
     # 儲存資料
     if homework_data:
         save_data_to_json(homework_data)
         # 輸出摘要資訊
-        GitHubActionsLogger.info(f"資料摘要:")
-        GitHubActionsLogger.info(f"  - 總記錄數: {len(homework_data)}")
+        Logger.info(f"資料摘要:")
+        Logger.info(f"  - 總記錄數: {len(homework_data)}")
         
         # 按科目統計
         subject_counts = {}
@@ -280,9 +280,9 @@ def main():
             subject = item.get('subject', '未知')
             subject_counts[subject] = subject_counts.get(subject, 0) + 1
         
-        GitHubActionsLogger.info(f"  - 科目統計:")
+        Logger.info(f"  - 科目統計:")
         for subject, count in subject_counts.items():
-            GitHubActionsLogger.info(f"    - {subject}: {count} 項")
+            Logger.info(f"    - {subject}: {count} 項")
         
         # 檢查是否有即將到期的作業
         today_dt = datetime.now()
@@ -297,11 +297,11 @@ def main():
                 pass
         
         if upcoming_count > 0:
-            GitHubActionsLogger.warning(f"有 {upcoming_count} 項作業在未來3天內到期")
+            Logger.warning(f"有 {upcoming_count} 項作業在未來3天內到期")
     else:
-        GitHubActionsLogger.warning("沒有取得家課資料")
+        Logger.warning("沒有取得家課資料")
     
-    GitHubActionsLogger.endgroup()
+    Logger.endgroup()
     return homework_data
 
 if __name__ == "__main__":
@@ -309,11 +309,11 @@ if __name__ == "__main__":
     homework_data = main()
     end_time = datetime.now()
     
-    GitHubActionsLogger.info(f"執行時間: {end_time - start_time}")
-    GitHubActionsLogger.info(f"完成狀態: {'成功' if homework_data else '失敗'}")
+    Logger.info(f"執行時間: {end_time - start_time}")
+    Logger.info(f"完成狀態: {'成功' if homework_data else '失敗'}")
     
     # 輸出環境資訊
-    GitHubActionsLogger.group("環境資訊")
-    GitHubActionsLogger.info(f"執行時間: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    GitHubActionsLogger.info(f"Python版本: {sys.version}")
-    GitHubActionsLogger.endgroup()
+    Logger.group("環境資訊")
+    Logger.info(f"執行時間: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    Logger.info(f"Python版本: {sys.version}")
+    Logger.endgroup()
