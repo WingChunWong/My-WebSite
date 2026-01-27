@@ -2554,5 +2554,41 @@
     "subject": "英文 -- ENG",
     "homework_name": "Read “The Prince and the Pauper” Ch.1 & Ch.2",
     "remarks": ""
+  },
+  {
+    "id": "75214",
+    "issue_date": "2026-01-27",
+    "due_date": "2026-01-28",
+    "class_group": "全班",
+    "subject": "科學 -- SCI",
+    "homework_name": "Sign and Corr",
+    "remarks": ""
+  },
+  {
+    "id": "75213",
+    "issue_date": "2026-01-27",
+    "due_date": "2026-01-28",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "The booklet p.3, p.4",
+    "remarks": ""
+  },
+  {
+    "id": "75212",
+    "issue_date": "2026-01-27",
+    "due_date": "2026-01-28",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "The Prince and the Pauper Read Ch.3",
+    "remarks": ""
+  },
+  {
+    "id": "75211",
+    "issue_date": "2026-01-27",
+    "due_date": "2026-01-28",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "CW44",
+    "remarks": ""
   }
 ]
