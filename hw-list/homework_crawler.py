@@ -189,7 +189,7 @@ def parse_homework_data(html_content):
 
 def get_date_range():
     """取得從9月1日到今日的日期範圍"""
-    current_year = datetime.now().year
+    current_year = 2025
     start_date = datetime(current_year, 9, 1)
     end_date = datetime.now()
     
