@@ -945,15 +945,6 @@
     "remarks": ""
   },
   {
-    "id": "73765",
-    "issue_date": "2025-10-21",
-    "due_date": "2025-10-22",
-    "class_group": "全班",
-    "subject": "數學 -- MATH",
-    "homework_name": "Lesson WS 3B",
-    "remarks": ""
-  },
-  {
     "id": "73757",
     "issue_date": "2025-10-21",
     "due_date": "2025-10-21",
@@ -969,6 +960,15 @@
     "class_group": "全班",
     "subject": "地理 -- GEOG",
     "homework_name": "作業",
+    "remarks": ""
+  },
+  {
+    "id": "73765",
+    "issue_date": "2025-10-21",
+    "due_date": "2025-10-22",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "Lesson WS 3B",
     "remarks": ""
   },
   {
@@ -1215,15 +1215,6 @@
     "remarks": ""
   },
   {
-    "id": "74212",
-    "issue_date": "2025-11-11",
-    "due_date": "2025-11-12",
-    "class_group": "全班",
-    "subject": "英文 -- ENG",
-    "homework_name": "TSA Reading Comprehension BK #3",
-    "remarks": ""
-  },
-  {
     "id": "74211",
     "issue_date": "2025-11-11",
     "due_date": "2025-11-12",
@@ -1239,6 +1230,15 @@
     "class_group": "全班",
     "subject": "數學 -- MATH",
     "homework_name": "HW 3A",
+    "remarks": ""
+  },
+  {
+    "id": "74212",
+    "issue_date": "2025-11-11",
+    "due_date": "2025-11-12",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "TSA Reading Comprehension BK #3",
     "remarks": ""
   },
   {
@@ -1494,15 +1494,6 @@
     "remarks": ""
   },
   {
-    "id": "74429",
-    "issue_date": "2025-11-18",
-    "due_date": "2025-11-19",
-    "class_group": "全班",
-    "subject": "英文 -- ENG",
-    "homework_name": "GB p.131",
-    "remarks": ""
-  },
-  {
     "id": "記事6744",
     "issue_date": "2025-11-18",
     "due_date": "2025-11-21",
@@ -1510,15 +1501,6 @@
     "subject": "英文 -- ENG",
     "homework_name": "Listening Test",
     "remarks": "21/11"
-  },
-  {
-    "id": "74428",
-    "issue_date": "2025-11-18",
-    "due_date": "2025-11-19",
-    "class_group": "全班",
-    "subject": "英文 -- ENG",
-    "homework_name": "VLE Ex 5-8",
-    "remarks": "Ex5-8 Today Ex7-8 Tmr"
   },
   {
     "id": "74430",
@@ -1530,21 +1512,30 @@
     "remarks": ""
   },
   {
+    "id": "74429",
+    "issue_date": "2025-11-18",
+    "due_date": "2025-11-19",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "GB p.131",
+    "remarks": ""
+  },
+  {
+    "id": "74428",
+    "issue_date": "2025-11-18",
+    "due_date": "2025-11-19",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "VLE Ex 5-8",
+    "remarks": "Ex5-8 Today Ex7-8 Tmr"
+  },
+  {
     "id": "74426",
     "issue_date": "2025-11-18",
     "due_date": "2025-11-19",
     "class_group": "全班",
     "subject": "數學 -- MATH",
     "homework_name": "HW4A + HW Book Corr",
-    "remarks": ""
-  },
-  {
-    "id": "74481",
-    "issue_date": "2025-11-19",
-    "due_date": "2025-11-20",
-    "class_group": "全班",
-    "subject": "英文 -- ENG",
-    "homework_name": "TSA VLE Ex 5-8",
     "remarks": ""
   },
   {
@@ -1566,21 +1557,21 @@
     "remarks": ""
   },
   {
+    "id": "74481",
+    "issue_date": "2025-11-19",
+    "due_date": "2025-11-20",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "TSA VLE Ex 5-8",
+    "remarks": ""
+  },
+  {
     "id": "74480",
     "issue_date": "2025-11-19",
     "due_date": "2025-11-20",
     "class_group": "全班",
     "subject": "英文 -- ENG",
     "homework_name": "Dictation Correction",
-    "remarks": ""
-  },
-  {
-    "id": "74478",
-    "issue_date": "2025-11-19",
-    "due_date": "2025-11-20",
-    "class_group": "全班",
-    "subject": "音樂 -- MUS",
-    "homework_name": "創作拍子",
     "remarks": ""
   },
   {
@@ -1593,12 +1584,12 @@
     "remarks": ""
   },
   {
-    "id": "74495",
-    "issue_date": "2025-11-20",
-    "due_date": "2025-11-21",
+    "id": "74478",
+    "issue_date": "2025-11-19",
+    "due_date": "2025-11-20",
     "class_group": "全班",
-    "subject": "英文 -- ENG",
-    "homework_name": "GB p.133 135-138",
+    "subject": "音樂 -- MUS",
+    "homework_name": "創作拍子",
     "remarks": ""
   },
   {
@@ -1626,6 +1617,15 @@
     "class_group": "全班",
     "subject": "中文 -- CHIN",
     "homework_name": "作文改正",
+    "remarks": ""
+  },
+  {
+    "id": "74495",
+    "issue_date": "2025-11-20",
+    "due_date": "2025-11-21",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "GB p.133 135-138",
     "remarks": ""
   },
   {
@@ -1692,12 +1692,12 @@
     "remarks": ""
   },
   {
-    "id": "74623",
+    "id": "74622",
     "issue_date": "2025-11-27",
     "due_date": "2025-11-28",
     "class_group": "全班",
     "subject": "地理 -- GEOG",
-    "homework_name": "TB p.58",
+    "homework_name": "HW p.23",
     "remarks": ""
   },
   {
@@ -1710,21 +1710,21 @@
     "remarks": ""
   },
   {
-    "id": "74622",
-    "issue_date": "2025-11-27",
-    "due_date": "2025-11-28",
-    "class_group": "全班",
-    "subject": "地理 -- GEOG",
-    "homework_name": "HW p.23",
-    "remarks": ""
-  },
-  {
     "id": "74620",
     "issue_date": "2025-11-27",
     "due_date": "2025-11-28",
     "class_group": "全班",
     "subject": "數學 -- MATH",
     "homework_name": "WS 5 CP.1-4",
+    "remarks": ""
+  },
+  {
+    "id": "74623",
+    "issue_date": "2025-11-27",
+    "due_date": "2025-11-28",
+    "class_group": "全班",
+    "subject": "地理 -- GEOG",
+    "homework_name": "TB p.58",
     "remarks": ""
   },
   {
@@ -1737,21 +1737,21 @@
     "remarks": ""
   },
   {
-    "id": "74648",
-    "issue_date": "2025-11-28",
-    "due_date": "2025-12-01",
-    "class_group": "全班",
-    "subject": "中文 -- CHIN",
-    "homework_name": "周四級測",
-    "remarks": ""
-  },
-  {
     "id": "74644",
     "issue_date": "2025-11-28",
     "due_date": "2025-12-01",
     "class_group": "全班",
     "subject": "英文 -- ENG",
     "homework_name": "Reading Comprehension Book U.5-6",
+    "remarks": ""
+  },
+  {
+    "id": "74648",
+    "issue_date": "2025-11-28",
+    "due_date": "2025-12-01",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "周四級測",
     "remarks": ""
   },
   {
@@ -1770,42 +1770,6 @@
     "class_group": "全班",
     "subject": "中文 -- CHIN",
     "homework_name": "步步升 4",
-    "remarks": ""
-  },
-  {
-    "id": "74680",
-    "issue_date": "2025-12-01",
-    "due_date": "2025-12-03",
-    "class_group": "全班",
-    "subject": "基教 -- RSC",
-    "homework_name": "作業二",
-    "remarks": ""
-  },
-  {
-    "id": "74676",
-    "issue_date": "2025-12-01",
-    "due_date": "2025-12-02",
-    "class_group": "全班",
-    "subject": "地理 -- GEOG",
-    "homework_name": "作 p.26-27",
-    "remarks": ""
-  },
-  {
-    "id": "74673",
-    "issue_date": "2025-12-01",
-    "due_date": "2025-12-02",
-    "class_group": "全班",
-    "subject": "數學 -- MATH",
-    "homework_name": "CW37",
-    "remarks": ""
-  },
-  {
-    "id": "74672",
-    "issue_date": "2025-12-01",
-    "due_date": "2025-12-02",
-    "class_group": "全班",
-    "subject": "中文 -- CHIN",
-    "homework_name": "默書簽改",
     "remarks": ""
   },
   {
@@ -1842,6 +1806,42 @@
     "class_group": "全班",
     "subject": "英文 -- ENG",
     "homework_name": "Reading Comprehension Booklet Units 4&5",
+    "remarks": ""
+  },
+  {
+    "id": "74680",
+    "issue_date": "2025-12-01",
+    "due_date": "2025-12-03",
+    "class_group": "全班",
+    "subject": "基教 -- RSC",
+    "homework_name": "作業二",
+    "remarks": ""
+  },
+  {
+    "id": "74676",
+    "issue_date": "2025-12-01",
+    "due_date": "2025-12-02",
+    "class_group": "全班",
+    "subject": "地理 -- GEOG",
+    "homework_name": "作 p.26-27",
+    "remarks": ""
+  },
+  {
+    "id": "74673",
+    "issue_date": "2025-12-01",
+    "due_date": "2025-12-02",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "CW37",
+    "remarks": ""
+  },
+  {
+    "id": "74672",
+    "issue_date": "2025-12-01",
+    "due_date": "2025-12-02",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "默書簽改",
     "remarks": ""
   },
   {
@@ -1953,6 +1953,15 @@
     "remarks": "On VLE"
   },
   {
+    "id": "74791",
+    "issue_date": "2025-12-04",
+    "due_date": "2025-12-05",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Reading Booklet Ex. 6-7",
+    "remarks": ""
+  },
+  {
     "id": "74800",
     "issue_date": "2025-12-04",
     "due_date": "2025-12-05",
@@ -1971,12 +1980,12 @@
     "remarks": ""
   },
   {
-    "id": "74791",
+    "id": "74786",
     "issue_date": "2025-12-04",
     "due_date": "2025-12-05",
     "class_group": "全班",
-    "subject": "英文 -- ENG",
-    "homework_name": "Reading Booklet Ex. 6-7",
+    "subject": "數學 -- MATH",
+    "homework_name": "Ch.6 Revision p.4-7 11-12",
     "remarks": ""
   },
   {
@@ -1989,12 +1998,21 @@
     "remarks": ""
   },
   {
-    "id": "74786",
-    "issue_date": "2025-12-04",
-    "due_date": "2025-12-05",
+    "id": "記事6841",
+    "issue_date": "2025-12-05",
+    "due_date": "2025-12-06",
     "class_group": "全班",
-    "subject": "數學 -- MATH",
-    "homework_name": "Ch.6 Revision p.4-7 11-12",
+    "subject": "英文 -- ENG",
+    "homework_name": "Form DICT",
+    "remarks": ""
+  },
+  {
+    "id": "74828",
+    "issue_date": "2025-12-05",
+    "due_date": "2025-12-06",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Speaking WS p.2-4",
     "remarks": ""
   },
   {
@@ -2016,39 +2034,12 @@
     "remarks": "9/12 交 放入黃色file"
   },
   {
-    "id": "記事6841",
-    "issue_date": "2025-12-05",
-    "due_date": "2025-12-06",
-    "class_group": "全班",
-    "subject": "英文 -- ENG",
-    "homework_name": "Form DICT",
-    "remarks": ""
-  },
-  {
-    "id": "74828",
-    "issue_date": "2025-12-05",
-    "due_date": "2025-12-06",
-    "class_group": "全班",
-    "subject": "英文 -- ENG",
-    "homework_name": "Speaking WS p.2-4",
-    "remarks": ""
-  },
-  {
     "id": "74827",
     "issue_date": "2025-12-05",
     "due_date": "2025-12-06",
     "class_group": "全班",
     "subject": "數學 -- MATH",
     "homework_name": "CW40",
-    "remarks": ""
-  },
-  {
-    "id": "74904",
-    "issue_date": "2025-12-10",
-    "due_date": "2025-12-11",
-    "class_group": "全班",
-    "subject": "英文 -- ENG",
-    "homework_name": "Vocabulary Reading Test",
     "remarks": ""
   },
   {
@@ -2079,6 +2070,15 @@
     "remarks": ""
   },
   {
+    "id": "74904",
+    "issue_date": "2025-12-10",
+    "due_date": "2025-12-11",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Vocabulary Reading Test",
+    "remarks": ""
+  },
+  {
     "id": "74890",
     "issue_date": "2025-12-10",
     "due_date": "2025-12-11",
@@ -2106,15 +2106,6 @@
     "remarks": ""
   },
   {
-    "id": "74932",
-    "issue_date": "2025-12-11",
-    "due_date": "2025-12-15",
-    "class_group": "全班",
-    "subject": "中文 -- CHIN",
-    "homework_name": "作文改正",
-    "remarks": ""
-  },
-  {
     "id": "74931",
     "issue_date": "2025-12-11",
     "due_date": "2026-01-01",
@@ -2133,15 +2124,6 @@
     "remarks": ""
   },
   {
-    "id": "74929",
-    "issue_date": "2025-12-11",
-    "due_date": "2025-12-15",
-    "class_group": "全班",
-    "subject": "公經社 -- CES",
-    "homework_name": "評分功課改正",
-    "remarks": ""
-  },
-  {
     "id": "記事6863",
     "issue_date": "2025-12-11",
     "due_date": "2025-12-15",
@@ -2149,6 +2131,15 @@
     "subject": "英文 -- ENG",
     "homework_name": "Form Dictation 3",
     "remarks": "Next Wed"
+  },
+  {
+    "id": "74932",
+    "issue_date": "2025-12-11",
+    "due_date": "2025-12-15",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "作文改正",
+    "remarks": ""
   },
   {
     "id": "74926",
@@ -2160,12 +2151,48 @@
     "remarks": "(MC Only)"
   },
   {
+    "id": "74929",
+    "issue_date": "2025-12-11",
+    "due_date": "2025-12-15",
+    "class_group": "全班",
+    "subject": "公經社 -- CES",
+    "homework_name": "評分功課改正",
+    "remarks": ""
+  },
+  {
     "id": "74977",
     "issue_date": "2025-12-15",
     "due_date": "2025-12-16",
     "class_group": "全班",
     "subject": "普話 -- PTH",
     "homework_name": "VLE listening 3",
+    "remarks": ""
+  },
+  {
+    "id": "74960",
+    "issue_date": "2025-12-15",
+    "due_date": "2025-12-16",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Writing WS p.4-5",
+    "remarks": ""
+  },
+  {
+    "id": "74959",
+    "issue_date": "2025-12-15",
+    "due_date": "2025-12-16",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Writing WS p.4-5",
+    "remarks": ""
+  },
+  {
+    "id": "記事6876",
+    "issue_date": "2025-12-15",
+    "due_date": "2025-12-18",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Form Dictation",
     "remarks": ""
   },
   {
@@ -2196,42 +2223,6 @@
     "remarks": "帶iPad 及 圖書"
   },
   {
-    "id": "74960",
-    "issue_date": "2025-12-15",
-    "due_date": "2025-12-16",
-    "class_group": "全班",
-    "subject": "英文 -- ENG",
-    "homework_name": "Writing WS p.4-5",
-    "remarks": ""
-  },
-  {
-    "id": "74959",
-    "issue_date": "2025-12-15",
-    "due_date": "2025-12-16",
-    "class_group": "全班",
-    "subject": "英文 -- ENG",
-    "homework_name": "Writing WS p.4-5",
-    "remarks": ""
-  },
-  {
-    "id": "記事6876",
-    "issue_date": "2025-12-15",
-    "due_date": "2025-12-18",
-    "class_group": "全班",
-    "subject": "英文 -- ENG",
-    "homework_name": "Form Dictation",
-    "remarks": ""
-  },
-  {
-    "id": "75001",
-    "issue_date": "2025-12-16",
-    "due_date": "2025-12-17",
-    "class_group": "全班",
-    "subject": "科學 -- SCI",
-    "homework_name": "Correction",
-    "remarks": ""
-  },
-  {
     "id": "75000",
     "issue_date": "2025-12-16",
     "due_date": "2025-12-17",
@@ -2256,6 +2247,15 @@
     "class_group": "全班",
     "subject": "中史 -- CHIS",
     "homework_name": "明個人短講",
+    "remarks": ""
+  },
+  {
+    "id": "75001",
+    "issue_date": "2025-12-16",
+    "due_date": "2025-12-17",
+    "class_group": "全班",
+    "subject": "科學 -- SCI",
+    "homework_name": "Correction",
     "remarks": ""
   },
   {
@@ -2385,15 +2385,6 @@
     "remarks": ""
   },
   {
-    "id": "75094",
-    "issue_date": "2026-01-21",
-    "due_date": "2026-01-22",
-    "class_group": "全班",
-    "subject": "普話 -- PTH",
-    "homework_name": "抄書",
-    "remarks": ""
-  },
-  {
     "id": "75092",
     "issue_date": "2026-01-21",
     "due_date": "2026-01-22",
@@ -2412,15 +2403,6 @@
     "remarks": ""
   },
   {
-    "id": "75090",
-    "issue_date": "2026-01-21",
-    "due_date": "2026-01-22",
-    "class_group": "全班",
-    "subject": "數學 -- MATH",
-    "homework_name": "Exam Signature",
-    "remarks": ""
-  },
-  {
     "id": "75089",
     "issue_date": "2026-01-21",
     "due_date": "2026-01-22",
@@ -2436,6 +2418,24 @@
     "class_group": "全班",
     "subject": "英文 -- ENG",
     "homework_name": "Dictionary work",
+    "remarks": ""
+  },
+  {
+    "id": "75094",
+    "issue_date": "2026-01-21",
+    "due_date": "2026-01-22",
+    "class_group": "全班",
+    "subject": "普話 -- PTH",
+    "homework_name": "抄書",
+    "remarks": ""
+  },
+  {
+    "id": "75090",
+    "issue_date": "2026-01-21",
+    "due_date": "2026-01-22",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "Exam Signature",
     "remarks": ""
   },
   {
@@ -2511,24 +2511,6 @@
     "remarks": ""
   },
   {
-    "id": "75191",
-    "issue_date": "2026-01-26",
-    "due_date": "2026-01-27",
-    "class_group": "全班",
-    "subject": "中文 -- CHIN",
-    "homework_name": "《背影》預習工作紙",
-    "remarks": ""
-  },
-  {
-    "id": "75189",
-    "issue_date": "2026-01-26",
-    "due_date": "2026-01-27",
-    "class_group": "全班",
-    "subject": "中文 -- CHIN",
-    "homework_name": "默書簽改",
-    "remarks": ""
-  },
-  {
     "id": "75186",
     "issue_date": "2026-01-26",
     "due_date": "2026-01-27",
@@ -2556,12 +2538,21 @@
     "remarks": ""
   },
   {
-    "id": "75214",
-    "issue_date": "2026-01-27",
-    "due_date": "2026-01-28",
+    "id": "75191",
+    "issue_date": "2026-01-26",
+    "due_date": "2026-01-27",
     "class_group": "全班",
-    "subject": "科學 -- SCI",
-    "homework_name": "Sign and Corr",
+    "subject": "中文 -- CHIN",
+    "homework_name": "《背影》預習工作紙",
+    "remarks": ""
+  },
+  {
+    "id": "75189",
+    "issue_date": "2026-01-26",
+    "due_date": "2026-01-27",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "默書簽改",
     "remarks": ""
   },
   {
@@ -2589,6 +2580,15 @@
     "class_group": "全班",
     "subject": "數學 -- MATH",
     "homework_name": "CW44",
+    "remarks": ""
+  },
+  {
+    "id": "75214",
+    "issue_date": "2026-01-27",
+    "due_date": "2026-01-28",
+    "class_group": "全班",
+    "subject": "科學 -- SCI",
+    "homework_name": "Sign and Corr",
     "remarks": ""
   },
   {
@@ -2659,9 +2659,9 @@
     "issue_date": "2026-01-30",
     "due_date": "2026-01-31",
     "class_group": "全班",
-    "subject": "中史 -- CHIS",
+    "subject": "中文 -- CHIN",
     "homework_name": "片段寫作",
-    "remarks": ""
+    "remarks": "s2025033"
   },
   {
     "id": "75332",
