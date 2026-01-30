@@ -2653,5 +2653,32 @@
     "subject": "數學 -- MATH",
     "homework_name": "HW7A",
     "remarks": ""
+  },
+  {
+    "id": "75335",
+    "issue_date": "2026-01-30",
+    "due_date": "2026-01-31",
+    "class_group": "全班",
+    "subject": "中史 -- CHIS",
+    "homework_name": "片段寫作",
+    "remarks": ""
+  },
+  {
+    "id": "75332",
+    "issue_date": "2026-01-30",
+    "due_date": "2026-01-31",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Read Ch.9-12 and Complete WS Ch.9-12",
+    "remarks": ""
+  },
+  {
+    "id": "75328",
+    "issue_date": "2026-01-30",
+    "due_date": "2026-01-31",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "CW45",
+    "remarks": ""
   }
 ]
