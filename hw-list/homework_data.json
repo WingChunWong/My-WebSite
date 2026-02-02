@@ -2655,15 +2655,6 @@
     "remarks": ""
   },
   {
-    "id": "75335",
-    "issue_date": "2026-01-30",
-    "due_date": "2026-01-31",
-    "class_group": "全班",
-    "subject": "中文 -- CHIN",
-    "homework_name": "片段寫作",
-    "remarks": "s2025033"
-  },
-  {
     "id": "75332",
     "issue_date": "2026-01-30",
     "due_date": "2026-01-31",
@@ -2682,6 +2673,15 @@
     "remarks": ""
   },
   {
+    "id": "75335",
+    "issue_date": "2026-01-30",
+    "due_date": "2026-01-31",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "片段寫作",
+    "remarks": "s2025033"
+  },
+  {
     "id": "75360",
     "issue_date": "2026-02-02",
     "due_date": "2026-02-03",
@@ -2695,7 +2695,7 @@
     "issue_date": "2026-02-02",
     "due_date": "2026-02-03",
     "class_group": "全班",
-    "subject": "中文 -- CHIN",
+    "subject": "數學 -- MATH",
     "homework_name": "CW46",
     "remarks": ""
   },
