@@ -2716,5 +2716,41 @@
     "subject": "英文 -- ENG",
     "homework_name": "WS p.8",
     "remarks": ""
+  },
+  {
+    "id": "75438",
+    "issue_date": "2026-02-04",
+    "due_date": "2026-02-05",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Booklet p.10",
+    "remarks": ""
+  },
+  {
+    "id": "75437",
+    "issue_date": "2026-02-04",
+    "due_date": "2026-02-05",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Booklet p.10",
+    "remarks": ""
+  },
+  {
+    "id": "75434",
+    "issue_date": "2026-02-04",
+    "due_date": "2026-02-05",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "Lesson WS 7B p.6-9",
+    "remarks": ""
+  },
+  {
+    "id": "記事6943",
+    "issue_date": "2026-02-04",
+    "due_date": "2026-02-05",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "Quiz 3",
+    "remarks": ""
   }
 ]
