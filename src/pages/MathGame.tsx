@@ -18,6 +18,7 @@ type Problem = {
 export default function MathGame() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const inputRef = useRef<HTMLInputElement | null>(null)
+  const currProblemRef = useRef<Problem | null>(null)
 
   const [score, setScore] = useState(0)
   const [correctCount, setCorrectCount] = useState(0)
@@ -80,13 +81,20 @@ export default function MathGame() {
     setupCanvas()
     const loaded = loadState()
     if (!loaded) generateQuestion()
-    window.addEventListener('resize', setupCanvas)
-    return () => window.removeEventListener('resize', setupCanvas)
+    const handleResize = () => {
+      setupCanvas()
+      // redraw latest problem after resizing to avoid blank canvas
+      if (currProblemRef.current) drawProblem(currProblemRef.current)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
     saveState()
+    // keep a ref of the latest problem so resize handler can redraw reliably
+    currProblemRef.current = currProblem
     updateUI()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [score, correctCount, wrongCount, currProblem, hasCelebrated])
