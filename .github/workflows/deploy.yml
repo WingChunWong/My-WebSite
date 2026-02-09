@@ -27,12 +27,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
-          node-version: "18"
+          node-version: "lts"
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -46,7 +46,7 @@ jobs:
         run: pnpm build
 
       - name: Upload built site
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./dist
 
