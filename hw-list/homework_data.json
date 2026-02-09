@@ -2493,15 +2493,6 @@
     "remarks": ""
   },
   {
-    "id": "75197",
-    "issue_date": "2026-01-26",
-    "due_date": "2026-01-27",
-    "class_group": "全班",
-    "subject": "數學 -- MATH",
-    "homework_name": "CW Ex 7A #1-10",
-    "remarks": ""
-  },
-  {
     "id": "75195",
     "issue_date": "2026-01-26",
     "due_date": "2026-02-26",
@@ -2535,6 +2526,15 @@
     "class_group": "全班",
     "subject": "英文 -- ENG",
     "homework_name": "Read “The Prince and the Pauper” Ch.1 & Ch.2",
+    "remarks": ""
+  },
+  {
+    "id": "75197",
+    "issue_date": "2026-01-26",
+    "due_date": "2026-01-27",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "CW Ex 7A #1-10",
     "remarks": ""
   },
   {
@@ -2574,15 +2574,6 @@
     "remarks": ""
   },
   {
-    "id": "75211",
-    "issue_date": "2026-01-27",
-    "due_date": "2026-01-28",
-    "class_group": "全班",
-    "subject": "數學 -- MATH",
-    "homework_name": "CW44",
-    "remarks": ""
-  },
-  {
     "id": "75214",
     "issue_date": "2026-01-27",
     "due_date": "2026-01-28",
@@ -2592,12 +2583,12 @@
     "remarks": ""
   },
   {
-    "id": "75260",
-    "issue_date": "2026-01-28",
-    "due_date": "2026-01-29",
+    "id": "75211",
+    "issue_date": "2026-01-27",
+    "due_date": "2026-01-28",
     "class_group": "全班",
     "subject": "數學 -- MATH",
-    "homework_name": "Ex 7A #20-21",
+    "homework_name": "CW44",
     "remarks": ""
   },
   {
@@ -2607,6 +2598,15 @@
     "class_group": "全班",
     "subject": "英文 -- ENG",
     "homework_name": "Read The Prince And The Pauper Ch.5 & Complete WS Ch.5",
+    "remarks": ""
+  },
+  {
+    "id": "75260",
+    "issue_date": "2026-01-28",
+    "due_date": "2026-01-29",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "Ex 7A #20-21",
     "remarks": ""
   },
   {
@@ -2691,15 +2691,6 @@
     "remarks": ""
   },
   {
-    "id": "75358",
-    "issue_date": "2026-02-02",
-    "due_date": "2026-02-03",
-    "class_group": "全班",
-    "subject": "數學 -- MATH",
-    "homework_name": "CW46",
-    "remarks": ""
-  },
-  {
     "id": "75357",
     "issue_date": "2026-02-02",
     "due_date": "2026-02-03",
@@ -2715,6 +2706,15 @@
     "class_group": "全班",
     "subject": "英文 -- ENG",
     "homework_name": "WS p.8",
+    "remarks": ""
+  },
+  {
+    "id": "75358",
+    "issue_date": "2026-02-02",
+    "due_date": "2026-02-03",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "CW46",
     "remarks": ""
   },
   {
@@ -2736,15 +2736,6 @@
     "remarks": ""
   },
   {
-    "id": "75434",
-    "issue_date": "2026-02-04",
-    "due_date": "2026-02-05",
-    "class_group": "全班",
-    "subject": "數學 -- MATH",
-    "homework_name": "Lesson WS 7B p.6-9",
-    "remarks": ""
-  },
-  {
     "id": "記事6943",
     "issue_date": "2026-02-04",
     "due_date": "2026-02-05",
@@ -2754,9 +2745,18 @@
     "remarks": ""
   },
   {
+    "id": "75434",
+    "issue_date": "2026-02-04",
+    "due_date": "2026-02-05",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "Lesson WS 7B p.6-9",
+    "remarks": ""
+  },
+  {
     "id": "75499",
     "issue_date": "2026-02-06",
-    "due_date": "2026-02-07",
+    "due_date": "2026-02-09",
     "class_group": "全班",
     "subject": "英文 -- ENG",
     "homework_name": "Speaking Assessment",
@@ -2765,19 +2765,10 @@
   {
     "id": "75498",
     "issue_date": "2026-02-06",
-    "due_date": "2026-02-07",
+    "due_date": "2026-02-09",
     "class_group": "全班",
     "subject": "英文 -- ENG",
     "homework_name": "A Gift to Character",
-    "remarks": ""
-  },
-  {
-    "id": "75497",
-    "issue_date": "2026-02-06",
-    "due_date": "2026-02-07",
-    "class_group": "全班",
-    "subject": "數學 -- MATH",
-    "homework_name": "WS 8A",
     "remarks": ""
   },
   {
@@ -2787,6 +2778,15 @@
     "class_group": "全班",
     "subject": "家政 -- HEC",
     "homework_name": "HW",
+    "remarks": ""
+  },
+  {
+    "id": "75497",
+    "issue_date": "2026-02-06",
+    "due_date": "2026-02-09",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "WS 8A",
     "remarks": ""
   },
   {
