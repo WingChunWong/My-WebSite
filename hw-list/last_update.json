@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-02-09T10:07:58+00:00",
-  "run_id": "21820757027",
-  "trigger": "schedule",
+  "last_updated": "2026-02-09T17:31:23+00:00",
+  "run_id": "21834516319",
+  "trigger": "workflow_dispatch",
   "records": 316
 }
