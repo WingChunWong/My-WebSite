@@ -2788,5 +2788,59 @@
     "subject": "家政 -- HEC",
     "homework_name": "HW",
     "remarks": ""
+  },
+  {
+    "id": "75551",
+    "issue_date": "2026-02-09",
+    "due_date": "2026-02-10",
+    "class_group": "全班",
+    "subject": "基教 -- RSC",
+    "homework_name": "作業3",
+    "remarks": ""
+  },
+  {
+    "id": "75550",
+    "issue_date": "2026-02-09",
+    "due_date": "2026-02-10",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Writing WS p.1",
+    "remarks": ""
+  },
+  {
+    "id": "75548",
+    "issue_date": "2026-02-09",
+    "due_date": "2026-02-10",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "CW 48",
+    "remarks": ""
+  },
+  {
+    "id": "記事6952",
+    "issue_date": "2026-02-09",
+    "due_date": "2026-02-10",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "星期三背默 《背影》+ 創默",
+    "remarks": ""
+  },
+  {
+    "id": "記事6951",
+    "issue_date": "2026-02-09",
+    "due_date": "2026-02-10",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "明天預默",
+    "remarks": ""
+  },
+  {
+    "id": "75519",
+    "issue_date": "2026-02-09",
+    "due_date": "2026-02-09",
+    "class_group": "全班",
+    "subject": "科學 -- SCI",
+    "homework_name": "Sci WB",
+    "remarks": ""
   }
 ]
