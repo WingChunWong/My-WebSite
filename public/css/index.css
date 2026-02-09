@@ -1,0 +1,500 @@
+/* ═══════════════════════════════════════════════════════════════
+   index.css — Global Layout & Component Styles
+   ═══════════════════════════════════════════════════════════════ */
+
+
+/* ── App Shell ────────────────────────────────────────────────── */
+.app-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--spacingVerticalXXL) var(--spacingHorizontalXXL);
+  animation: fadeIn var(--durationSlow) var(--curveDecelerateMid) both;
+}
+
+/* ── Site Header ──────────────────────────────────────────────── */
+.site-header {
+  background: var(--colorNeutralBackground2);
+  border: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+  border-radius: var(--borderRadiusLarge);
+  padding: var(--spacingVerticalL) var(--spacingHorizontalXL);
+  margin-bottom: var(--spacingVerticalXL);
+  box-shadow: var(--shadow2);
+  display: flex;
+  align-items: center;
+  gap: var(--spacingHorizontalXL);
+  animation: slideDown var(--durationSlow) var(--curveDecelerateMid) both;
+}
+.site-header h1 {
+  margin: 0;
+  margin-right: var(--spacingHorizontalXL);
+  font-size: var(--fontSizeBase500);
+  font-weight: var(--fontWeightBold);
+  letter-spacing: -.01em;
+  white-space: nowrap;
+}
+.site-header nav {
+  display: flex;
+  gap: var(--spacingHorizontalXS);
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+
+/* ── Navigation Links (Tab-like) ──────────────────────────────── */
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacingVerticalS) var(--spacingHorizontalM);
+  border-radius: var(--borderRadiusMedium);
+  color: var(--colorNeutralForeground2);
+  text-decoration: none;
+  font-size: var(--fontSizeBase300);
+  font-weight: var(--fontWeightMedium);
+  transition:
+    color      var(--durationFast) var(--curveEasyEase),
+    background var(--durationFast) var(--curveEasyEase);
+}
+.nav-link:hover {
+  color: var(--colorBrandForeground1);
+  background: var(--colorSubtleBackgroundHover);
+}
+.nav-link:active {
+  color: var(--colorBrandForeground1);
+  background: var(--colorSubtleBackgroundPressed);
+}
+/* Active indicator bottom bar */
+.nav-link[aria-current="page"],
+.nav-link.active {
+  color: var(--colorBrandForeground1);
+}
+.nav-link[aria-current="page"]::after,
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: var(--spacingHorizontalS);
+  right: var(--spacingHorizontalS);
+  height: 3px;
+  background: var(--colorBrandForeground1);
+  border-radius: var(--borderRadiusSmall) var(--borderRadiusSmall) 0 0;
+}
+
+/* GitHub link floats to the right inside nav */
+.nav-github {
+  margin-left: auto;
+  color: var(--colorNeutralForeground2);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-github i { font-size: 18px; }
+.nav-github:hover { color: var(--colorBrandForeground1); }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   BUTTON — Fluent v9 Appearances
+   ═══════════════════════════════════════════════════════════════ */
+.fui-Button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacingHorizontalSNudge);
+  padding: var(--spacingVerticalS) var(--spacingHorizontalL);
+  min-height: 32px;
+  border-radius: var(--borderRadiusMedium);
+  border: var(--strokeWidthThin) solid transparent;
+  background: var(--colorNeutralBackground3);
+  color: var(--colorNeutralForeground1);
+  font-family: var(--fontFamilyBase);
+  font-size: var(--fontSizeBase300);
+  font-weight: var(--fontWeightSemibold);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  transition:
+    background   var(--durationFast) var(--curveEasyEase),
+    border-color var(--durationFast) var(--curveEasyEase),
+    box-shadow   var(--durationFast) var(--curveEasyEase),
+    color        var(--durationFast) var(--curveEasyEase),
+    transform    var(--durationFast) var(--curveEasyEase);
+}
+.fui-Button:hover {
+  background: var(--colorNeutralBackground4);
+  border-color: var(--colorNeutralStroke1);
+  box-shadow: var(--shadow2);
+}
+.fui-Button:active {
+  background: var(--colorNeutralBackground5);
+  transform: scale(.98);
+  box-shadow: none;
+}
+.fui-Button:disabled,
+.fui-Button[aria-disabled="true"] {
+  background: var(--colorNeutralBackground3);
+  color: var(--colorNeutralForegroundDisabled);
+  border-color: transparent;
+  cursor: not-allowed;
+  box-shadow: none;
+  pointer-events: none;
+}
+.fui-Button:focus-visible {
+  outline: var(--strokeWidthThick) solid var(--colorStrokeFocus2);
+  outline-offset: 1px;
+  box-shadow: 0 0 0 1px var(--colorStrokeFocus1);
+}
+/* Size variants */
+.fui-Button--small {
+  min-height: 24px;
+  padding: var(--spacingVerticalXS) var(--spacingHorizontalS);
+  font-size: var(--fontSizeBase200);
+  border-radius: var(--borderRadiusSmall);
+}
+.fui-Button--large {
+  min-height: 40px;
+  padding: var(--spacingVerticalMNudge) var(--spacingHorizontalXL);
+  font-size: var(--fontSizeBase400);
+  border-radius: var(--borderRadiusLarge);
+}
+
+/* ── Primary ──────────────────────────────────────────────────── */
+.fui-Button--primary {
+  background: var(--colorBrandBackground);
+  color: var(--colorNeutralStrokeOnBrand);
+  border-color: transparent;
+  box-shadow: var(--shadowBrand);
+}
+.fui-Button--primary:hover {
+  background: var(--colorBrandBackgroundHover);
+  box-shadow: 0 0 2px rgba(0,0,0,.30), 0 6px 12px rgba(15,108,189,.40);
+}
+.fui-Button--primary:active {
+  background: var(--colorBrandBackgroundPressed);
+  box-shadow: none;
+}
+
+/* ── Secondary (Outline) ─────────────────────────────────────── */
+.fui-Button--secondary {
+  background: var(--colorSubtleBackground);
+  color: var(--colorNeutralForeground1);
+  border-color: var(--colorNeutralStroke1);
+}
+.fui-Button--secondary:hover {
+  background: var(--colorSubtleBackgroundHover);
+  border-color: var(--colorNeutralStrokeAccessible);
+}
+.fui-Button--secondary:active {
+  background: var(--colorSubtleBackgroundPressed);
+}
+
+/* ── Subtle ───────────────────────────────────────────────────── */
+.fui-Button--subtle {
+  background: transparent;
+  border-color: transparent;
+  color: var(--colorNeutralForeground2);
+}
+.fui-Button--subtle:hover {
+  background: var(--colorSubtleBackgroundHover);
+  color: var(--colorNeutralForeground1);
+}
+.fui-Button--subtle:active {
+  background: var(--colorSubtleBackgroundPressed);
+}
+
+/* ── Transparent ──────────────────────────────────────────────── */
+.fui-Button--transparent {
+  background: transparent;
+  border-color: transparent;
+  color: var(--colorBrandForeground1);
+}
+.fui-Button--transparent:hover {
+  background: var(--colorSubtleBackgroundHover);
+  color: var(--colorBrandForeground2);
+}
+
+/* ── Warning ──────────────────────────────────────────────────── */
+.fui-Button--warning {
+  background: var(--colorStatusWarning);
+  color: #1a1a1a;
+  border-color: transparent;
+}
+.fui-Button--warning:hover {
+  background: #e6c200;
+  box-shadow: var(--shadow4);
+}
+.fui-Button--warning:active {
+  background: #d4b300;
+}
+
+/* ── Success ──────────────────────────────────────────────────── */
+.fui-Button--success {
+  background: var(--colorStatusSuccess);
+  color: #fff;
+  border-color: transparent;
+}
+.fui-Button--success:hover {
+  background: #0c5e0c;
+  box-shadow: var(--shadow4);
+}
+
+/* ── Light ────────────────────────────────────────────────────── */
+.fui-Button--light {
+  background: var(--colorNeutralBackground2);
+  color: var(--colorNeutralForeground1);
+  border: var(--strokeWidthThin) solid var(--colorNeutralStroke1);
+}
+.fui-Button--light:hover {
+  background: var(--colorNeutralBackground3);
+  border-color: var(--colorNeutralStrokeAccessible);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   INPUT & FORM CONTROLS — Fluent Underline Style
+   ═══════════════════════════════════════════════════════════════ */
+.fui-Input-field,
+.fui-Select {
+  width: 100%;
+  padding: var(--spacingVerticalS) var(--spacingHorizontalM);
+  background: var(--colorNeutralBackground4);
+  border: none;
+  border-bottom: var(--strokeWidthThick) solid var(--colorNeutralStroke1);
+  color: var(--colorNeutralForeground1);
+  font-family: var(--fontFamilyBase);
+  font-size: var(--fontSizeBase300);
+  border-radius: var(--borderRadiusSmall) var(--borderRadiusSmall) 0 0;
+  transition:
+    border-color var(--durationFast) var(--curveEasyEase),
+    background   var(--durationFast) var(--curveEasyEase),
+    box-shadow   var(--durationFast) var(--curveEasyEase);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.fui-Input-field::placeholder {
+  color: var(--colorNeutralForeground4);
+}
+.fui-Input-field:hover,
+.fui-Select:hover {
+  border-bottom-color: var(--colorNeutralStrokeAccessible);
+  background: var(--colorNeutralBackground3);
+}
+.fui-Input-field:focus,
+.fui-Select:focus {
+  outline: none;
+  border-bottom-color: var(--colorBrandForeground1);
+  background: var(--colorNeutralBackground3);
+  box-shadow: 0 1px 0 0 var(--colorBrandForeground1);
+}
+.fui-Select {
+  cursor: pointer;
+  padding-right: var(--spacingHorizontalXXL);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23adadad' d='M2.15 4.65a.5.5 0 0 1 .7 0L6 7.79l3.15-3.14a.5.5 0 1 1 .7.7l-3.5 3.5a.5.5 0 0 1-.7 0l-3.5-3.5a.5.5 0 0 1 0-.7z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--spacingHorizontalS) center;
+  background-size: 12px 12px;
+}
+.fui-Label {
+  display: block;
+  margin-bottom: var(--spacingVerticalXS);
+  font-size: var(--fontSizeBase300);
+  font-weight: var(--fontWeightMedium);
+  color: var(--colorNeutralForeground2);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   MODAL / DIALOG — Fluent Dialog
+   ═══════════════════════════════════════════════════════════════ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  background: rgba(0,0,0,.5);
+  backdrop-filter: blur(4px);
+  animation: fadeIn var(--durationNormal) var(--curveEasyEase);
+}
+.modal-content {
+  position: relative;
+  background: var(--colorNeutralBackground2);
+  border: var(--strokeWidthThin) solid var(--colorNeutralStroke1);
+  border-radius: var(--borderRadiusXLarge);
+  padding: var(--spacingVerticalXXL) var(--spacingHorizontalXXL);
+  min-width: 360px;
+  max-width: 540px;
+  width: 90%;
+  box-shadow: var(--shadow64);
+  animation: fadeInScale var(--durationSlow) var(--curveDecelerateMid) both;
+}
+.modal-content h2 {
+  margin: 0 0 var(--spacingVerticalL) 0;
+}
+.modal-close {
+  position: absolute;
+  right: var(--spacingHorizontalM);
+  top: var(--spacingVerticalM);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: var(--borderRadiusSmall);
+  background: transparent;
+  border: none;
+  color: var(--colorNeutralForeground3);
+  font-size: 18px;
+  cursor: pointer;
+  transition: background var(--durationFast) var(--curveEasyEase), color var(--durationFast);
+}
+.modal-close:hover {
+  background: var(--colorSubtleBackgroundHover);
+  color: var(--colorNeutralForeground1);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   PROGRESS BAR — Fluent v9
+   ═══════════════════════════════════════════════════════════════ */
+.progress-container {
+  background: var(--colorNeutralBackground4);
+  border-radius: var(--borderRadiusCircular);
+  height: 4px;
+  width: 100%;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  background: var(--colorBrandBackground);
+  border-radius: var(--borderRadiusCircular);
+  transition: width var(--durationSlow) var(--curveEasyEaseMax);
+  position: relative;
+}
+/* Shine on progress */
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,.15) 50%,
+    transparent 100%
+  );
+  animation: shimmer 2s var(--curveEasyEase) infinite;
+  background-size: 200% 100%;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   CARD SECTION (Home page)
+   ═══════════════════════════════════════════════════════════════ */
+.projects {
+  display: grid;
+  gap: var(--spacingVerticalL);
+}
+.card-section {
+  padding: var(--spacingVerticalXL) var(--spacingHorizontalXL);
+}
+/* Ensure card title and body are block-level and separated */
+.card-section h2,
+.card-section .fui-Title2 {
+  display: block;
+  margin: 0 0 var(--spacingVerticalM) 0;
+}
+.card-section p,
+.card-section .fui-Body1 {
+  display: block;
+  margin: 0;
+  color: var(--colorNeutralForeground2);
+}
+.card-actions {
+  margin-top: var(--spacingVerticalL);
+  display: flex;
+  gap: var(--spacingHorizontalS);
+}
+
+/* Page card wrapper for subpages */
+.page-card {
+  margin-top: var(--spacingVerticalL);
+  padding: var(--spacingVerticalXL) var(--spacingHorizontalXL);
+  background: var(--colorNeutralBackground2);
+  border: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+}
+.page-content {
+  max-width: 100%;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   UTILITIES
+   ═══════════════════════════════════════════════════════════════ */
+.ml-8 { margin-left: var(--spacingHorizontalS); }
+.muted { color: var(--colorNeutralForeground3); }
+
+.custom-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacingHorizontalXS);
+  padding: var(--spacingVerticalS) var(--spacingHorizontalM);
+  border-radius: var(--borderRadiusMedium);
+  background: var(--colorNeutralBackground3);
+  border: var(--strokeWidthThin) solid var(--colorNeutralStroke1);
+  color: var(--colorNeutralForeground1);
+  font-size: var(--fontSizeBase300);
+  cursor: pointer;
+  transition: background var(--durationFast), border-color var(--durationFast);
+}
+.custom-reset-btn:hover {
+  background: var(--colorNeutralBackground4);
+  border-color: var(--colorNeutralStrokeAccessible);
+}
+
+.download-badge {
+  padding: var(--spacingVerticalS) var(--spacingHorizontalM);
+  border-radius: var(--borderRadiusLarge);
+  background: var(--colorNeutralBackground3);
+  border: var(--strokeWidthThin) solid var(--colorNeutralStroke1);
+  color: var(--colorNeutralForeground1);
+  cursor: pointer;
+  transition: background var(--durationFast), border-color var(--durationFast);
+}
+.download-badge:hover {
+  background: var(--colorNeutralBackground4);
+  border-color: var(--colorBrandStroke1);
+  color: var(--colorBrandForeground1);
+}
+
+.button-container {
+  margin-top: var(--spacingVerticalL);
+  display: flex;
+  gap: var(--spacingHorizontalS);
+  flex-wrap: wrap;
+}
+
+/* Status text helpers */
+.status-success { color: var(--colorStatusSuccessForeground); }
+.status-warning { color: var(--colorStatusWarningForeground); }
+.status-error   { color: var(--colorStatusErrorForeground); }
+.status-info    { color: var(--colorBrandForeground1); }
+
+/* Accessible screen-reader-only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}

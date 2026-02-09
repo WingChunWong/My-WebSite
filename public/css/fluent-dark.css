@@ -1,0 +1,458 @@
+/* ═══════════════════════════════════════════════════════════════
+   Fluent UI 2 Design Tokens — Dark Theme
+   Based on @fluentui/tokens v9 specification
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Background ─────────────────────────────────────────────── */
+  --colorNeutralBackground1:          #1b1b1b;
+  --colorNeutralBackground1Hover:     #1f1f1f;
+  --colorNeutralBackground1Pressed:   #171717;
+  --colorNeutralBackground2:          #202020;
+  --colorNeutralBackground3:          #282828;
+  --colorNeutralBackground4:          #333333;
+  --colorNeutralBackground5:          #3d3d3d;
+  --colorNeutralBackgroundAlpha:      rgba(255,255,255,.053);
+  --colorNeutralBackgroundAlpha2:     rgba(255,255,255,.08);
+  --colorSubtleBackground:            transparent;
+  --colorSubtleBackgroundHover:       rgba(255,255,255,.06);
+  --colorSubtleBackgroundPressed:     rgba(255,255,255,.04);
+  --colorTransparentBackground:       transparent;
+
+  /* ── Foreground ─────────────────────────────────────────────── */
+  --colorNeutralForeground1:          #ffffff;
+  --colorNeutralForeground2:          #d6d6d6;
+  --colorNeutralForeground3:          #adadad;
+  --colorNeutralForeground4:          #8a8a8a;
+  --colorNeutralForegroundDisabled:   #5c5c5c;
+
+  /* ── Brand ──────────────────────────────────────────────────── */
+  --colorBrandBackground:             #0f6cbd;
+  --colorBrandBackgroundHover:        #115ea3;
+  --colorBrandBackgroundPressed:      #0f548c;
+  --colorBrandBackgroundSelected:     #115ea3;
+  --colorBrandForeground1:            #479ef5;
+  --colorBrandForeground2:            #62abf5;
+  --colorBrandForegroundLink:         #479ef5;
+  --colorBrandStroke1:                #479ef5;
+  --colorBrandStroke2:                rgba(71,158,245,.32);
+
+  /* ── Status & Palette ───────────────────────────────────────── */
+  --colorStatusSuccess:               #0e700e;
+  --colorStatusSuccessBackground:     rgba(14,112,14,.15);
+  --colorStatusSuccessForeground:     #54b054;
+  --colorStatusWarning:               #f8d22a;
+  --colorStatusWarningBackground:     rgba(248,210,42,.12);
+  --colorStatusWarningForeground:     #f8d22a;
+  --colorStatusError:                 #b10e1c;
+  --colorStatusErrorBackground:       rgba(177,14,28,.15);
+  --colorStatusErrorForeground:       #dc626d;
+  --colorStatusInfo:                  #0f6cbd;
+
+  --colorPaletteRedBackground1:       rgba(196,49,75,.10);
+  --colorPaletteRedForeground1:       #dc626d;
+  --colorPaletteGreenBackground1:     rgba(14,112,14,.10);
+  --colorPaletteGreenForeground1:     #54b054;
+  --colorPaletteYellowForeground1:    #f8d22a;
+
+  /* ── Stroke / Border ────────────────────────────────────────── */
+  --colorNeutralStroke1:              #404040;
+  --colorNeutralStroke2:              #333333;
+  --colorNeutralStrokeAccessible:     #737373;
+  --colorNeutralStrokeOnBrand:        #ffffff;
+  --colorTransparentStroke:           transparent;
+  --colorStrokeFocus1:                #000000;
+  --colorStrokeFocus2:                #ffffff;
+  --strokeWidthThin:                  1px;
+  --strokeWidthThick:                 2px;
+
+  /* ── Border Radius ──────────────────────────────────────────── */
+  --borderRadiusNone:     0;
+  --borderRadiusSmall:    4px;
+  --borderRadiusMedium:   6px;
+  --borderRadiusLarge:    8px;
+  --borderRadiusXLarge:   12px;
+  --borderRadiusCircular: 50%;
+
+  /* ── Shadow (Elevation) ─────────────────────────────────────── */
+  --shadow2:   0 0  2px rgba(0,0,0,.24), 0  1px  2px rgba(0,0,0,.28);
+  --shadow4:   0 0  2px rgba(0,0,0,.24), 0  2px  4px rgba(0,0,0,.28);
+  --shadow8:   0 0  2px rgba(0,0,0,.24), 0  4px  8px rgba(0,0,0,.28);
+  --shadow16:  0 0  2px rgba(0,0,0,.24), 0  8px 16px rgba(0,0,0,.28);
+  --shadow28:  0 0  2px rgba(0,0,0,.24), 0 14px 28px rgba(0,0,0,.28);
+  --shadow64:  0 0  2px rgba(0,0,0,.24), 0 32px 64px rgba(0,0,0,.28);
+  --shadowBrand: 0 0 2px rgba(0,0,0,.30), 0 4px 8px rgba(15,108,189,.35);
+
+  /* ── Typography Scale ───────────────────────────────────────── */
+  --fontFamilyBase:      'Segoe UI Variable Display', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --fontFamilyMono:      'Cascadia Code', 'Fira Code', Consolas, monospace;
+  --fontSizeBase100:     10px;
+  --fontSizeBase200:     12px;
+  --fontSizeBase300:     14px;
+  --fontSizeBase400:     16px;
+  --fontSizeBase500:     20px;
+  --fontSizeBase600:     24px;
+  --fontSizeHero700:     28px;
+  --fontSizeHero800:     32px;
+  --fontSizeHero900:     40px;
+  --fontSizeHero1000:    68px;
+  --fontWeightRegular:   400;
+  --fontWeightMedium:    500;
+  --fontWeightSemibold:  600;
+  --fontWeightBold:      700;
+  --lineHeightBase100:   14px;
+  --lineHeightBase200:   16px;
+  --lineHeightBase300:   20px;
+  --lineHeightBase400:   22px;
+  --lineHeightBase500:   28px;
+  --lineHeightBase600:   32px;
+
+  /* ── Spacing ────────────────────────────────────────────────── */
+  --spacingHorizontalNone: 0;
+  --spacingHorizontalXXS:  2px;
+  --spacingHorizontalXS:   4px;
+  --spacingHorizontalSNudge: 6px;
+  --spacingHorizontalS:    8px;
+  --spacingHorizontalMNudge: 10px;
+  --spacingHorizontalM:    12px;
+  --spacingHorizontalL:    16px;
+  --spacingHorizontalXL:   20px;
+  --spacingHorizontalXXL:  24px;
+  --spacingHorizontalXXXL: 32px;
+  --spacingVerticalXS:     4px;
+  --spacingVerticalS:      8px;
+  --spacingVerticalMNudge: 10px;
+  --spacingVerticalM:      12px;
+  --spacingVerticalL:      16px;
+  --spacingVerticalXL:     20px;
+  --spacingVerticalXXL:    24px;
+
+  /* ── Duration & Curve ───────────────────────────────────────── */
+  --durationFaster:     50ms;
+  --durationFast:       100ms;
+  --durationNormal:     200ms;
+  --durationGentle:     250ms;
+  --durationSlow:       300ms;
+  --durationSlower:     400ms;
+  --curveAccelerateMid: cubic-bezier(1, 0, 1, 1);
+  --curveDecelerateMid: cubic-bezier(0, 0, 0, 1);
+  --curveEasyEase:      cubic-bezier(.33, 0, .67, 1);
+  --curveEasyEaseMax:   cubic-bezier(.8, 0, .2, 1);
+  --curveLinear:        cubic-bezier(0, 0, 1, 1);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   KEYFRAME ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .65; }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes progressIndeterminate {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   GLOBAL RESET & BASE
+   ═══════════════════════════════════════════════════════════════ */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: var(--colorNeutralBackground1);
+  color: var(--colorNeutralForeground1);
+  font-family: var(--fontFamilyBase);
+  font-size: var(--fontSizeBase300);
+  line-height: var(--lineHeightBase300);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--colorBrandBackgroundSelected);
+  color: var(--colorNeutralForeground1);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLLBAR
+   ═══════════════════════════════════════════════════════════════ */
+::-webkit-scrollbar          { width: 8px; height: 8px; }
+::-webkit-scrollbar-track    { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--colorNeutralStroke2);
+  border-radius: var(--borderRadiusCircular);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--colorNeutralStrokeAccessible);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-corner   { background: transparent; }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   FOCUS – Fluent double-ring pattern
+   ═══════════════════════════════════════════════════════════════ */
+:focus-visible {
+  outline: var(--strokeWidthThick) solid var(--colorStrokeFocus2);
+  outline-offset: 1px;
+  box-shadow: 0 0 0 1px var(--colorStrokeFocus1);
+  border-radius: var(--borderRadiusSmall);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   TYPOGRAPHY — Matches FluentUI v9 type ramp
+   ═══════════════════════════════════════════════════════════════ */
+.fui-Display {
+  font-size: var(--fontSizeHero900);
+  line-height: 52px;
+  font-weight: var(--fontWeightBold);
+}
+h1, .fui-Title1 {
+  font-size: var(--fontSizeHero700);
+  line-height: 36px;
+  font-weight: var(--fontWeightBold);
+  letter-spacing: -.02em;
+}
+h2, .fui-Title2 {
+  font-size: var(--fontSizeBase500);
+  line-height: var(--lineHeightBase500);
+  font-weight: var(--fontWeightSemibold);
+}
+h3, .fui-Title3 {
+  font-size: var(--fontSizeBase400);
+  line-height: var(--lineHeightBase400);
+  font-weight: var(--fontWeightSemibold);
+}
+h4, .fui-Subtitle1 {
+  font-size: var(--fontSizeBase400);
+  line-height: var(--lineHeightBase400);
+  font-weight: var(--fontWeightMedium);
+}
+.fui-Subtitle2 {
+  font-size: var(--fontSizeBase300);
+  line-height: var(--lineHeightBase300);
+  font-weight: var(--fontWeightSemibold);
+}
+.fui-Body1 {
+  font-size: var(--fontSizeBase300);
+  line-height: var(--lineHeightBase300);
+  font-weight: var(--fontWeightRegular);
+}
+.fui-Body2 {
+  font-size: var(--fontSizeBase200);
+  line-height: var(--lineHeightBase200);
+  font-weight: var(--fontWeightRegular);
+}
+.fui-Caption1 {
+  font-size: var(--fontSizeBase200);
+  line-height: var(--lineHeightBase200);
+  font-weight: var(--fontWeightRegular);
+  color: var(--colorNeutralForeground3);
+}
+.fui-Caption2 {
+  font-size: var(--fontSizeBase100);
+  line-height: var(--lineHeightBase100);
+  font-weight: var(--fontWeightRegular);
+  color: var(--colorNeutralForeground4);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   CARD — Fluent v9
+   ═══════════════════════════════════════════════════════════════ */
+.fui-Card {
+  position: relative;
+  background: var(--colorNeutralBackground2);
+  border: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+  border-radius: var(--borderRadiusLarge);
+  box-shadow: var(--shadow2);
+  padding: var(--spacingVerticalL) var(--spacingHorizontalL);
+  transition:
+    background   var(--durationNormal) var(--curveEasyEase),
+    box-shadow   var(--durationNormal) var(--curveEasyEase),
+    border-color var(--durationNormal) var(--curveEasyEase),
+    transform    var(--durationNormal) var(--curveEasyEase);
+  animation: fadeInScale var(--durationSlow) var(--curveDecelerateMid) both;
+}
+.fui-Card:hover {
+  background: var(--colorNeutralBackground3);
+  box-shadow: var(--shadow8);
+  border-color: var(--colorNeutralStroke1);
+  transform: translateY(-2px);
+}
+.fui-Card:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow2);
+}
+.fui-Card--branded {
+  border-top: 3px solid var(--colorBrandBackground);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   DIVIDER
+   ═══════════════════════════════════════════════════════════════ */
+.fui-Divider {
+  height: 1px;
+  border: none;
+  background: var(--colorNeutralStroke2);
+  margin: var(--spacingVerticalM) 0;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   SPINNER
+   ═══════════════════════════════════════════════════════════════ */
+.fui-Spinner {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--colorNeutralStroke1);
+  border-top-color: var(--colorBrandForeground1);
+  border-radius: var(--borderRadiusCircular);
+  animation: spin 1s var(--curveLinear) infinite;
+}
+.fui-Spinner--small  { width: 20px; height: 20px; border-width: 2px; }
+.fui-Spinner--large  { width: 36px; height: 36px; border-width: 4px; }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   SKELETON  (Shimmer loading placeholder)
+   ═══════════════════════════════════════════════════════════════ */
+.fui-Skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--colorNeutralBackground3) 25%,
+    var(--colorNeutralBackgroundAlpha2) 50%,
+    var(--colorNeutralBackground3) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s var(--curveEasyEase) infinite;
+  border-radius: var(--borderRadiusSmall);
+}
+.fui-SkeletonLine {
+  height: 14px;
+  margin-bottom: var(--spacingVerticalS);
+}
+.fui-SkeletonCircle {
+  border-radius: var(--borderRadiusCircular);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   TOOLTIP
+   ═══════════════════════════════════════════════════════════════ */
+.fui-Tooltip {
+  position: absolute;
+  z-index: 10001;
+  padding: var(--spacingVerticalXS) var(--spacingHorizontalS);
+  background: var(--colorNeutralBackground5);
+  color: var(--colorNeutralForeground1);
+  font-size: var(--fontSizeBase200);
+  line-height: var(--lineHeightBase200);
+  border-radius: var(--borderRadiusSmall);
+  box-shadow: var(--shadow4);
+  pointer-events: none;
+  animation: fadeIn var(--durationFast) var(--curveDecelerateMid);
+  max-width: 240px;
+  word-wrap: break-word;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   MESSAGE BAR
+   ═══════════════════════════════════════════════════════════════ */
+.fui-MessageBar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacingHorizontalS);
+  padding: var(--spacingVerticalS) var(--spacingHorizontalM);
+  border-radius: var(--borderRadiusMedium);
+  font-size: var(--fontSizeBase300);
+  animation: slideDown var(--durationNormal) var(--curveDecelerateMid) both;
+}
+.fui-MessageBar--info {
+  background: rgba(15,108,189,.12);
+  color: var(--colorBrandForeground2);
+  border-left: 3px solid var(--colorBrandForeground1);
+}
+.fui-MessageBar--success {
+  background: var(--colorStatusSuccessBackground);
+  color: var(--colorStatusSuccessForeground);
+  border-left: 3px solid var(--colorStatusSuccessForeground);
+}
+.fui-MessageBar--warning {
+  background: var(--colorStatusWarningBackground);
+  color: var(--colorStatusWarningForeground);
+  border-left: 3px solid var(--colorStatusWarningForeground);
+}
+.fui-MessageBar--error {
+  background: var(--colorStatusErrorBackground);
+  color: var(--colorStatusErrorForeground);
+  border-left: 3px solid var(--colorStatusErrorForeground);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   BADGE
+   ═══════════════════════════════════════════════════════════════ */
+.fui-Badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacingHorizontalXXS);
+  padding: 2px 6px;
+  border-radius: var(--borderRadiusCircular);
+  font-size: var(--fontSizeBase100);
+  font-weight: var(--fontWeightSemibold);
+  line-height: 1;
+  white-space: nowrap;
+}
+.fui-Badge--filled  { background: var(--colorBrandBackground); color: #fff; }
+.fui-Badge--danger  { background: var(--colorStatusError); color: #fff; }
+.fui-Badge--success { background: var(--colorStatusSuccess); color: #fff; }
+.fui-Badge--warning { background: var(--colorStatusWarning); color: #1a1a1a; }
+.fui-Badge--ghost   {
+  background: transparent;
+  color: var(--colorNeutralForeground3);
+  border: var(--strokeWidthThin) solid var(--colorNeutralStroke1);
+}
