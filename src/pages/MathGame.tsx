@@ -439,7 +439,18 @@ export default function MathGame() {
         <div className="status-item">正確: <span id="correctVal">{correctCount}</span></div>
       </div>
 
-      <div className="progress-container"><div id="progressBar" className="progress-bar" style={{ width: `${Math.max(0, Math.min(100, (score / TARGET_SCORE) * 100))}%` }} aria-valuenow={score} aria-valuemin={0} aria-valuemax={TARGET_SCORE}></div></div>
+      <div className="progress-container">
+        <div
+          id="progressBar"
+          className="progress-bar"
+          role="progressbar"
+          aria-label="進度"
+          style={{ width: `${Math.max(0, Math.min(100, (score / TARGET_SCORE) * 100))}%` }}
+          aria-valuenow={score}
+          aria-valuemin={0}
+          aria-valuemax={TARGET_SCORE}
+        ></div>
+      </div>
 
       <div className="canvas-container">
         <canvas id="gameCanvas" ref={canvasRef} className="game-canvas" width={850} height={250} />
