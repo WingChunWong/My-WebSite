@@ -1,2 +1,5 @@
 portal_config.json
 .vscode/
+node_modules
+dist/
+.DS_Store

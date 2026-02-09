@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
   workflow_run:
     workflows: ["Update Homework Data"]
@@ -27,12 +27,28 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      - name: Deploy to GitHub Pages
-        uses: actions/upload-pages-artifact@v3
+      - name: Setup Node
+        uses: actions/setup-node@v6
         with:
-          path: .
+          node-version: "lts"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          cache: true
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Upload built site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./dist
 
       - name: Publish GitHub Pages
         uses: actions/deploy-pages@v4
