@@ -1,10 +1,7 @@
-import React from 'react'
-import { Outlet, NavLink, useLocation } from 'react-router-dom'
+import { Outlet, NavLink } from 'react-router-dom'
 import SmallScreenBlocker from './components/SmallScreenBlocker'
 
 export default function App() {
-  const location = useLocation()
-
   return (
     <>
       <div className="app-container">
