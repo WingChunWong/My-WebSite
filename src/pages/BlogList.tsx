@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react'
-import { NavLink } from 'react-router-dom'
-import { Title2, Body1, Caption1 } from '@fluentui/react-components'
-import { getAllPosts } from '../blog/loader'
+import { Body1, Caption1, Title2 } from "@fluentui/react-components";
+import { useMemo } from "react";
+import { NavLink } from "react-router-dom";
+import { getAllPosts } from "../blog/loader";
 
 export default function BlogList() {
-  const posts = useMemo(() => getAllPosts(), [])
+  const posts = useMemo(() => getAllPosts(), []);
 
   if (posts.length === 0) {
     return (
@@ -12,7 +12,7 @@ export default function BlogList() {
         <Title2 as="h2">Blog</Title2>
         <Body1>暫無文章。</Body1>
       </div>
-    )
+    );
   }
 
   return (
@@ -42,16 +42,19 @@ export default function BlogList() {
               )}
               <div className="blog-card-meta">
                 <time dateTime={post.frontmatter.date}>
-                  {new Date(post.frontmatter.date).toLocaleDateString('zh-CN', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
+                  {new Date(post.frontmatter.date).toLocaleDateString("zh-CN", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
                   })}
                 </time>
                 {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
                   <div className="blog-card-tags">
                     {post.frontmatter.tags.map((tag) => (
-                      <span key={tag} className="blog-tag fui-Badge fui-Badge--ghost">
+                      <span
+                        key={tag}
+                        className="blog-tag fui-Badge fui-Badge--ghost"
+                      >
                         {tag}
                       </span>
                     ))}
@@ -63,5 +66,5 @@ export default function BlogList() {
         ))}
       </div>
     </div>
-  )
+  );
 }

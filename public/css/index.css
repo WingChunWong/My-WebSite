@@ -2,7 +2,6 @@
    index.css — Global Layout & Component Styles
    ═══════════════════════════════════════════════════════════════ */
 
-
 /* ── App Shell ────────────────────────────────────────────────── */
 .app-container {
   max-width: 1100px;
@@ -29,7 +28,7 @@
   margin-right: var(--spacingHorizontalXL);
   font-size: var(--fontSizeBase500);
   font-weight: var(--fontWeightBold);
-  letter-spacing: -.01em;
+  letter-spacing: -0.01em;
   white-space: nowrap;
 }
 .site-header nav {
@@ -39,7 +38,6 @@
   flex: 1;
   min-width: 0;
 }
-
 
 /* ── Navigation Links (Tab-like) ──────────────────────────────── */
 .nav-link {
@@ -53,7 +51,7 @@
   font-size: var(--fontSizeBase300);
   font-weight: var(--fontWeightMedium);
   transition:
-    color      var(--durationFast) var(--curveEasyEase),
+    color var(--durationFast) var(--curveEasyEase),
     background var(--durationFast) var(--curveEasyEase);
 }
 .nav-link:hover {
@@ -71,7 +69,7 @@
 }
 .nav-link[aria-current="page"]::after,
 .nav-link.active::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: var(--spacingHorizontalS);
@@ -89,9 +87,12 @@
   align-items: center;
   gap: 8px;
 }
-.nav-github i { font-size: 18px; }
-.nav-github:hover { color: var(--colorBrandForeground1); }
-
+.nav-github i {
+  font-size: 18px;
+}
+.nav-github:hover {
+  color: var(--colorBrandForeground1);
+}
 
 /* ═══════════════════════════════════════════════════════════════
    BUTTON — Fluent v9 Appearances
@@ -116,11 +117,11 @@
   user-select: none;
   text-decoration: none;
   transition:
-    background   var(--durationFast) var(--curveEasyEase),
+    background var(--durationFast) var(--curveEasyEase),
     border-color var(--durationFast) var(--curveEasyEase),
-    box-shadow   var(--durationFast) var(--curveEasyEase),
-    color        var(--durationFast) var(--curveEasyEase),
-    transform    var(--durationFast) var(--curveEasyEase);
+    box-shadow var(--durationFast) var(--curveEasyEase),
+    color var(--durationFast) var(--curveEasyEase),
+    transform var(--durationFast) var(--curveEasyEase);
 }
 .fui-Button:hover {
   background: var(--colorNeutralBackground4);
@@ -129,7 +130,7 @@
 }
 .fui-Button:active {
   background: var(--colorNeutralBackground5);
-  transform: scale(.98);
+  transform: scale(0.98);
   box-shadow: none;
 }
 .fui-Button:disabled,
@@ -169,7 +170,9 @@
 }
 .fui-Button--primary:hover {
   background: var(--colorBrandBackgroundHover);
-  box-shadow: 0 0 2px rgba(0,0,0,.30), 0 6px 12px rgba(15,108,189,.40);
+  box-shadow:
+    0 0 2px rgba(0, 0, 0, 0.3),
+    0 6px 12px rgba(15, 108, 189, 0.4);
 }
 .fui-Button--primary:active {
   background: var(--colorBrandBackgroundPressed);
@@ -251,7 +254,6 @@
   border-color: var(--colorNeutralStrokeAccessible);
 }
 
-
 /* ═══════════════════════════════════════════════════════════════
    INPUT & FORM CONTROLS — Fluent Underline Style
    ═══════════════════════════════════════════════════════════════ */
@@ -268,8 +270,8 @@
   border-radius: var(--borderRadiusSmall) var(--borderRadiusSmall) 0 0;
   transition:
     border-color var(--durationFast) var(--curveEasyEase),
-    background   var(--durationFast) var(--curveEasyEase),
-    box-shadow   var(--durationFast) var(--curveEasyEase);
+    background var(--durationFast) var(--curveEasyEase),
+    box-shadow var(--durationFast) var(--curveEasyEase);
   -webkit-appearance: none;
   appearance: none;
 }
@@ -304,7 +306,6 @@
   color: var(--colorNeutralForeground2);
 }
 
-
 /* ═══════════════════════════════════════════════════════════════
    MODAL / DIALOG — Fluent Dialog
    ═══════════════════════════════════════════════════════════════ */
@@ -315,7 +316,7 @@
   align-items: center;
   justify-content: center;
   z-index: 10000;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
   animation: fadeIn var(--durationNormal) var(--curveEasyEase);
 }
@@ -350,13 +351,14 @@
   color: var(--colorNeutralForeground3);
   font-size: 18px;
   cursor: pointer;
-  transition: background var(--durationFast) var(--curveEasyEase), color var(--durationFast);
+  transition:
+    background var(--durationFast) var(--curveEasyEase),
+    color var(--durationFast);
 }
 .modal-close:hover {
   background: var(--colorSubtleBackgroundHover);
   color: var(--colorNeutralForeground1);
 }
-
 
 /* ═══════════════════════════════════════════════════════════════
    CARD SECTION (Home page)
@@ -397,12 +399,15 @@
   max-width: 100%;
 }
 
-
 /* ═══════════════════════════════════════════════════════════════
    UTILITIES
    ═══════════════════════════════════════════════════════════════ */
-.ml-8 { margin-left: var(--spacingHorizontalS); }
-.muted { color: var(--colorNeutralForeground3); }
+.ml-8 {
+  margin-left: var(--spacingHorizontalS);
+}
+.muted {
+  color: var(--colorNeutralForeground3);
+}
 
 .custom-reset-btn {
   display: inline-flex;
@@ -415,7 +420,9 @@
   color: var(--colorNeutralForeground1);
   font-size: var(--fontSizeBase300);
   cursor: pointer;
-  transition: background var(--durationFast), border-color var(--durationFast);
+  transition:
+    background var(--durationFast),
+    border-color var(--durationFast);
 }
 .custom-reset-btn:hover {
   background: var(--colorNeutralBackground4);
@@ -429,7 +436,9 @@
   border: var(--strokeWidthThin) solid var(--colorNeutralStroke1);
   color: var(--colorNeutralForeground1);
   cursor: pointer;
-  transition: background var(--durationFast), border-color var(--durationFast);
+  transition:
+    background var(--durationFast),
+    border-color var(--durationFast);
 }
 .download-badge:hover {
   background: var(--colorNeutralBackground4);
@@ -445,10 +454,18 @@
 }
 
 /* Status text helpers */
-.status-success { color: var(--colorStatusSuccessForeground); }
-.status-warning { color: var(--colorStatusWarningForeground); }
-.status-error   { color: var(--colorStatusErrorForeground); }
-.status-info    { color: var(--colorBrandForeground1); }
+.status-success {
+  color: var(--colorStatusSuccessForeground);
+}
+.status-warning {
+  color: var(--colorStatusWarningForeground);
+}
+.status-error {
+  color: var(--colorStatusErrorForeground);
+}
+.status-info {
+  color: var(--colorBrandForeground1);
+}
 
 /* Accessible screen-reader-only */
 .sr-only {
@@ -458,7 +475,7 @@
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0,0,0,0);
+  clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
 }

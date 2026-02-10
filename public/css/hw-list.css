@@ -2,7 +2,6 @@
    hw-list.css — Homework List (DataGrid) Page
    ═══════════════════════════════════════════════════════════════ */
 
-
 /* ── Page Container ───────────────────────────────────────────── */
 .hw-list-view {
   padding: var(--spacingVerticalXXL) var(--spacingHorizontalL);
@@ -10,7 +9,6 @@
   margin: 0 auto;
   animation: fadeIn var(--durationSlow) var(--curveDecelerateMid) both;
 }
-
 
 /* ── Page Header ──────────────────────────────────────────────── */
 .page-header {
@@ -23,7 +21,6 @@
   margin: 0;
   animation: slideInLeft var(--durationSlow) var(--curveDecelerateMid) both;
 }
-
 
 /* ═══════════════════════════════════════════════════════════════
    FILTERS — 3-column grid
@@ -45,7 +42,7 @@
   font-weight: var(--fontWeightSemibold);
   color: var(--colorNeutralForeground3);
   text-transform: uppercase;
-  letter-spacing: .04em;
+  letter-spacing: 0.04em;
   margin-bottom: var(--spacingVerticalXS);
 }
 
@@ -55,7 +52,6 @@
   margin-bottom: var(--spacingVerticalL);
   align-items: center;
 }
-
 
 /* ═══════════════════════════════════════════════════════════════
    STAT CARDS
@@ -81,14 +77,14 @@
   border-radius: var(--borderRadiusLarge);
   padding: var(--spacingVerticalL) var(--spacingHorizontalL);
   transition:
-    background   var(--durationNormal) var(--curveEasyEase),
-    box-shadow   var(--durationNormal) var(--curveEasyEase),
+    background var(--durationNormal) var(--curveEasyEase),
+    box-shadow var(--durationNormal) var(--curveEasyEase),
     border-color var(--durationNormal) var(--curveEasyEase),
-    transform    var(--durationNormal) var(--curveEasyEase);
+    transform var(--durationNormal) var(--curveEasyEase);
   overflow: hidden;
 }
 .stat-item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -131,7 +127,6 @@
   margin-left: auto;
 }
 
-
 /* ═══════════════════════════════════════════════════════════════
    DATA TABLE — Fluent DataGrid style
    ═══════════════════════════════════════════════════════════════ */
@@ -163,7 +158,7 @@
   font-weight: var(--fontWeightSemibold);
   font-size: var(--fontSizeBase200);
   text-transform: uppercase;
-  letter-spacing: .04em;
+  letter-spacing: 0.04em;
   padding: var(--spacingVerticalM) var(--spacingHorizontalL);
   text-align: left;
   border-bottom: var(--strokeWidthThin) solid var(--colorNeutralStroke1);
@@ -201,16 +196,15 @@
   background: var(--colorPaletteRedBackground1);
 }
 .table-fluent tbody tr.overdue:hover {
-  background: rgba(196,49,75,.14);
+  background: rgba(196, 49, 75, 0.14);
 }
 /* Today row subtle tint */
 .table-fluent tbody tr.today {
-  background: rgba(71,158,245,.05);
+  background: rgba(71, 158, 245, 0.05);
 }
 .table-fluent tbody tr.today:hover {
-  background: rgba(71,158,245,.09);
+  background: rgba(71, 158, 245, 0.09);
 }
-
 
 /* ═══════════════════════════════════════════════════════════════
    STATUS BADGES — Pill with dot indicator
@@ -229,9 +223,9 @@
   white-space: nowrap;
   border: var(--strokeWidthThin) solid transparent;
   transition:
-    background   var(--durationFast),
-    transform    var(--durationFast),
-    box-shadow   var(--durationFast);
+    background var(--durationFast),
+    transform var(--durationFast),
+    box-shadow var(--durationFast);
 }
 .status-badge i {
   font-size: 12px;
@@ -249,10 +243,10 @@
 .status-badge.overdue {
   background: var(--colorPaletteRedBackground1);
   color: var(--colorPaletteRedForeground1);
-  border-color: rgba(220,98,109,.18);
+  border-color: rgba(220, 98, 109, 0.18);
 }
 .status-badge.today {
-  background: rgba(71,158,245,.10);
+  background: rgba(71, 158, 245, 0.1);
   color: var(--colorBrandForeground1);
   border-color: var(--colorBrandStroke2);
 }
@@ -276,14 +270,13 @@
 .badge-pill.overdue {
   background: var(--colorPaletteRedBackground1);
   color: var(--colorPaletteRedForeground1);
-  border-color: rgba(220,98,109,.18);
+  border-color: rgba(220, 98, 109, 0.18);
 }
 .badge-pill.today {
-  background: rgba(71,158,245,.10);
+  background: rgba(71, 158, 245, 0.1);
   color: var(--colorBrandForeground1);
   border-color: var(--colorBrandStroke2);
 }
-
 
 /* ── Homework remarks ─────────────────────────────────────────── */
 .homework-remarks {
@@ -298,7 +291,6 @@
   overflow: visible;
 }
 
-
 /* ── Empty / Loading states ───────────────────────────────────── */
 #loadingSpinner {
   display: flex;
@@ -310,7 +302,7 @@
   font-size: var(--fontSizeBase400);
 }
 #loadingSpinner::before {
-  content: '';
+  content: "";
   display: inline-block;
   width: 24px;
   height: 24px;
@@ -319,7 +311,6 @@
   border-radius: var(--borderRadiusCircular);
   animation: spin 1s linear infinite;
 }
-
 
 /* ═══════════════════════════════════════════════════════════════
    RESPONSIVE

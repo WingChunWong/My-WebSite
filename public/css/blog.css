@@ -5,28 +5,31 @@
 
 /* ── GitHub Dark Color Palette ────────────────────────────────── */
 :root {
-  --gh-bg:                #0d1117;
-  --gh-bg-secondary:      #161b22;
-  --gh-bg-tertiary:       #21262d;
-  --gh-fg:                #e6edf3;
-  --gh-fg-muted:          #848d97;
-  --gh-fg-subtle:         #6e7681;
-  --gh-border:            #30363d;
-  --gh-border-muted:      #21262d;
-  --gh-link:              #2f81f7;
-  --gh-link-hover:        #58a6ff;
-  --gh-accent:            #1f6feb;
-  --gh-code-bg:           rgba(110,118,129,0.4);
-  --gh-code-block-bg:     #161b22;
-  --gh-font-body:         -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
-  --gh-font-mono:         ui-monospace, 'SFMono-Regular', 'SF Mono', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
-  --gh-note:              #2f81f7;
-  --gh-tip:               #3fb950;
-  --gh-important:         #a371f7;
-  --gh-warning:           #d29922;
-  --gh-caution:           #f85149;
+  --gh-bg: #0d1117;
+  --gh-bg-secondary: #161b22;
+  --gh-bg-tertiary: #21262d;
+  --gh-fg: #e6edf3;
+  --gh-fg-muted: #848d97;
+  --gh-fg-subtle: #6e7681;
+  --gh-border: #30363d;
+  --gh-border-muted: #21262d;
+  --gh-link: #2f81f7;
+  --gh-link-hover: #58a6ff;
+  --gh-accent: #1f6feb;
+  --gh-code-bg: rgba(110, 118, 129, 0.4);
+  --gh-code-block-bg: #161b22;
+  --gh-font-body:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --gh-font-mono:
+    ui-monospace, "SFMono-Regular", "SF Mono", "Menlo", "Consolas",
+    "Liberation Mono", monospace;
+  --gh-note: #2f81f7;
+  --gh-tip: #3fb950;
+  --gh-important: #a371f7;
+  --gh-warning: #d29922;
+  --gh-caution: #f85149;
 }
-
 
 /* ═══════════════════════════════════════════════════════════════
    BLOG LIST PAGE (preserved from original design)
@@ -40,8 +43,12 @@
   gap: var(--spacingHorizontalM);
   margin-bottom: var(--spacingVerticalXL);
 }
-.blog-list-header h2 { margin: 0; }
-.blog-count { color: var(--colorNeutralForeground4); }
+.blog-list-header h2 {
+  margin: 0;
+}
+.blog-count {
+  color: var(--colorNeutralForeground4);
+}
 
 .blog-grid {
   display: grid;
@@ -58,18 +65,31 @@
   padding: 0;
   cursor: pointer;
   transition:
-    background   var(--durationNormal) var(--curveEasyEase),
-    box-shadow   var(--durationNormal) var(--curveEasyEase),
+    background var(--durationNormal) var(--curveEasyEase),
+    box-shadow var(--durationNormal) var(--curveEasyEase),
     border-color var(--durationNormal) var(--curveEasyEase),
-    transform    var(--durationNormal) var(--curveEasyEase);
+    transform var(--durationNormal) var(--curveEasyEase);
+}
+.blog-card-title {
+  margin: 0;
+  font-size: var(--fontSizeBase400);
+  font-weight: var(--fontWeightSemibold);
+  line-height: var(--lineHeightBase400);
+  color: var(--colorNeutralForeground1);
+  transition: color var(--durationFast) var(--curveEasyEase);
 }
 .blog-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow16);
   border-color: var(--colorBrandStroke1);
 }
-.blog-card:hover .blog-card-title { color: var(--colorBrandForeground1); }
-.blog-card:active { transform: translateY(0); box-shadow: var(--shadow4); }
+.blog-card:hover .blog-card-title {
+  color: var(--colorBrandForeground1);
+}
+.blog-card:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow4);
+}
 .blog-card-cover {
   height: 160px;
   background-size: cover;
@@ -103,21 +123,45 @@
   overflow: hidden;
 }
 .blog-card-meta {
-  display: flex; align-items: center; gap: var(--spacingHorizontalS);
-  margin-top: auto; padding-top: var(--spacingVerticalS);
-  font-size: var(--fontSizeBase200); color: var(--colorNeutralForeground4);
+  display: flex;
+  align-items: center;
+  gap: var(--spacingHorizontalS);
+  margin-top: auto;
+  padding-top: var(--spacingVerticalS);
+  font-size: var(--fontSizeBase200);
+  color: var(--colorNeutralForeground4);
 }
-.blog-card-tags { display: flex; gap: var(--spacingHorizontalXS); flex-wrap: wrap; }
-.blog-tag { font-size: var(--fontSizeBase100) !important; padding: 1px 6px !important; }
+.blog-card-tags {
+  display: flex;
+  gap: var(--spacingHorizontalXS);
+  flex-wrap: wrap;
+}
+.blog-tag {
+  font-size: var(--fontSizeBase100) !important;
+  padding: 1px 6px !important;
+  border-radius: 4px !important;
+}
 
-.blog-empty { text-align: center; padding: var(--spacingVerticalXXL) 0; }
-.blog-empty h2 { margin-bottom: var(--spacingVerticalM); }
+.blog-empty {
+  text-align: center;
+  padding: var(--spacingVerticalXXL) 0;
+}
+.blog-empty h2 {
+  margin-bottom: var(--spacingVerticalM);
+}
 .blog-not-found {
-  text-align: center; padding: var(--spacingVerticalXXL) 0;
-  display: flex; flex-direction: column; align-items: center; gap: var(--spacingVerticalM);
+  text-align: center;
+  padding: var(--spacingVerticalXXL) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacingVerticalM);
 }
-.blog-not-found h1 { font-size: var(--fontSizeHero1000); color: var(--colorNeutralForeground4); margin: 0; }
-
+.blog-not-found h1 {
+  font-size: var(--fontSizeHero1000);
+  color: var(--colorNeutralForeground4);
+  margin: 0;
+}
 
 /* ═══════════════════════════════════════════════════════════════
    BLOG ARTICLE WRAPPER
@@ -128,30 +172,51 @@
   animation: slideUp var(--durationSlow) var(--curveDecelerateMid) both;
 }
 .blog-back-link {
-  display: inline-flex; align-items: center; gap: 4px;
-  color: var(--gh-link); text-decoration: none;
-  font-size: 14px; font-weight: 500;
-  padding: 4px 0; margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--gh-link);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 4px 0;
+  margin-bottom: 16px;
   transition: color 80ms ease;
 }
-.blog-back-link:hover { color: var(--gh-link-hover); text-decoration: underline; }
+.blog-back-link:hover {
+  color: var(--gh-link-hover);
+  text-decoration: underline;
+}
 
-.blog-article-header { margin-bottom: 16px; }
+.blog-article-header {
+  margin-bottom: 16px;
+}
 .blog-article-title {
   margin: 0 0 8px 0;
-  font-size: 32px; font-weight: 600; line-height: 1.25;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.25;
   color: var(--gh-fg);
 }
 .blog-article-meta {
-  display: flex; align-items: center; gap: 12px;
-  font-size: 12px; color: var(--gh-fg-muted);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--gh-fg-muted);
 }
-.blog-article-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+.blog-article-tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
 .blog-article-desc {
   margin: 12px 0 0 0;
-  font-size: 16px; line-height: 1.5; color: var(--gh-fg-muted); font-style: italic;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--gh-fg-muted);
+  font-style: italic;
 }
-
 
 /* ═══════════════════════════════════════════════════════════════
    MARKDOWN BODY — GitHub Dark 1:1
@@ -177,12 +242,29 @@
   line-height: 1.25;
   color: var(--gh-fg);
 }
-.markdown-body h1 { font-size: 2em; padding-bottom: 0.3em; border-bottom: 1px solid var(--gh-border); }
-.markdown-body h2 { font-size: 1.5em; padding-bottom: 0.3em; border-bottom: 1px solid var(--gh-border); }
-.markdown-body h3 { font-size: 1.25em; }
-.markdown-body h4 { font-size: 1em; }
-.markdown-body h5 { font-size: 0.875em; }
-.markdown-body h6 { font-size: 0.85em; color: var(--gh-fg-muted); }
+.markdown-body h1 {
+  font-size: 2em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--gh-border);
+}
+.markdown-body h2 {
+  font-size: 1.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--gh-border);
+}
+.markdown-body h3 {
+  font-size: 1.25em;
+}
+.markdown-body h4 {
+  font-size: 1em;
+}
+.markdown-body h5 {
+  font-size: 0.875em;
+}
+.markdown-body h6 {
+  font-size: 0.85em;
+  color: var(--gh-fg-muted);
+}
 
 /* ── Paragraph ────────────────────────────────────────────────── */
 .markdown-body p {
@@ -200,8 +282,12 @@
 }
 
 /* ── Strong / Em ──────────────────────────────────────────────── */
-.markdown-body strong { font-weight: 600; }
-.markdown-body em     { font-style: italic; }
+.markdown-body strong {
+  font-weight: 600;
+}
+.markdown-body em {
+  font-style: italic;
+}
 
 /* ── Lists ────────────────────────────────────────────────────── */
 .markdown-body ul,
@@ -210,8 +296,12 @@
   margin-bottom: 16px;
   padding-left: 2em;
 }
-.markdown-body ul { list-style-type: disc; }
-.markdown-body ol { list-style-type: decimal; }
+.markdown-body ul {
+  list-style-type: disc;
+}
+.markdown-body ol {
+  list-style-type: decimal;
+}
 .markdown-body li {
   margin-top: 0.25em;
 }
@@ -251,8 +341,12 @@
   color: var(--gh-fg-muted);
   border-left: 0.25em solid var(--gh-border);
 }
-.markdown-body blockquote > :first-child { margin-top: 0; }
-.markdown-body blockquote > :last-child  { margin-bottom: 0; }
+.markdown-body blockquote > :first-child {
+  margin-top: 0;
+}
+.markdown-body blockquote > :last-child {
+  margin-bottom: 0;
+}
 
 /* ── Horizontal Rule ──────────────────────────────────────────── */
 .markdown-body hr {
@@ -443,9 +537,20 @@
 }
 
 /* ── Definition List ──────────────────────────────────────────── */
-.markdown-body dl        { padding: 0; }
-.markdown-body dl dt     { padding: 0; margin-top: 16px; font-weight: 600; font-style: italic; font-size: 1em; }
-.markdown-body dl dd     { padding: 0 16px; margin-bottom: 16px; }
+.markdown-body dl {
+  padding: 0;
+}
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-weight: 600;
+  font-style: italic;
+  font-size: 1em;
+}
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
 
 /* ── Footnotes (GFM) ─────────────────────────────────────────── */
 .markdown-body .footnotes {
@@ -455,7 +560,9 @@
   margin-top: 32px;
   padding-top: 16px;
 }
-.markdown-body .footnotes ol { padding-left: 16px; }
+.markdown-body .footnotes ol {
+  padding-left: 16px;
+}
 .markdown-body sup a {
   color: var(--gh-link);
   text-decoration: none;
@@ -463,7 +570,9 @@
 }
 
 /* ── Strikethrough (GFM) ──────────────────────────────────────── */
-.markdown-body del { text-decoration: line-through; }
+.markdown-body del {
+  text-decoration: line-through;
+}
 
 /* ── Keyboard Key ─────────────────────────────────────────────── */
 .markdown-body kbd {
@@ -505,9 +614,12 @@
   position: relative;
   vertical-align: baseline;
 }
-.markdown-body sub { bottom: -0.25em; }
-.markdown-body sup { top: -0.5em; }
-
+.markdown-body sub {
+  bottom: -0.25em;
+}
+.markdown-body sup {
+  top: -0.5em;
+}
 
 /* ═══════════════════════════════════════════════════════════════
    GFM ALERTS / CALLOUTS  (> [!NOTE] etc.)
@@ -518,8 +630,12 @@
   border-left: 0.25em solid;
   color: var(--gh-fg);
 }
-.markdown-body .markdown-alert > :first-child { margin-top: 0; }
-.markdown-body .markdown-alert > :last-child  { margin-bottom: 0; }
+.markdown-body .markdown-alert > :first-child {
+  margin-top: 0;
+}
+.markdown-body .markdown-alert > :last-child {
+  margin-bottom: 0;
+}
 
 .markdown-body .markdown-alert .markdown-alert-title {
   display: flex;
@@ -573,7 +689,6 @@
   color: var(--gh-caution);
 }
 
-
 /* ═══════════════════════════════════════════════════════════════
    rehype-callouts — .callout structure (fallback for alerts)
    ═══════════════════════════════════════════════════════════════ */
@@ -584,8 +699,12 @@
   border-radius: 0;
   color: var(--gh-fg);
 }
-.markdown-body .callout > :first-child { margin-top: 0; }
-.markdown-body .callout > :last-child  { margin-bottom: 0; }
+.markdown-body .callout > :first-child {
+  margin-top: 0;
+}
+.markdown-body .callout > :last-child {
+  margin-bottom: 0;
+}
 
 .markdown-body .callout .callout-title {
   display: flex;
@@ -600,8 +719,12 @@
   height: 16px;
   flex-shrink: 0;
 }
-.markdown-body .callout .callout-content > :first-child { margin-top: 0; }
-.markdown-body .callout .callout-content > :last-child  { margin-bottom: 0; }
+.markdown-body .callout .callout-content > :first-child {
+  margin-top: 0;
+}
+.markdown-body .callout .callout-content > :last-child {
+  margin-bottom: 0;
+}
 
 /* Note */
 .markdown-body .callout[data-callout="note"] {
@@ -645,7 +768,6 @@
   color: var(--gh-caution);
 }
 
-
 /* ═══════════════════════════════════════════════════════════════
    FORM ELEMENTS inside markdown
    ═══════════════════════════════════════════════════════════════ */
@@ -663,7 +785,9 @@
   border-radius: 6px;
   color: var(--gh-fg);
   outline: none;
-  transition: border-color 80ms ease, box-shadow 80ms ease;
+  transition:
+    border-color 80ms ease,
+    box-shadow 80ms ease;
   vertical-align: middle;
 }
 .markdown-body input[type="text"]:focus,
@@ -672,7 +796,7 @@
 .markdown-body textarea:focus,
 .markdown-body select:focus {
   border-color: var(--gh-link);
-  box-shadow: 0 0 0 3px rgba(47,129,247,0.3);
+  box-shadow: 0 0 0 3px rgba(47, 129, 247, 0.3);
 }
 .markdown-body textarea {
   min-height: 100px;
@@ -701,9 +825,12 @@
 }
 
 /* ── Misc spacing ─────────────────────────────────────────────── */
-.markdown-body > *:first-child { margin-top: 0 !important; }
-.markdown-body > *:last-child  { margin-bottom: 0 !important; }
-
+.markdown-body > *:first-child {
+  margin-top: 0 !important;
+}
+.markdown-body > *:last-child {
+  margin-bottom: 0 !important;
+}
 
 /* ═══════════════════════════════════════════════════════════════
    rehype-pretty-code — shiki GitHub Dark overrides
@@ -785,11 +912,15 @@
 }
 
 /* Figure title (filename) */
-.markdown-body figure[data-rehype-pretty-code-figure] figcaption[data-rehype-pretty-code-title] {
+.markdown-body figure[data-rehype-pretty-code-figure]
+  figcaption[data-rehype-pretty-code-title] {
   display: none;
   /* title styling moved to server-side or alternative handling */
 }
-.markdown-body figure[data-rehype-pretty-code-figure] figcaption[data-rehype-pretty-code-title] + pre {
+.markdown-body
+  figure[data-rehype-pretty-code-figure]
+  figcaption[data-rehype-pretty-code-title]
+  + pre {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }

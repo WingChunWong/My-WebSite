@@ -1,6 +1,5 @@
-import React from 'react'
-import { Title2, Body1, Button } from '@fluentui/react-components'
-import { NavLink } from 'react-router-dom'
+import { Body1, Button, Title2 } from "@fluentui/react-components";
+import { NavLink } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -29,5 +28,5 @@ export default function Home() {
         </section>
       </main>
     </div>
-  )
+  );
 }

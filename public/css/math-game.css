@@ -2,14 +2,12 @@
    math-game.css — Percentage Practice Game
    ═══════════════════════════════════════════════════════════════ */
 
-
 /* ── Page Layout ──────────────────────────────────────────────── */
 .game-layout {
   display: grid;
   place-items: center;
   min-height: 70vh;
 }
-
 
 /* ── Status Bar ───────────────────────────────────────────────── */
 .status-bar {
@@ -32,9 +30,9 @@
   font-size: var(--fontSizeBase200);
   color: var(--colorNeutralForeground2);
   transition:
-    background   var(--durationFast) var(--curveEasyEase),
+    background var(--durationFast) var(--curveEasyEase),
     border-color var(--durationFast) var(--curveEasyEase),
-    box-shadow   var(--durationFast) var(--curveEasyEase);
+    box-shadow var(--durationFast) var(--curveEasyEase);
 }
 .status-item:hover {
   background: var(--colorNeutralBackground3);
@@ -53,7 +51,6 @@
   font-size: var(--fontSizeBase300);
 }
 
-
 /* ── Progress ─────────────────────────────────────────────────── */
 .progress-container {
   margin-bottom: var(--spacingVerticalL);
@@ -65,24 +62,27 @@
 .progress-bar {
   height: 100%;
   border-radius: var(--borderRadiusCircular);
-  background: linear-gradient(90deg, var(--colorBrandBackground), var(--colorBrandForeground1));
+  background: linear-gradient(
+    90deg,
+    var(--colorBrandBackground),
+    var(--colorBrandForeground1)
+  );
   transition: width var(--durationSlow) var(--curveEasyEaseMax);
   position: relative;
 }
 .progress-bar::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255,255,255,.2) 50%,
+    rgba(255, 255, 255, 0.2) 50%,
     transparent 100%
   );
   background-size: 200% 100%;
   animation: shimmer 2s var(--curveEasyEase) infinite;
 }
-
 
 /* ── Canvas Area ──────────────────────────────────────────────── */
 .canvas-container {
@@ -103,7 +103,6 @@
   border-radius: var(--borderRadiusMedium);
   max-width: 100%;
 }
-
 
 /* ── Input Group ──────────────────────────────────────────────── */
 .input-group {
@@ -133,9 +132,8 @@
   border-bottom-color: var(--colorBrandForeground1);
   box-shadow:
     0 2px 0 0 var(--colorBrandForeground1),
-    0 4px 12px rgba(71,158,245,.20);
+    0 4px 12px rgba(71, 158, 245, 0.2);
 }
-
 
 /* ── Feedback Area ────────────────────────────────────────────── */
 .feedback-area {
@@ -147,7 +145,9 @@
   color: var(--colorNeutralForeground2);
   text-align: center;
   border-radius: var(--borderRadiusMedium);
-  transition: background var(--durationFast), color var(--durationFast);
+  transition:
+    background var(--durationFast),
+    color var(--durationFast);
 }
 /* Contextual feedback colors (applied via JS className if needed) */
 .feedback-area--correct {
@@ -158,7 +158,6 @@
   background: var(--colorStatusErrorBackground);
   color: var(--colorStatusErrorForeground);
 }
-
 
 /* ═══════════════════════════════════════════════════════════════
    REPORT MODAL — Stats Grid
@@ -177,9 +176,9 @@
   padding: var(--spacingVerticalL) var(--spacingHorizontalL);
   text-align: center;
   transition:
-    background   var(--durationFast),
-    box-shadow   var(--durationFast),
-    transform    var(--durationFast);
+    background var(--durationFast),
+    box-shadow var(--durationFast),
+    transform var(--durationFast);
 }
 .stat-box:hover {
   background: var(--colorNeutralBackground4);
@@ -192,15 +191,19 @@
   font-size: var(--fontSizeBase200);
   font-weight: var(--fontWeightMedium);
   text-transform: uppercase;
-  letter-spacing: .04em;
+  letter-spacing: 0.04em;
   margin-bottom: var(--spacingVerticalXS);
 }
 .stat-box .value {
   font-size: var(--fontSizeBase600);
   font-weight: var(--fontWeightBold);
 }
-.stat-box .value--accent { color: var(--colorBrandForeground1); }
-.stat-box .value--green  { color: var(--colorPaletteGreenForeground1); }
+.stat-box .value--accent {
+  color: var(--colorBrandForeground1);
+}
+.stat-box .value--green {
+  color: var(--colorPaletteGreenForeground1);
+}
 
 .stat-time {
   font-size: var(--fontSizeBase200);
@@ -208,7 +211,6 @@
   margin-top: var(--spacingVerticalS);
   text-align: center;
 }
-
 
 /* ═══════════════════════════════════════════════════════════════
    RESPONSIVE

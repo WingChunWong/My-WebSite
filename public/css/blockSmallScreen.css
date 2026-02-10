@@ -15,8 +15,8 @@
   /* Frosted glass */
   background: linear-gradient(
     160deg,
-    rgba(0,0,0,.82) 0%,
-    rgba(15,15,15,.72) 100%
+    rgba(0, 0, 0, 0.82) 0%,
+    rgba(15, 15, 15, 0.72) 100%
   );
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
@@ -34,8 +34,8 @@
 
   /* Gentle breathing pulse */
   animation:
-    fadeIn   var(--durationSlow) var(--curveDecelerateMid) both,
-    pulse    3s var(--curveEasyEase) infinite;
+    fadeIn var(--durationSlow) var(--curveDecelerateMid) both,
+    pulse 3s var(--curveEasyEase) infinite;
   animation-delay: 0ms, 600ms;
 }
 

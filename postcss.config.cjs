@@ -1,7 +1,7 @@
 module.exports = {
   plugins: {
     cssnano: {
-      preset: ['default', { discardComments: { removeAll: true } }],
+      preset: ["default", { discardComments: { removeAll: true } }],
     },
   },
-}
+};
