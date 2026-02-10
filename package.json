@@ -5,9 +5,10 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && biome format --write .",
+    "build": "astro build",
     "preview": "astro preview",
-    "lint": "biome format --write ."
+    "lint": "biome check .",
+    "format": "biome format --write ."
   },
   "dependencies": {
     "@fluentui/tokens": "1.0.0-alpha.23",
