@@ -7,7 +7,9 @@ declare module "astro:content" {
     [key: string]: unknown;
   };
 
-  export function defineCollection<T = unknown>(config: CollectionConfig<T>): unknown;
+  export function defineCollection<T = unknown>(
+    config: CollectionConfig<T>,
+  ): unknown;
 
   export const collections: Record<string, unknown>;
 }
