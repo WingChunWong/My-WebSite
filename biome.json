@@ -6,8 +6,21 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!!**/dist"]
+    "includes": ["**", "!!**/dist", "!!.astro"]
   },
+  "overrides": [
+    {
+      "includes": ["**/*.astro", "**/*.vue"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUnusedVariables": "off",
+            "noUnusedImports": "off"
+          }
+        }
+      }
+    }
+  ],
   "formatter": {
     "enabled": true,
     "indentStyle": "space"
