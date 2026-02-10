@@ -2,11 +2,11 @@ name: Deploy GitHub Pages
 
 on:
   push:
-    workflow_dispatch:
-    workflow_run:
+    branches: [ main ]
+  workflow_dispatch: {}
+  workflow_run:
     workflows: ["Update Homework Data"]
-    types:
-      - completed
+    types: [ completed ]
 
 # 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages
 permissions:
@@ -17,10 +17,9 @@ permissions:
 # 只允许同时进行一次部署，跳过正在运行和最新队列之间的运行队列
 # 但是，不要取消正在进行的运行，因为我们希望允许这些生产部署完成
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
 
-jobs:
   build:
     runs-on: ubuntu-latest
     steps:
@@ -40,12 +39,12 @@ jobs:
         uses: actions/configure-pages@v4
       - name: Install dependencies
         run: pnpm install
-      - name: Build with VitePress
+      - name: Build
         run: pnpm build
-      - name: Upload artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .vitepress/dist
+          path: dist
 
   # 部署工作
   deploy:
