@@ -27,11 +27,9 @@ const router = createBrowserRouter(
     },
   ],
   {
-    // cast to any to avoid TypeScript excess property checks for upcoming/unstable future flags
-    future: ({
-      v7_startTransition: true,
+    future: {
       v7_relativeSplatPath: true,
-    } as any),
+    },
   }
 )
 

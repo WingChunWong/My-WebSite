@@ -60,6 +60,13 @@ function getDeviconNameForLanguage(language: string): string | null {
   return mapping[normalized] || null
 }
 
+/** Props shape for the <code> element inside a <pre> block */
+interface CodeElementProps {
+  className?: string
+  'data-language'?: string
+  children?: React.ReactNode
+}
+
 /** GitHub-style code block with language label + icon + copy button */
 function CodeBlock({ children, language }: { children: React.ReactNode; language: string }) {
   const [copied, setCopied] = useState(false)
@@ -113,7 +120,7 @@ const mdxComponents = {
   pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) => {
     // rehype-pretty-code wraps code in <figure>; in that case children
     // arrives as a <code> element. Plain fenced blocks: <pre><code>…</code></pre>
-    const codeEl = React.Children.only(children) as React.ReactElement<any>
+    const codeEl = React.Children.only(children) as React.ReactElement<CodeElementProps>
     const lang = (codeEl.props?.className ?? '').replace(/language-/, '') ||
                  codeEl.props?.['data-language'] || 'plaintext'
     return <CodeBlock language={lang}>{children}</CodeBlock>
@@ -144,7 +151,7 @@ export default function BlogPostPage() {
 
   const { frontmatter, Component } = post
 
-  const MDXComponent = Component as any
+  const MDXComponent = Component as React.ComponentType<{ components: typeof mdxComponents }>
 
   return (
     <article className="blog-article">

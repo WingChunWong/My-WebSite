@@ -88,8 +88,9 @@ export default function HwList(): JSX.Element {
         if (Array.isArray(json)) setItems(json)
         else if (json.items && Array.isArray(json.items)) setItems(json.items)
         setShowUpload(false)
-      } catch (err: any) {
-        alert('解析文件失败：' + err?.message)
+      } catch (err: unknown) {
+        const message = err instanceof Error ? err.message : String(err)
+        alert('解析文件失败：' + message)
       }
     }
     reader.readAsText(f)
@@ -141,8 +142,9 @@ export default function HwList(): JSX.Element {
       link.click()
       link.remove()
       temp.remove()
-    } catch (err: any) {
-      alert('生成圖片失敗：' + (err?.message || err))
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : String(err)
+      alert('生成圖片失敗：' + message)
     }
   }
 

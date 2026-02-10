@@ -27,18 +27,18 @@ export default defineConfig(async () => {
               // use GitHub dark theme from shiki
               theme: 'github-dark',
               // ensure empty lines are preserved so line numbers align
-              onVisitLine: (node: any) => {
+              onVisitLine: (node: { children: { type: string; value: string }[] }) => {
                 if (node.children.length === 0) {
                   node.children = [{ type: 'text', value: ' ' }]
                 }
               },
               // keep background so our CSS can override appearance
               keepBackground: true,
-            } as any,
+            },
           ],
         ],
       }) },
       reactPlugin({ include: /\.(jsx|tsx)$/ }),
     ],
-  } as any)
+  })
 })

@@ -235,10 +235,8 @@
 }
 .status-badge i {
   font-size: 12px;
+  margin-right: 8px;
 }
-
-/* 微调图标与文本间距，文本为可移动元素 */
-.status-badge i { margin-right: 8px; }
 .status-badge .badge-text {
   display: inline-block;
   max-width: 160px;

@@ -12,7 +12,7 @@ type Problem = {
   isIncrease: boolean
   type: number
   answer: number
-  display: { old: any; mid: string; new: any; mode: string }
+  display: { old: number | string; mid: string; new: number | string; mode: string }
 }
 
 export default function MathGame() {
@@ -115,8 +115,8 @@ export default function MathGame() {
     const sign = isIncrease ? '+' : '-'
     const factorText = `( 1 ${sign} ${percent}% )`
     const problem: Problem = {
-      old: 0 as any,
-      new: 0 as any,
+      old: 0,
+      new: 0,
       percent,
       isIncrease,
       type,
