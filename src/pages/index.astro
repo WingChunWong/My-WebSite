@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="WingChun's Website">
+  <div class="projects">
+    <div class="card-section">
+      <h2>在線家課表</h2>
+      <p class="card-desc">用於管理和查看家課，便捷瀏覽作業清單。</p>
+      <div class="card-actions">
+        <a href="/hw-list">
+          <fluent-button appearance="outline">訪問項目 ➜</fluent-button>
+        </a>
+      </div>
+    </div>
+
+    <div class="card-section">
+      <h2>百分比變化練習</h2>
+      <p class="card-desc">
+        專注於百分比變化計算的練習網頁工具，提供求新值、求原值、算變化百分比等題型訓練，鞏固數學知識點，提升百分比運算能力。
+      </p>
+      <div class="card-actions">
+        <a href="/math-game">
+          <fluent-button appearance="outline">訪問項目 ➜</fluent-button>
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .projects {
+    display: grid;
+    gap: 16px;
+  }
+  .card-section {
+    padding: 20px;
+    background: var(--colorNeutralBackground2);
+    border: 1px solid var(--colorNeutralStroke2);
+    border-radius: 12px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.24), 0 2px 4px rgba(0,0,0,0.28);
+  }
+  .card-section h2 {
+    margin: 0 0 12px 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .card-desc {
+    margin: 0;
+    color: var(--colorNeutralForeground2);
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .card-actions {
+    margin-top: 16px;
+    display: flex;
+    gap: 8px;
+  }
+  .card-actions a {
+    text-decoration: none;
+  }
+</style>
