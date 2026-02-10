@@ -55,13 +55,13 @@
 .progress-container {
   margin-bottom: var(--spacingVerticalL);
   height: 6px;
-  border-radius: var(--borderRadiusCircular);
+  border-radius: var(--borderRadiusMedium);
   background: var(--colorNeutralBackground4);
   overflow: hidden;
 }
 .progress-bar {
   height: 100%;
-  border-radius: var(--borderRadiusCircular);
+  border-radius: var(--borderRadiusMedium);
   background: linear-gradient(
     90deg,
     var(--colorBrandBackground),
