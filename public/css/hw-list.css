@@ -112,7 +112,7 @@
   width: 100%;
 }
 .stat-icon i {
-  font-size: 22px;
+  font-size: var(--fontSizeBase600);
   color: var(--colorBrandForeground1);
 }
 .stat-title {
@@ -214,22 +214,22 @@
   align-items: center;
   gap: var(--spacingHorizontalSNudge);
   padding: calc(var(--spacingVerticalXS) + 2px) var(--spacingHorizontalMNudge);
-  border-radius: var(--borderRadiusSmall); /* 改为带圆角的方形 */
-  min-width: 88px; /* 保持视觉宽度一致 */
-  justify-content: center; /* 内容居中 */
+  border-radius: var(--borderRadiusSmall);
+  min-width: 88px;
+  justify-content: center;
   font-size: var(--fontSizeBase200);
   font-weight: var(--fontWeightSemibold);
   line-height: 1;
   white-space: nowrap;
   border: var(--strokeWidthThin) solid transparent;
   transition:
-    background var(--durationFast),
-    transform var(--durationFast),
-    box-shadow var(--durationFast);
+    background var(--durationFast) var(--curveEasyEase),
+    transform var(--durationFast) var(--curveEasyEase),
+    box-shadow var(--durationFast) var(--curveEasyEase);
 }
 .status-badge i {
-  font-size: 12px;
-  margin-right: 8px;
+  font-size: var(--fontSizeBase200);
+  margin-right: var(--spacingHorizontalS);
 }
 .status-badge .badge-text {
   display: inline-block;
@@ -237,7 +237,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   vertical-align: middle;
-  transform: translateX(2px); /* 微移动文本以便视觉微调 */
+  transform: translateX(var(--spacingHorizontalXXS));
 }
 
 .status-badge.overdue {
@@ -261,7 +261,7 @@
 }
 
 .badge-pill {
-  padding: 3px 10px;
+  padding: var(--spacingHorizontalXXS) var(--spacingHorizontalMNudge);
   border-radius: var(--borderRadiusCircular);
   font-size: var(--fontSizeBase200);
   font-weight: var(--fontWeightSemibold);

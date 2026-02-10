@@ -122,12 +122,14 @@
   --spacingHorizontalXXL: 24px;
   --spacingHorizontalXXXL: 32px;
   --spacingVerticalXS: 4px;
+  --spacingVerticalSNudge: 6px;
   --spacingVerticalS: 8px;
   --spacingVerticalMNudge: 10px;
   --spacingVerticalM: 12px;
   --spacingVerticalL: 16px;
   --spacingVerticalXL: 20px;
   --spacingVerticalXXL: 24px;
+  --spacingVerticalXXXL: 32px;
 
   /* ── Duration & Curve ───────────────────────────────────────── */
   --durationFaster: 50ms;

@@ -85,10 +85,10 @@
   color: var(--colorNeutralForeground2);
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacingHorizontalS);
 }
 .nav-github i {
-  font-size: 18px;
+  font-size: var(--fontSizeBase500);
 }
 .nav-github:hover {
   color: var(--colorBrandForeground1);
@@ -98,10 +98,11 @@
    BUTTON — Fluent v9 Appearances
    ═══════════════════════════════════════════════════════════════ */
 .fui-Button {
+  --btn-gap: var(--spacingHorizontalSNudge);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacingHorizontalSNudge);
+  gap: var(--btn-gap);
   padding: var(--spacingVerticalS) var(--spacingHorizontalL);
   min-height: 32px;
   border-radius: var(--borderRadiusMedium);
@@ -141,11 +142,35 @@
   cursor: not-allowed;
   box-shadow: none;
   pointer-events: none;
+  opacity: 0.85;
 }
 .fui-Button:focus-visible {
-  outline: var(--strokeWidthThick) solid var(--colorStrokeFocus2);
-  outline-offset: 1px;
-  box-shadow: 0 0 0 1px var(--colorStrokeFocus1);
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.02),
+    0 0 0 6px rgba(71, 158, 245, 0.18);
+  outline: none;
+  border-radius: var(--borderRadiusMedium);
+}
+/* Icon inside button */
+.fui-Button .btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Icon-only button */
+.fui-Button--icon {
+  padding: var(--spacingVerticalXS);
+  width: 36px;
+  height: 36px;
+  min-height: 0;
+  border-radius: var(--borderRadiusCircular);
+  justify-content: center;
+}
+/* Busy state */
+.fui-Button[aria-busy="true"] {
+  cursor: progress;
+  pointer-events: none;
+  opacity: 0.9;
 }
 /* Size variants */
 .fui-Button--small {
@@ -349,11 +374,11 @@
   background: transparent;
   border: none;
   color: var(--colorNeutralForeground3);
-  font-size: 18px;
+  font-size: var(--fontSizeBase500);
   cursor: pointer;
   transition:
     background var(--durationFast) var(--curveEasyEase),
-    color var(--durationFast);
+    color var(--durationFast) var(--curveEasyEase);
 }
 .modal-close:hover {
   background: var(--colorSubtleBackgroundHover);
@@ -394,6 +419,7 @@
   padding: var(--spacingVerticalXL) var(--spacingHorizontalXL);
   background: var(--colorNeutralBackground2);
   border: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+  border-radius: var(--borderRadiusLarge);
 }
 .page-content {
   max-width: 100%;
@@ -421,8 +447,8 @@
   font-size: var(--fontSizeBase300);
   cursor: pointer;
   transition:
-    background var(--durationFast),
-    border-color var(--durationFast);
+    background var(--durationFast) var(--curveEasyEase),
+    border-color var(--durationFast) var(--curveEasyEase);
 }
 .custom-reset-btn:hover {
   background: var(--colorNeutralBackground4);
@@ -437,8 +463,8 @@
   color: var(--colorNeutralForeground1);
   cursor: pointer;
   transition:
-    background var(--durationFast),
-    border-color var(--durationFast);
+    background var(--durationFast) var(--curveEasyEase),
+    border-color var(--durationFast) var(--curveEasyEase);
 }
 .download-badge:hover {
   background: var(--colorNeutralBackground4);
