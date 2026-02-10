@@ -36,9 +36,7 @@
 - DeepSeek
 - 豆包（Doubao）
 - ChatGPT
-
-感謝這些工具在文字整理、內容調整及思路規劃上的支持，使開發過程更順利。
-
+- Claude
 
 ## 📜 許可證
 本項目基於 [GNU General Public License v3.0](LICENSE) 授權開放原始碼。
