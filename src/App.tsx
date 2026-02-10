@@ -11,6 +11,7 @@ export default function App() {
             <NavLink to="/" className="nav-link">Home</NavLink>
             <NavLink to="/hw-list" className="nav-link">Hw List</NavLink>
             <NavLink to="/math-game" className="nav-link">Math Game</NavLink>
+            <NavLink to="/blog" className="nav-link">Blog</NavLink>
             <a href="https://github.com/WingChunWong" className="nav-link nav-github" target="_blank" rel="noopener noreferrer">
               <i className="bi bi-github" aria-hidden="true"></i>
               <span className="sr-only">GitHub</span>
