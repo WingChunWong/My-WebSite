@@ -1,18 +1,17 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import type { MarkdownHeading } from "astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
-  const posts: CollectionEntry<"blog">[] = await getCollection("blog");
-  return posts.map((post: CollectionEntry<"blog">) => ({
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
   }));
 }
 
-const post = Astro.props.post as CollectionEntry<"blog">;
+const { post } = Astro.props;
 const { Content, headings } = await render(post);
 
 const formattedDate = post.data.date.toLocaleDateString("zh-CN", {
@@ -38,9 +37,9 @@ const formattedDate = post.data.date.toLocaleDateString("zh-CN", {
           {
             post.data.tags && post.data.tags.length > 0 && (
               <div class="blog-article-tags">
-                        {post.data.tags.map((tag: string) => (
-                          <span class="blog-tag">{tag}</span>
-                        ))}
+                {post.data.tags.map((tag) => (
+                  <span class="blog-tag">{tag}</span>
+                ))}
               </div>
             )
           }
