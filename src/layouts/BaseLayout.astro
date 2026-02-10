@@ -1,9 +1,13 @@
 ---
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title = "WingChun's Website" }: Props = Astro.props;
+const {
+  title = "WingChun's Website",
+  description = "Welcome to WingChun's Website",
+}: Props = Astro.props;
 const currentPath = Astro.url.pathname;
 
 const navLinks = [
@@ -26,6 +30,7 @@ function isActive(href: string): boolean {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no" />
     <title>{title}</title>
+    <meta name="description" content={description} />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
       rel="stylesheet"
