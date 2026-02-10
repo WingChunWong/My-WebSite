@@ -1,9 +1,12 @@
 ---
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+const _posts = await getCollection("blog");
+const posts: CollectionEntry<"blog">[] = _posts.sort(
+  (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
+    new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
 );
 ---
 
@@ -21,7 +24,7 @@ const posts = (await getCollection("blog")).sort(
           <span class="blog-count">{posts.length} 篇文章</span>
         </div>
         <div class="blog-grid">
-          {posts.map((post) => (
+          {posts.map((post: CollectionEntry<"blog">) => (
             <a href={`/blog/${post.id}`} class="blog-card">
               <div class="blog-card-inner">
                 {post.data.cover && (
@@ -45,7 +48,7 @@ const posts = (await getCollection("blog")).sort(
                     </time>
                     {post.data.tags && post.data.tags.length > 0 && (
                       <div class="blog-card-tags">
-                        {post.data.tags.map((tag) => (
+                        {post.data.tags.map((tag: string) => (
                           <fluent-badge appearance="ghost">{tag}</fluent-badge>
                         ))}
                       </div>
