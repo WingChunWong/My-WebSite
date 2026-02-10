@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "pnpm run minify:css && vite build",
+    "build": "biome format --write . && vite build",
     "preview": "vite preview",
     "minify:css": "postcss public/css/*.css -d public/css/min --ext .min.css",
     "lint:fix": "biome format --write ."
