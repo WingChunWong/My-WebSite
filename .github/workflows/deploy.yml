@@ -23,24 +23,34 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+
+      - name: Checkout Code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0 # 获取完整的 git 历史记录用于时间戳
+
       - uses: pnpm/action-setup@v3
         with:
           version: latest
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
       - name: Install dependencies
         run: pnpm install
+
+      - name: Format Code
+        run: pnpm format
+        
       - name: Build
         run: pnpm build
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
