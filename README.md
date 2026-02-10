@@ -1,7 +1,6 @@
 # 🌐 My WebSite
 
-這是一個自用小型網站，整合了日常使用的實用工具與練習遊戲，採用 GNU General Public License v3.0 許可證授權。
-
+這是一個自用小型網站，整合了日常使用的實用工具與練習遊戲。
 ## 🏠 首頁
 乾淨直觀的入口頁面，提供快速導航至各功能模塊：
 - 支持深色/淺色模式即時切換
@@ -39,4 +38,4 @@
 - Claude
 
 ## 📜 許可證
-本項目基於 [GNU General Public License v3.0](LICENSE) 授權開放原始碼。
+本項目基於 [MIT License](LICENSE) 授權開放原始碼。
