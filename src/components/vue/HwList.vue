@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
 import html2canvas from "html2canvas";
+import { computed, ref } from "vue";
 import {
   countDueBy as countDueByUtil,
   countIssuedBy as countIssuedByUtil,
   filterHomework,
   getHomeworkStatus,
-  isHwArray,
   type HwItem,
+  isHwArray,
 } from "../../lib/homework";
 
 // Props passed from Astro server-side rendering
