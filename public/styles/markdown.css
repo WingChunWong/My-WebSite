@@ -1012,6 +1012,115 @@ details .anchor {
   height: 1em;
 }
 
+/* ── Definition List ── */
+.markdown-body dl {
+  margin: 1rem 0;
+  background-color: rgba(110, 118, 129, 0.1);
+  padding: 1rem;
+  border-left: 3px solid rgba(110, 118, 129, 0.5);
+  border-radius: 4px;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 0.75rem;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 600;
+  color: #79b8ff;
+}
+
+.markdown-body dl dt:first-child {
+  margin-top: 0;
+}
+
+.markdown-body dl dd {
+  padding: 0 0 0 1rem;
+  margin: 0.25rem 0 0.75rem 0;
+  color: #9198a1;
+}
+
+.markdown-body dl dd p {
+  margin: 0.25rem 0;
+}
+
+.markdown-body dl dd:last-child {
+  margin-bottom: 0;
+}
+
+/* 支持 remark-definition-list 输出的结构 */
+.markdown-body .definition-list {
+  display: block;
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: rgba(110, 118, 129, 0.1);
+  border-left: 3px solid rgba(110, 118, 129, 0.5);
+  border-radius: 4px;
+}
+
+/* 定义列表中的元素 */
+.markdown-body .definition-list > div {
+  margin: 0 0 0 0;
+}
+
+/* 术语（奇数索引 0, 2, 4） */
+.markdown-body .definition-list > div:nth-child(4n + 1) {
+  font-weight: 600;
+  font-size: 1em;
+  color: #79b8ff;
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+  padding: 0;
+  font-style: italic;
+}
+
+.markdown-body .definition-list > div:nth-child(4n + 1):first-child {
+  margin-top: 0;
+}
+
+/* 定义（偶数和其他索引 1, 2, 3, 5, 6, 7） */
+.markdown-body .definition-list > div:nth-child(4n + 2),
+.markdown-body .definition-list > div:nth-child(4n + 3),
+.markdown-body .definition-list > div:nth-child(4n) {
+  padding-left: 1rem;
+  margin-bottom: 0.75rem;
+  color: #9198a1;
+}
+
+.markdown-body .definition-list > div:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body .definition-list > div p {
+  margin: 0.25rem 0;
+}
+
+/* ── KaTeX Math Rendering ── */
+.markdown-body .math-display,
+.markdown-body .math-inline {
+  font-family:
+    "Cambria Math", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    system-ui, sans-serif;
+}
+
+.markdown-body .math-inline {
+  display: inline;
+}
+
+.markdown-body .math-display {
+  display: block;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.markdown-body .katex {
+  font-size: 1em;
+}
+
+.markdown-body .katex-html {
+  white-space: normal;
+}
+
 /* ── Task list ── */
 .markdown-body .task-list-item {
   list-style: none !important;

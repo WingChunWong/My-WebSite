@@ -14,7 +14,15 @@ export async function getStaticPaths() {
   }));
 }
 
-const { post } = Astro.props as { post: BlogPost };
+type BlogFrontmatter = {
+  date: Date;
+  title: string;
+  tags?: string[];
+  description?: string;
+};
+
+// Ensure post.data is correctly typed instead of unknown
+const { post } = Astro.props as { post: BlogPost & { data: BlogFrontmatter } };
 const { Content, headings } = await render(post);
 
 const formattedDate = post.data.date.toLocaleDateString("zh-CN", {
@@ -101,16 +109,27 @@ const formattedDate = post.data.date.toLocaleDateString("zh-CN", {
 </BaseLayout>
 
 <!-- Client-side: code blocks (copy button + lang icon) + external links + TOC -->
-<script>
+<script lang="ts">
   document.addEventListener("DOMContentLoaded", () => {
     // Wrap code blocks with header (language icon + copy button)
     document.querySelectorAll(".markdown-body pre").forEach((pre) => {
       if (pre.closest(".blog-code-block")) return;
 
       const code = pre.querySelector("code");
+      // Robust language detection: check <pre data-language>, code.dataset,
+      // class tokens like "language-..." or "lang-...", then fallback.
+          const extractFromClass = (cls) => {
+            if (!cls) return null;
+            const m = cls.match(/(?:language-|lang(?:uage)?-)([a-zA-Z0-9_+\-]+)/i);
+            return m ? m[1] : null;
+          };
+
       const lang =
-        (code?.className || "").replace(/language-/, "") ||
+        pre.getAttribute("data-language") ||
         code?.getAttribute("data-language") ||
+        code?.dataset?.language ||
+        extractFromClass(code?.className) ||
+        extractFromClass(pre?.className) ||
         "plaintext";
 
       const wrapper = document.createElement("div");
@@ -122,7 +141,7 @@ const formattedDate = post.data.date.toLocaleDateString("zh-CN", {
       const label = document.createElement("div");
       label.className = "blog-code-label";
 
-      const mapping: Record<string, string> = {
+      const mapping = {
         typescript: "typescript",
         javascript: "javascript",
         python: "python",
@@ -177,7 +196,7 @@ const formattedDate = post.data.date.toLocaleDateString("zh-CN", {
       header.appendChild(label);
       header.appendChild(copyBtn);
 
-      pre.parentNode!.insertBefore(wrapper, pre);
+      pre.parentNode.insertBefore(wrapper, pre);
       wrapper.appendChild(header);
       wrapper.appendChild(pre);
     });
@@ -215,7 +234,7 @@ const formattedDate = post.data.date.toLocaleDateString("zh-CN", {
     document.querySelectorAll(".toc-item").forEach((item) => {
       item.addEventListener("click", (e) => {
         e.preventDefault();
-        const href = (item as HTMLAnchorElement).getAttribute("href");
+        const href = item.getAttribute("href");
         if (!href || !href.startsWith("#")) return;
 
         const id = href.slice(1);

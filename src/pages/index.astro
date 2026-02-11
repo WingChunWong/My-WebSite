@@ -3,60 +3,185 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="WingChun's Website">
-  <div class="projects">
-    <div class="card-section">
-      <h2>在線家課表</h2>
-      <p class="card-desc">用於管理和查看家課，便捷瀏覽作業清單。</p>
-      <div class="card-actions">
-        <a href="/hw-list">
-          <fluent-button appearance="outline">訪問項目 ➜</fluent-button>
+  <div class="profile-container">
+    <div class="hero-section">
+      <h1>Hi 👋, I'm WingChunWong</h1>
+      <h3>A student from Hong Kong</h3>
+    </div>
+
+    <fluent-divider></fluent-divider>
+
+    <div class="about-section">
+      <ul>
+        <li>🔭 I'm currently working on <a href="https://github.com/WingChunWong/My-WebSite">My Website</a></li>
+        <li>💬 Ask me about <strong>AI</strong></li>
+      </ul>
+    </div>
+
+    <fluent-divider></fluent-divider>
+
+    <div class="contact-section">
+      <h3>📫 Contact Me</h3>
+      <div class="contact-links" style="text-align: left;">
+        <a href="https://t.me/wingchunwong111">
+          <img src="https://img.shields.io/badge/Telegram-2CA5E0?style=flat&logo=telegram&logoColor=white" alt="Telegram" />
+        </a>
+        <a href="mailto:lshengevery@gmail.com">
+          <img src="https://img.shields.io/badge/Gmail-D14836?style=flat&logo=gmail&logoColor=white" alt="Gmail" />
+        </a>
+        <a>
+          <img src="https://img.shields.io/badge/QQ-2750821684-0099FF?style=flat&logo=tencentqq&logoColor=white" alt="QQ" />
         </a>
       </div>
     </div>
 
-    <div class="card-section">
-      <h2>百分比變化練習</h2>
-      <p class="card-desc">
-        專注於百分比變化計算的練習網頁工具，提供求新值、求原值、算變化百分比等題型訓練，鞏固數學知識點，提升百分比運算能力。
-      </p>
-      <div class="card-actions">
-        <a href="/math-game">
-          <fluent-button appearance="outline">訪問項目 ➜</fluent-button>
-        </a>
+    <fluent-divider></fluent-divider>
+
+    <div class="stats-section">
+      <h3>⚡ GitHub Stats</h3>
+      <div class="stats-grid">
+        <img src="./profile/stats.svg" alt="wingchunwong stats" height="140px" />
+        <img src="./profile/top-langs.svg" alt="wingchunwong toplangs" height="140px" />
+        <img src="https://github-readme-streak-stats.herokuapp.com/?user=wingchunwong&theme=default" alt="GitHub Streak" height="140px" />
       </div>
     </div>
   </div>
 </BaseLayout>
 
 <style>
-  .projects {
-    display: grid;
-    gap: 16px;
+  .profile-container {
+    max-width: 900px;
+    margin: 0 auto;
   }
-  .card-section {
-    padding: 20px;
-    background: var(--colorNeutralBackground2);
-    border: 1px solid var(--colorNeutralStroke2);
-    border-radius: 12px;
-    box-shadow: 0 0 2px rgba(0,0,0,0.24), 0 2px 4px rgba(0,0,0,0.28);
+
+  .hero-section {
+    text-align: center;
+    margin-bottom: 32px;
   }
-  .card-section h2 {
-    margin: 0 0 12px 0;
+
+  .hero-section h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    color: var(--colorNeutralForeground1);
+  }
+
+  .hero-section h3 {
     font-size: 20px;
-    font-weight: 600;
-  }
-  .card-desc {
+    font-weight: 500;
     margin: 0;
     color: var(--colorNeutralForeground2);
-    font-size: 14px;
-    line-height: 20px;
   }
-  .card-actions {
-    margin-top: 16px;
-    display: flex;
-    gap: 8px;
+
+  .about-section {
+    margin: 24px 0;
   }
-  .card-actions a {
+
+  .about-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .about-section li {
+    padding: 8px 0;
+    font-size: 18px;
+    color: var(--colorNeutralForeground2);
+    line-height: 1.6;
+  }
+
+  .about-section a {
+    color: var(--colorBrandForeground1);
     text-decoration: none;
+    font-weight: 600;
+  }
+
+  .about-section a:hover {
+    text-decoration: underline;
+  }
+
+  .contact-section {
+    margin: 24px 0;
+  }
+
+  .contact-section h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    color: var(--colorNeutralForeground1);
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .contact-links a,
+  .contact-links span {
+    display: inline-block;
+    transition: transform 100ms ease;
+  }
+
+  .contact-links a:hover {
+    transform: translateY(-2px);
+  }
+
+  .contact-links img {
+    height: 24px;
+  }
+
+  .stats-section {
+    margin: 24px 0;
+  }
+
+  .stats-section h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    text-align: center;
+    color: var(--colorNeutralForeground1);
+  }
+
+  .stats-grid {
+    display: flex;
+    gap: 5px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .stats-grid img {
+    max-width: 100%;
+    height: 150px;
+  }
+
+  fluent-divider {
+    margin: 16px 0;
+  }
+
+  @media (max-width: 768px) {
+    .hero-section h1 {
+      font-size: 24px;
+    }
+
+    .hero-section h3 {
+      font-size: 16px;
+    }
+
+    .stats-grid {
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .stats-grid img {
+      height: auto;
+      max-width: 100%;
+    }
+
+    .about-section li {
+      font-size: 14px;
+    }
   }
 </style>
