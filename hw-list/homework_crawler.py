@@ -210,6 +210,7 @@ def save_data_to_json(homework_data, filename='homework_data.json'):
     try:
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(homework_data, f, ensure_ascii=False, indent=2)
+            f.write('\n')
         
         Logger.success(f"資料已儲存到 {filename}: {len(homework_data)} 條記錄")
         return True
