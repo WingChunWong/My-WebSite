@@ -1,98 +1,65 @@
 <script setup lang="ts">
+import { computed, ref } from "vue";
 import html2canvas from "html2canvas";
-import { computed, onMounted, ref } from "vue";
+import {
+  countDueBy as countDueByUtil,
+  countIssuedBy as countIssuedByUtil,
+  filterHomework,
+  getHomeworkStatus,
+  isHwArray,
+  type HwItem,
+} from "../../lib/homework";
 
-type HwItem = {
-  id: string | number;
-  subject: string;
-  homework_name: string;
-  issue_date: string;
-  due_date: string;
-  class_group?: string;
-  remarks?: string;
-};
-
-function getTodayYMD(): string {
-  const d = new Date();
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+// Props passed from Astro server-side rendering
+interface Props {
+  data: HwItem[];
+  subjects: string[];
+  initialDate: string;
+  isDataLoaded: boolean;
 }
 
-const items = ref<HwItem[] | null>(null);
-const showUpload = ref(false);
-const issueDate = ref(getTodayYMD());
+const props = withDefaults(defineProps<Props>(), {
+  data: () => [],
+  subjects: () => [],
+  initialDate: "",
+  isDataLoaded: false,
+});
+
+// Client-side state initialized from props
+const items = ref<HwItem[]>(props.data);
+const showUpload = ref(!props.isDataLoaded || props.data.length === 0);
+const issueDate = ref(props.initialDate);
 const subject = ref("");
 const dueStatus = ref("");
 const tableRef = ref<HTMLTableElement | null>(null);
-
-const subjects = computed(() => {
-  if (!items.value) return [];
-  return Array.from(new Set(items.value.map((i) => i.subject))).sort();
-});
+const propsSubjects = ref<string[]>(props.subjects);
 
 const filtered = computed(() => {
-  if (!items.value) return [];
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  return items.value.filter((it) => {
-    if (issueDate.value && it.issue_date !== issueDate.value) return false;
-    if (subject.value && it.subject !== subject.value) return false;
-    if (dueStatus.value) {
-      const due = new Date(it.due_date);
-      due.setHours(0, 0, 0, 0);
-      if (dueStatus.value === "overdue" && due >= today) return false;
-      if (
-        dueStatus.value === "today" &&
-        due.toDateString() !== today.toDateString()
-      )
-        return false;
-      if (dueStatus.value === "future" && due <= today) return false;
-    }
-    return true;
+  if (!items.value || items.value.length === 0) return [];
+  return filterHomework(items.value, {
+    issueDate: issueDate.value,
+    subject: subject.value,
+    dueStatus: dueStatus.value as "overdue" | "today" | "future" | undefined,
   });
 });
 
+// Use imported helper function
 function getStatus(dueDateStr: string) {
-  const due = new Date(dueDateStr);
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  due.setHours(0, 0, 0, 0);
-  const isOverdue = due < today;
-  const isToday = due.toDateString() === today.toDateString();
-  if (isOverdue)
-    return { cls: "overdue", text: "已過期", icon: "exclamation-circle" };
-  if (isToday) return { cls: "today", text: "今天到期", icon: "clock" };
-  return { cls: "normal", text: "進行中", icon: "arrow-right" };
+  return getHomeworkStatus(dueDateStr);
 }
 
 function countIssuedBy(dateYmd: string): number {
-  if (!items.value) return 0;
-  return items.value.filter((i) => i.issue_date === dateYmd).length;
+  return items.value ? countIssuedByUtil(items.value, dateYmd) : 0;
 }
 
 function countDueBy(dateYmd: string): number {
-  if (!items.value) return 0;
-  return items.value.filter((i) => i.due_date === dateYmd).length;
+  return items.value ? countDueByUtil(items.value, dateYmd) : 0;
 }
 
 function resetFilters() {
   subject.value = "";
   dueStatus.value = "";
-  issueDate.value = getTodayYMD();
-}
-
-function isHwArray(v: unknown): v is HwItem[] {
-  return (
-    Array.isArray(v) &&
-    v.every((it) => {
-      if (it == null || typeof it !== "object") return false;
-      const obj = it as Record<string, unknown>;
-      return (
-        typeof obj.id !== "undefined" &&
-        typeof obj.subject === "string" &&
-        typeof (obj as Record<string, unknown>).homework_name === "string"
-      );
-    })
-  );
+  issueDate.value = new Date().toISOString().split("T")[0];
 }
 
 function handleFileUpload(e: Event) {
@@ -108,6 +75,12 @@ function handleFileUpload(e: Event) {
       else if (parsedObj.items && isHwArray(parsedObj.items))
         items.value = parsedObj.items;
       else throw new Error("數據格式不正確");
+
+      // Update subjects list if new data has different subjects
+      const newSubjects = Array.from(
+        new Set(items.value.map((i) => i.subject)),
+      ).sort();
+      propsSubjects.value = newSubjects;
       showUpload.value = false;
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);
@@ -169,40 +142,7 @@ async function downloadScreenshot() {
   }
 }
 
-onMounted(() => {
-  const paths = [
-    "/data/homework_data.json",
-    "/hw-list/homework_data.json",
-    "/homework_data.json",
-  ];
-  let tried = 0;
-
-  function tryLoad() {
-    if (tried >= paths.length) {
-      showUpload.value = true;
-      return;
-    }
-    const path = paths[tried++];
-    fetch(path, { cache: "no-store" })
-      .then((r) => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.json() as unknown;
-      })
-      .then((json: unknown) => {
-        if (Array.isArray(json) && isHwArray(json)) items.value = json;
-        else {
-          const obj = json as { items?: unknown };
-          if (obj.items && isHwArray(obj.items)) items.value = obj.items;
-          else throw new Error("數據格式不正確");
-        }
-      })
-      .catch(() => tryLoad());
-  }
-  tryLoad();
-});
-
-// 某些静态分析器无法检测 template 中的使用，显式引用以避免误报
-void subjects;
+// Explicit references to suppress static analyzer warnings
 void filtered;
 void getStatus;
 void countIssuedBy;
@@ -213,7 +153,17 @@ void downloadScreenshot;
 </script>
 
 <template>
-    <div v-if="items === null" style="display: flex; align-items: center; justify-content: center; min-height: 300px; gap: 8px; color: var(--colorNeutralForeground3);">
+  <div
+    v-if="!isDataLoaded && items.length === 0"
+    style="
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+      gap: 8px;
+      color: var(--colorNeutralForeground3);
+    "
+  >
     <fluent-spinner></fluent-spinner>
     <span>加載中…</span>
   </div>
@@ -235,7 +185,9 @@ void downloadScreenshot;
         <fluent-label>科目</fluent-label>
         <select class="filter-input" v-model="subject">
           <option value="">全部</option>
-          <option v-for="s in subjects" :key="s" :value="s">{{ s }}</option>
+          <option v-for="s in propsSubjects" :key="s" :value="s">
+            {{ s }}
+          </option>
         </select>
       </div>
       <div class="filter-item">

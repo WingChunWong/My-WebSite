@@ -1,8 +1,56 @@
 ---
+import { readFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+
 import VueHwList from "../components/vue/HwList.vue";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import {
+  type HwItem,
+  extractSubjects,
+  getTodayYMD,
+  parseHomeworkData,
+} from "../lib/homework";
+
+// Load homework data from JSON file during build
+let items: HwItem[] = [];
+const todayYMD = getTodayYMD();
+
+try {
+  // Get the directory of this Astro file and resolve relative to project root
+  const __dirname = dirname(fileURLToPath(import.meta.url));
+  const projectRoot = resolve(__dirname, "../../");
+  const filePath = resolve(projectRoot, "hw-list/homework_data.json");
+
+  const fileContent = readFileSync(filePath, "utf-8");
+  const data = JSON.parse(fileContent);
+
+  const parsed = parseHomeworkData(data);
+  if (parsed) {
+    items = parsed;
+  } else {
+    console.warn(
+      "Invalid homework data format from hw-list/homework_data.json",
+    );
+  }
+} catch (error) {
+  // If file read fails, data will be empty but Vue component can still show upload UI
+  console.warn(
+    "Could not load homework data during SSR - will load from client",
+  );
+}
+
+// Precompute derived data to reduce client-side calculations
+const subjects = extractSubjects(items);
+const isDataLoaded = items.length > 0;
 ---
 
 <BaseLayout title="作業列表">
-  <VueHwList client:load />
+  <VueHwList
+    client:visible
+    data={items}
+    subjects={subjects}
+    initialDate={todayYMD}
+    isDataLoaded={isDataLoaded}
+  />
 </BaseLayout>

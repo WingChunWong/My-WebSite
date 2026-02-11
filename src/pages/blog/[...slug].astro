@@ -8,7 +8,7 @@ type BlogPost = CollectionEntry<"blog">;
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map((post) => ({
+  return posts.map((post: BlogPost) => ({
     params: { slug: post.id },
     props: { post },
   }));
