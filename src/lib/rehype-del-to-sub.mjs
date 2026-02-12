@@ -1,5 +1,5 @@
-import { visit } from "unist-util-visit";
 import { h } from "hastscript";
+import { visit } from "unist-util-visit";
 
 /**
  * Rehype 插件：在 HTML 层面处理下标、上标和定义列表

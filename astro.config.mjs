@@ -4,11 +4,11 @@ import { defineConfig } from "astro/config";
 import rehypeCallouts from "rehype-callouts";
 import { rehypeGithubAlerts } from "rehype-github-alerts";
 import rehypeKatex from "rehype-katex";
+import remarkDefinitionList from "remark-definition-list";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
-import remarkDefinitionList from "remark-definition-list";
-import remarkGemoji from "./src/lib/remark-gemoji.mjs";
 import rehypeSupSubEnhancements from "./src/lib/rehype-del-to-sub.mjs";
+import remarkGemoji from "./src/lib/remark-gemoji.mjs";
 
 export default defineConfig({
   output: "static",
