@@ -31,13 +31,13 @@ export default function rehypeSupSubEnhancements() {
       const text = node.value;
 
       // 检查是否包含上标语法
-      if (!/\^[^\^\s]+\^/.test(text)) {
+      if (!/\^[^^\s]+\^/.test(text)) {
         return;
       }
 
       const children = [];
       let lastIndex = 0;
-      const regex = /\^([^\^\s]+)\^/g;
+      const regex = /\^([^^\s]+)\^/g;
       let match = regex.exec(text);
 
       while (match !== null) {
