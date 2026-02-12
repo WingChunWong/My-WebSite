@@ -2,7 +2,7 @@ name: Update Homework Data
 
 on:
   schedule:
-    - cron: "0 9 * * *" # 每天UTC 09:00（香港时间17:00）觸發
+    - cron: "0 9 * * *" # 每天 UTC 09:00（香港時間 17:00）觸發
   workflow_dispatch:
     inputs:
       force_full_update:
@@ -51,43 +51,59 @@ jobs:
           PORTAL_PASSWORD: ${{ secrets.PORTAL_PASSWORD }}
           FORCE_FULL_UPDATE: ${{ github.event.inputs.force_full_update == 'true' && 'true' || 'false' }}
         run: |
-          # 檢查爬蟲腳本是否存在
           if [ ! -f "homework_crawler.py" ]; then
-            echo "❌ 未找到homework_crawler.py"
+            echo "❌ 未找到 homework_crawler.py"
             echo "data_updated=false" >> $GITHUB_OUTPUT
             exit 1
           fi
 
-          # 根據環境變數選擇更新模式
           if [ "$FORCE_FULL_UPDATE" = "true" ]; then
-            echo "🚀 執行強制完整更新 (FORCE_FULL_UPDATE=true)"
+            echo "🚀 執行強制完整更新"
           else
-            echo "📅 執行日常增量更新 (FORCE_FULL_UPDATE=false)"
+            echo "📅 執行日常增量更新"
           fi
 
-          # 運行爬蟲腳本
-          echo "▶️ 運行爬蟲腳本..."
           python homework_crawler.py
 
-          # 驗證資料文件
           if [ -f "homework_data.json" ]; then
-            # 檢查JSON格式有效性
             if python -c "import json; json.load(open('homework_data.json'))" 2>/dev/null; then
               RECORD_COUNT=$(python -c "import json; print(len(json.load(open('homework_data.json'))))")
               echo "data_updated=true" >> $GITHUB_OUTPUT
               echo "record_count=$RECORD_COUNT" >> $GITHUB_OUTPUT
-              echo "✅ 數據文件驗證通過，共$RECORD_COUNT條記錄"
+              echo "✅ 數據文件驗證通過，共 $RECORD_COUNT 條記錄"
             else
-              echo "❌ homework_data.json格式錯誤"
+              echo "❌ homework_data.json 格式錯誤"
               echo "data_updated=false" >> $GITHUB_OUTPUT
             fi
           else
-            echo "❌ 未生成homework_data.json"
+            echo "❌ 未生成 homework_data.json"
             echo "data_updated=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Create Last_Update Data
+      - name: Configure Git
         if: steps.crawler.outputs.data_updated == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      # 只暫存 homework_data.json，檢查是否有真實資料變更
+      - name: Check for data changes
+        id: git-check
+        if: steps.crawler.outputs.data_updated == 'true'
+        working-directory: hw-list
+        run: |
+          git add homework_data.json
+          if git diff --staged --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "⚠️ homework_data.json 無變更，跳過更新"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "✅ homework_data.json 有變更"
+          fi
+
+      # 僅當資料檔真正改變時，才寫入新的 last_update.json 並提交
+      - name: Create Last_Update Data
+        if: steps.git-check.outputs.has_changes == 'true'
         working-directory: hw-list
         run: |
           cat > last_update.json << EOF
@@ -98,32 +114,14 @@ jobs:
             "records": ${{ steps.crawler.outputs.record_count }}
           }
           EOF
-          echo "✅ 已更新最後更新數據文件"
+          echo "✅ 已建立新的 last_update.json"
 
-      - name: Configure Git
-        if: steps.crawler.outputs.data_updated == 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Check for changes
-        id: git-check
-        if: steps.crawler.outputs.data_updated == 'true'
-        run: |
-          git add hw-list/homework_data.json hw-list/last_update.json
-          # 檢查是否有實際變更（排除空提交）
-          if git diff --staged --quiet; then
-            echo "has_changes=false" >> $GITHUB_OUTPUT
-            echo "⚠️ 無資料變更，無需提交"
-          else
-            echo "has_changes=true" >> $GITHUB_OUTPUT
-            echo "✅ 檢測到資料變更，準備提交"
-          fi
-
-      - name: Commit Changes
+      - name: Commit and Push Changes
         if: steps.git-check.outputs.has_changes == 'true'
+        working-directory: hw-list
         run: |
-          COMMIT_MSG="📚 自動更新家課數據（${{ steps.crawler.outputs.record_count }}條）- $(date +"%Y-%m-%d")"
+          git add homework_data.json last_update.json
+          COMMIT_MSG="📚 自動更新家課數據（${{ steps.crawler.outputs.record_count }} 筆）- $(date +"%Y-%m-%d")"
           git commit -m "$COMMIT_MSG"
           git push
 
@@ -135,15 +133,13 @@ jobs:
             echo ""
             echo "⏱️ **執行時間：** $(date)"
             echo ""
-            
             echo "## 🧭 更新模式"
             if [ "${{ github.event.inputs.force_full_update }}" = "true" ]; then
-              echo "- 🚀 **強制完整更新** (FORCE_FULL_UPDATE=true)"
+              echo "- 🚀 **強制完整更新**"
             else
-              echo "- 📅 **日常增量更新** (FORCE_FULL_UPDATE=false)"
+              echo "- 📅 **日常增量更新**"
             fi
             echo ""
-            
             echo "## 📦 更新結果"
             if [ "${{ steps.crawler.outputs.data_updated }}" = "true" ]; then
               echo "### ✅ 資料更新成功"
@@ -152,17 +148,14 @@ jobs:
               echo "|------|------|"
               echo "| 🗂️ 資料筆數 | **${{ steps.crawler.outputs.record_count }} 筆** |"
               echo "| 🔄 觸發方式 | \`${{ github.event_name }}\` |"
-              
               if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
                 echo "| 👤 手動觸發者 | \`${{ github.actor }}\` |"
               fi
-              
               if [ "${{ steps.git-check.outputs.has_changes }}" = "true" ]; then
                 echo "| 🚀 部署狀態 | **已自動提交更新** |"
               else
-                echo "| ℹ️ 部署狀態 | 無資料變更，未進行提交 |"
+                echo "| ℹ️ 部署狀態 | 無資料變更，未提交 |"
               fi
-              
             else
               echo "### ❌ 資料更新失敗"
               echo ""
@@ -171,5 +164,4 @@ jobs:
               echo "> 2. 網路連線是否正常"
               echo "> 3. 學校門戶網站是否可正常訪問"
             fi
-            
           } >> $GITHUB_STEP_SUMMARY
