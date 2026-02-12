@@ -24,6 +24,25 @@ type Problem = {
 const canvasRef = ref<HTMLCanvasElement | null>(null);
 const inputRef = ref<HTMLInputElement | null>(null);
 
+// feedback temporary timer (for auto-hide messages)
+let feedbackTimer: number | null = null;
+function showTemporaryFeedback(msg: string, ms = 3000) {
+  feedback.value = msg;
+  if (feedbackTimer) {
+    window.clearTimeout(feedbackTimer);
+    feedbackTimer = null;
+  }
+  feedbackTimer = window.setTimeout(() => {
+    feedback.value = "";
+    feedbackTimer = null;
+  }, ms);
+}
+
+// Easter-egg: reveal Show Answer button when user types 'k', 'e', 'y' in sequence
+const showEasterButton = ref(false);
+const easterProgress = ref(0);
+let easterTimer: number | null = null;
+
 const score = ref(0);
 const correctCount = ref(0);
 const wrongCount = ref(0);
@@ -455,30 +474,63 @@ function checkAnswer() {
   const val = inputRef.value?.value || "";
   const userAnswer = Number.parseFloat(val);
   if (Number.isNaN(userAnswer) || !currProblem.value) {
-    feedback.value = "請輸入數字";
+    feedback.value = "Please enter a number";
     return;
   }
   if (Math.abs(userAnswer - currProblem.value.answer) < 0.01) {
     score.value += POINTS_CORRECT;
     correctCount.value += 1;
-    feedback.value = "正確! +10分";
+    feedback.value = "Correct! +10 pts";
   } else {
     score.value -= POINTS_WRONG;
     wrongCount.value += 1;
-    feedback.value = `錯誤! 正確答案: ${currProblem.value.answer}`;
+    feedback.value = `Wrong! Correct answer: ${currProblem.value.answer}`;
   }
   setTimeout(generateQuestion, 1000);
 }
 
 function showAnswer() {
   if (!currProblem.value) return;
-  feedback.value = `正確答案: ${currProblem.value.answer}`;
+  showTemporaryFeedback(`Correct answer: ${currProblem.value.answer}`, 3000);
+}
+
+function handleKeySequence(e: KeyboardEvent) {
+  const seq = ["k", "e", "y"];
+  const key = (e.key || "").toLowerCase();
+  if (!key) return;
+
+  // advance or reset progress
+  if (key === seq[easterProgress.value]) {
+    easterProgress.value += 1;
+    // reset timer
+    if (easterTimer) window.clearTimeout(easterTimer);
+    easterTimer = window.setTimeout(() => {
+      easterProgress.value = 0;
+      easterTimer = null;
+    }, 2000);
+    if (easterProgress.value >= seq.length) {
+      showEasterButton.value = true;
+      showTemporaryFeedback("Easter egg unlocked: Show Answer revealed!", 3000);
+      easterProgress.value = 0;
+      if (easterTimer) {
+        window.clearTimeout(easterTimer);
+        easterTimer = null;
+      }
+    }
+  } else {
+    // if pressed same as first key, set progress to 1, else reset
+    easterProgress.value = key === seq[0] ? 1 : 0;
+    if (easterTimer) {
+      window.clearTimeout(easterTimer);
+      easterTimer = null;
+    }
+  }
 }
 
 function handleReset() {
   resetClicks.value += 1;
   if (resetClicks.value === 1) {
-    feedback.value = "再次點擊確認重置";
+    feedback.value = "Click again to confirm reset";
     setTimeout(() => {
       resetClicks.value = 0;
     }, 3000);
@@ -489,7 +541,7 @@ function handleReset() {
     wrongCount.value = 0;
     currProblem.value = null;
     hasCelebrated.value = false;
-    feedback.value = "已重置進度!";
+    feedback.value = "Progress reset!";
     resetClicks.value = 0;
     setTimeout(generateQuestion, 500);
   }
@@ -525,22 +577,33 @@ onMounted(() => {
     if (currProblem.value) drawProblem(currProblem.value);
   });
   window.addEventListener("resize", handleResize);
+  // listen for key sequence for easter-egg
+  window.addEventListener("keydown", handleKeySequence);
 });
 
 onUnmounted(() => {
   window.removeEventListener("resize", handleResize);
+  window.removeEventListener("keydown", handleKeySequence);
+  if (easterTimer) {
+    window.clearTimeout(easterTimer);
+    easterTimer = null;
+  }
+  if (feedbackTimer) {
+    window.clearTimeout(feedbackTimer);
+    feedbackTimer = null;
+  }
 });
 </script>
 
 <template>
   <div>
-    <h2>百分比變化練習</h2>
+    <h2>Percent Change Practice</h2>
 
     <!-- Status Bar -->
     <div class="status-bar">
-      <div class="status-item goal-text">目標: {{ TARGET_SCORE }}</div>
-      <div class="status-item">分數: <span class="score-text">{{ score }}</span></div>
-      <div class="status-item">正確: <span>{{ correctCount }}</span></div>
+      <div class="status-item goal-text">Target: {{ TARGET_SCORE }}</div>
+      <div class="status-item">Score: <span class="score-text">{{ score }}</span></div>
+      <div class="status-item">Correct: <span>{{ correctCount }}</span></div>
     </div>
 
     <!-- Progress -->
@@ -548,7 +611,7 @@ onUnmounted(() => {
       <div
         class="progress-bar"
         role="progressbar"
-        aria-label="進度"
+        aria-label="Progress"
         :style="{ width: progressPercent + '%' }"
         :aria-valuenow="score"
         :aria-valuemin="0"
@@ -561,17 +624,21 @@ onUnmounted(() => {
       <canvas ref="canvasRef" class="game-canvas" width="850" height="250"></canvas>
 
       <div class="input-group">
-        <label class="question-label" for="userAnswer">答案:</label>
+        <label class="question-label" for="userAnswer">Answer:</label>
         <input
           id="userAnswer"
           ref="inputRef"
           type="number"
           class="input-small"
-          aria-label="答案"
+          aria-label="Answer"
           @keydown="handleInputKey"
         />
-        <fluent-button appearance="primary" @click="checkAnswer">提交</fluent-button>
-        <fluent-button appearance="outline" @click="showAnswer">顯示答案</fluent-button>
+        <fluent-button appearance="primary" @click="checkAnswer">Submit</fluent-button>
+            <fluent-button
+              v-if="showEasterButton"
+              appearance="outline"
+              @click="showAnswer"
+            >Show Answer</fluent-button>
       </div>
 
       <div class="feedback-area" aria-live="polite">{{ feedback }}</div>
@@ -579,8 +646,8 @@ onUnmounted(() => {
 
     <!-- Buttons -->
     <div class="button-container">
-      <fluent-button appearance="primary" @click="showReportModal = true">📊 成績單</fluent-button>
-      <fluent-button appearance="outline" @click="handleReset">⚠️ 重置所有進度</fluent-button>
+      <fluent-button appearance="primary" @click="showReportModal = true">📊 Report</fluent-button>
+      <fluent-button appearance="outline" @click="handleReset">⚠️ Reset All Progress</fluent-button>
     </div>
 
     <!-- Report Modal (using fluent-dialog) -->
@@ -589,22 +656,22 @@ onUnmounted(() => {
       @close="showReportModal = false"
       modal-type="modal"
     >
-      <div slot="title">成績單</div>
+      <div slot="title">Report</div>
       <div class="stats-grid">
         <div class="stat-box">
-          <small>最終分數</small>
+          <small>Final Score</small>
           <strong class="value value--accent">{{ score }}</strong>
         </div>
         <div class="stat-box">
-          <small>總題數</small>
+          <small>Total Questions</small>
           <strong class="value">{{ totalCount }}</strong>
         </div>
         <div class="stat-box">
-          <small>正確題數</small>
+          <small>Correct Answers</small>
           <strong class="value value--green">{{ correctCount }}</strong>
         </div>
         <div class="stat-box">
-          <small>正確率</small>
+          <small>Accuracy</small>
           <strong class="value">{{ accuracy }}</strong>
         </div>
       </div>
@@ -613,7 +680,7 @@ onUnmounted(() => {
         slot="action"
         appearance="primary"
         @click="showReportModal = false"
-      >繼續練習</fluent-button>
+      >Continue Practice</fluent-button>
     </fluent-dialog>
   </div>
 </template>
