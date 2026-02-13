@@ -36,7 +36,13 @@ const MODES: Mode[] = ["simple", "challenge", "hell", "final"];
 
 const MODE_CFG: Record<
   Mode,
-  { time: number; choices: number; questions: number; grid: boolean; nums: boolean }
+  {
+    time: number;
+    choices: number;
+    questions: number;
+    grid: boolean;
+    nums: boolean;
+  }
 > = {
   simple: { time: 20, choices: 3, questions: 3, grid: true, nums: true },
   challenge: { time: 10, choices: 5, questions: 3, grid: false, nums: true },
@@ -141,14 +147,14 @@ function setupCanvas() {
   if (!el) return;
   const dpr = window.devicePixelRatio || 1;
   const rect = el.getBoundingClientRect();
-  
+
   // Ensure minimum dimensions
   let w = Math.max(Math.floor(rect.width), 200);
   let h = Math.max(Math.floor(rect.height), 200);
-  
+
   el.width = w * dpr;
   el.height = h * dpr;
-  
+
   const ctx = el.getContext("2d");
   if (ctx) {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -424,11 +430,7 @@ function renderQuestion() {
 // Question Generation
 // ══════════════════════════════════════════════════════════════
 
-function makeCoordDistractors(
-  cx: number,
-  cy: number,
-  count: number,
-): string[] {
+function makeCoordDistractors(cx: number, cy: number, count: number): string[] {
   const correct = `(${cx}, ${cy})`;
   const seen = new Set<string>([correct]);
   const pool: [number, number][] = [
@@ -452,9 +454,7 @@ function makeCoordDistractors(
     [cx - 2, cy - 1],
     [cx + 3, cy],
     [cx, cy + 3],
-  ].filter(
-    ([x, y]) => Math.abs(x) <= RANGE && Math.abs(y) <= RANGE,
-  );
+  ].filter(([x, y]) => Math.abs(x) <= RANGE && Math.abs(y) <= RANGE);
 
   const result: string[] = [];
   for (const [x, y] of shuffle(pool)) {
@@ -490,8 +490,7 @@ function genIdentifyQ(numChoices: number, hell: boolean): Question {
 
   if (hell) {
     let ry1 = ty;
-    while (Math.abs(ry1 - ty) < 2)
-      ry1 = randInt(-RANGE + 1, RANGE - 1);
+    while (Math.abs(ry1 - ty) < 2) ry1 = randInt(-RANGE + 1, RANGE - 1);
     refs.push({
       x: tx,
       y: ry1,
@@ -500,8 +499,7 @@ function genIdentifyQ(numChoices: number, hell: boolean): Question {
       showCoords: true,
     });
     let rx2 = tx;
-    while (Math.abs(rx2 - tx) < 2)
-      rx2 = randInt(-RANGE + 1, RANGE - 1);
+    while (Math.abs(rx2 - tx) < 2) rx2 = randInt(-RANGE + 1, RANGE - 1);
     refs.push({
       x: rx2,
       y: ty,
@@ -884,66 +882,71 @@ onUnmounted(() => {
 
         <!-- Info Panel -->
         <div class="cg-info">
-          <div class="cg-info__badge">
-            <span
-              class="cg-badge"
-              :class="{
-                'cg-badge--simple': currentMode === 'simple',
-                'cg-badge--challenge': currentMode === 'challenge',
-                'cg-badge--hell': currentMode === 'hell',
-                'cg-badge--final': currentMode === 'final',
-              }"
-            >
-              {{ modeLabel }}
-            </span>
-          </div>
-          <div class="cg-info__row">
-            <small>Question</small>
-            <strong>{{ questionLabel }}</strong>
-          </div>
-          <div class="cg-info__row">
-            <small>Score</small>
-            <strong class="cg-accent">{{ score }}</strong>
-          </div>
-          <div class="cg-info__row">
-            <small>Correct</small>
-            <strong class="cg-green">{{ correctCount }}</strong>
-          </div>
-          <div class="cg-info__row">
-            <small>Wrong</small>
-            <strong class="cg-red">{{ wrongCount }}</strong>
-          </div>
-
-          <!-- Countdown Timer -->
-          <div v-if="maxTime > 0" class="cg-timer">
-            <div class="cg-timer__head">
-              <small>Time</small>
-              <strong
-                class="cg-timer__val"
+          <div class="cg-stats-card">
+            <div class="cg-info__badge">
+              <span
+                class="cg-badge"
                 :class="{
-                  'cg-timer__val--warn': timeLeft <= 5 && timeLeft > 3,
-                  'cg-timer__val--danger': timeLeft <= 3,
+                  'cg-badge--simple': currentMode === 'simple',
+                  'cg-badge--challenge': currentMode === 'challenge',
+                  'cg-badge--hell': currentMode === 'hell',
+                  'cg-badge--final': currentMode === 'final',
                 }"
               >
-                {{ timeLeft }}s
-              </strong>
+                {{ modeLabel }}
+              </span>
             </div>
-            <div class="cg-timer__track">
-              <div
-                class="cg-timer__fill"
-                :class="{
-                  'cg-timer__fill--warn': timerPct <= 50 && timerPct > 25,
-                  'cg-timer__fill--danger': timerPct <= 25,
-                }"
-                :style="{ width: timerPct + '%' }"
-              ></div>
-            </div>
-          </div>
 
-          <!-- Final Challenge Elapsed -->
-          <div v-else-if="currentMode === 'final'" class="cg-info__row">
-            <small>Elapsed</small>
-            <strong>{{ finalElapsedDisplay }}s</strong>
+            <div class="cg-stats-grid">
+              <div class="cg-info__row">
+                <small>Question</small>
+                <strong>{{ questionLabel }}</strong>
+              </div>
+              <div class="cg-info__row">
+                <small>Score</small>
+                <strong class="cg-accent">{{ score }}</strong>
+              </div>
+              <div class="cg-info__row">
+                <small>Correct</small>
+                <strong class="cg-green">{{ correctCount }}</strong>
+              </div>
+              <div class="cg-info__row">
+                <small>Wrong</small>
+                <strong class="cg-red">{{ wrongCount }}</strong>
+              </div>
+            </div>
+
+            <!-- Countdown Timer -->
+            <div v-if="maxTime > 0" class="cg-timer">
+              <div class="cg-timer__head">
+                <small>Time</small>
+                <strong
+                  class="cg-timer__val"
+                  :class="{
+                    'cg-timer__val--warn': timeLeft <= 5 && timeLeft > 3,
+                    'cg-timer__val--danger': timeLeft <= 3,
+                  }"
+                >
+                  {{ timeLeft }}s
+                </strong>
+              </div>
+              <div class="cg-timer__track">
+                <div
+                  class="cg-timer__fill"
+                  :class="{
+                    'cg-timer__fill--warn': timerPct <= 50 && timerPct > 25,
+                    'cg-timer__fill--danger': timerPct <= 25,
+                  }"
+                  :style="{ width: timerPct + '%' }"
+                ></div>
+              </div>
+            </div>
+
+            <!-- Final Challenge Elapsed -->
+            <div v-else-if="currentMode === 'final'" class="cg-info__row">
+              <small>Elapsed</small>
+              <strong>{{ finalElapsedDisplay }}s</strong>
+            </div>
           </div>
         </div>
       </div>
@@ -1099,52 +1102,62 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  padding: 32px 16px;
+  gap: 20px;
+  padding: 40px 24px;
   text-align: center;
   animation: cgFadeInUp 400ms cubic-bezier(0, 0, 0, 1) both;
 }
 
 .cg-start__icon {
-  font-size: 48px;
-  margin-bottom: 4px;
+  font-size: 56px;
+  margin-bottom: 8px;
 }
 
 .cg-start__title {
-  margin: 0;
-  font-size: 28px;
+  margin: 0 0 16px;
+  font-size: 32px;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  color: var(--colorNeutralForeground1);
 }
 
 .cg-start__desc {
-  margin: 0;
-  max-width: 480px;
-  color: var(--colorNeutralForeground3, #adadad);
-  font-size: 14px;
-  line-height: 1.6;
+  margin: 0 0 12px;
+  max-width: 540px;
+  color: var(--colorNeutralForeground2, #d6d6d6);
+  font-size: 15px;
+  line-height: 1.7;
+  font-weight: 400;
 }
 
 .cg-start__modes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
   justify-content: center;
-  max-width: 560px;
-  margin: 8px 0 12px;
+  max-width: 540px;
+  margin: 8px 0 16px;
+  width: 100%;
 }
 
 .cg-mode-pill {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding: 10px 16px;
+  gap: 4px;
+  padding: 12px 14px;
   border-radius: 8px;
   font-size: 12px;
   border: 1px solid var(--colorNeutralStroke2, #333);
   background: var(--colorNeutralBackground3, #282828);
-  min-width: 130px;
   text-align: center;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.cg-mode-pill:hover {
+  background: var(--colorNeutralBackground4, #333);
+  border-color: var(--colorNeutralStroke1, #404040);
+  transform: translateY(-1px);
 }
 
 .cg-mode-pill strong {
@@ -1180,19 +1193,23 @@ onUnmounted(() => {
 
 .cg-game__top {
   display: grid;
-  grid-template-columns: 1fr 200px;
-  gap: 16px;
+  grid-template-columns: 1fr 190px;
+  gap: 12px;
   align-items: start;
+  background: var(--colorNeutralBackground3, #282828);
+  border: 1px solid var(--colorNeutralStroke2, #333);
+  border-radius: 12px;
+  padding: 12px;
 }
 
 /* Graph */
 .cg-graph-wrap {
   background: var(--colorNeutralBackground1, #1b1b1b);
-  border: 1px solid var(--colorNeutralStroke2, #333);
+  border: 1px solid var(--colorNeutralStroke1, #404040);
   border-radius: 10px;
   overflow: hidden;
   aspect-ratio: 1 / 1;
-  max-height: 460px;
+  max-height: 440px;
   min-width: 220px;
   min-height: 220px;
 }
@@ -1207,15 +1224,31 @@ onUnmounted(() => {
 .cg-info {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 16px;
-  background: var(--colorNeutralBackground3, #282828);
+  gap: 8px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+.cg-stats-card {
+  padding: 10px;
+  background: var(--colorNeutralBackground2, #202020);
   border: 1px solid var(--colorNeutralStroke2, #333);
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cg-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
 }
 
 .cg-info__badge {
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .cg-badge {
@@ -1249,16 +1282,22 @@ onUnmounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 4px 0;
+  padding: 6px 10px;
+  background: var(--colorNeutralBackground4, #333);
+  border-radius: 6px;
+  gap: 4px;
 }
 
 .cg-info__row small {
-  color: var(--colorNeutralForeground3, #adadad);
-  font-size: 12px;
+  color: var(--colorNeutralForeground4, #8a8a8a);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .cg-info__row strong {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
 }
 
@@ -1276,9 +1315,10 @@ onUnmounted(() => {
 .cg-timer {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding-top: 6px;
-  border-top: 1px solid var(--colorNeutralStroke2, #333);
+  gap: 4px;
+  padding: 8px 10px;
+  background: var(--colorNeutralBackground4, #333);
+  border-radius: 6px;
 }
 
 .cg-timer__head {
@@ -1609,46 +1649,49 @@ onUnmounted(() => {
 @media (max-width: 720px) {
   .cg-game__top {
     grid-template-columns: 1fr;
+    padding: 0;
+    background: transparent;
+    border: none;
+    gap: 8px;
   }
   .cg-graph-wrap {
     max-height: 320px;
     aspect-ratio: 1 / 1;
   }
   .cg-info {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 6px;
-    padding: 12px;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 0;
+    align-items: stretch;
   }
   .cg-info__badge {
-    width: 100%;
+    grid-column: 1 / -1;
     margin-bottom: 0;
   }
   .cg-info__row {
-    flex: 1 0 auto;
-    min-width: 80px;
+    padding: 8px;
     flex-direction: column;
     text-align: center;
     gap: 2px;
   }
   .cg-timer {
+    grid-column: 1 / -1;
     width: 100%;
-    border-top: none;
-    padding-top: 0;
+    padding: 8px;
   }
   .cg-choice {
     min-width: 90px;
     padding: 8px 14px;
     font-size: 14px;
   }
-  .cg-start__modes {
-    flex-direction: column;
-    align-items: center;
+  .cg-start {
+    padding: 24px 16px;
   }
-  .cg-mode-pill {
+  .cg-start__modes {
+    grid-template-columns: 1fr;
+    max-width: 280px;
     width: 100%;
-    max-width: 260px;
   }
   .cg-transition__card,
   .cg-results__card {
