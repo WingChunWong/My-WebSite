@@ -894,18 +894,27 @@ onUnmounted(() => {
             <div v-if="currentMode === 'simple'" class="cg-tips__item">
               <p>Use the grid lines and number labels to help identify coordinates.</p>
               <p>Remember: (x, y) where x is horizontal and y is vertical.</p>
+              <p>Start at the origin and count steps: right/left for x, up/down for y.</p>
+              <p>Check the sign first (quadrant) before counting the exact distance.</p>
             </div>
             <div v-else-if="currentMode === 'challenge'" class="cg-tips__item">
               <p>Grid lines are removed! Count carefully from the axes.</p>
               <p>Use the tick marks to find exact positions.</p>
+              <p>Trace horizontally from the y-axis, then vertically from the x-axis.</p>
+              <p>Say the coordinate aloud in order: x first, then y.</p>
             </div>
             <div v-else-if="currentMode === 'hell'" class="cg-tips__item">
               <p>Use reference points A and B to deduce P's position.</p>
               <p>Look at shared coordinates to narrow down the answer.</p>
+              <p>If A shares x with P, focus only on y changes (and vice versa).</p>
+              <p>Estimate distance between ticks to avoid off-by-one errors.</p>
             </div>
             <div v-else-if="currentMode === 'final'" class="cg-tips__item">
               <p v-if="question?.type === 'area'">Calculate area using the coordinate formula.</p>
               <p v-else>Use reference points to find the target coordinates.</p>
+              <p v-if="question?.type === 'area'">Rectangle area: width times height from coordinate differences.</p>
+              <p v-if="question?.type === 'area'">Triangle area: half of base times height.</p>
+              <p v-else>Lock x or y using a reference point, then solve the other axis.</p>
               <p class="cg-tips__bonus">⚡ Speed bonus: finish faster for more points!</p>
             </div>
           </div>
