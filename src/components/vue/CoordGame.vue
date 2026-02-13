@@ -149,8 +149,8 @@ function setupCanvas() {
   const rect = el.getBoundingClientRect();
 
   // Ensure minimum dimensions
-  let w = Math.max(Math.floor(rect.width), 200);
-  let h = Math.max(Math.floor(rect.height), 200);
+  const w = Math.max(Math.floor(rect.width), 200);
+  const h = Math.max(Math.floor(rect.height), 200);
 
   el.width = w * dpr;
   el.height = h * dpr;
@@ -433,6 +433,7 @@ function renderQuestion() {
 function makeCoordDistractors(cx: number, cy: number, count: number): string[] {
   const correct = `(${cx}, ${cy})`;
   const seen = new Set<string>([correct]);
+  // filter() can widen tuple types to number[][]; assert back to tuple array
   const pool: [number, number][] = [
     [cy, cx],
     [-cx, cy],
@@ -454,7 +455,10 @@ function makeCoordDistractors(cx: number, cy: number, count: number): string[] {
     [cx - 2, cy - 1],
     [cx + 3, cy],
     [cx, cy + 3],
-  ].filter(([x, y]) => Math.abs(x) <= RANGE && Math.abs(y) <= RANGE);
+  ].filter(([x, y]) => Math.abs(x) <= RANGE && Math.abs(y) <= RANGE) as [
+    number,
+    number,
+  ][];
 
   const result: string[] = [];
   for (const [x, y] of shuffle(pool)) {
@@ -546,7 +550,7 @@ function genRectAreaQ(): Question {
 
 function genTriAreaQ(): Question {
   let base = randInt(2, 6);
-  let height = randInt(2, 6);
+  const height = randInt(2, 6);
   if (base % 2 !== 0 && height % 2 !== 0) base += 1;
   const ax = randInt(-RANGE + 1, RANGE - base - 1);
   const ay = randInt(-RANGE + 1, RANGE - height - 1);
@@ -1538,6 +1542,8 @@ onUnmounted(() => {
   margin: 0 0 8px;
   font-size: 32px;
   font-weight: 700;
+  line-height: 1.2;
+  display: inline-block;
   background: linear-gradient(135deg, #479ef5, #a855f7);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
