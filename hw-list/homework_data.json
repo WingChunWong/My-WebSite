@@ -2923,5 +2923,59 @@
     "subject": "數學 -- MATH",
     "homework_name": "WS 8C p.3-4",
     "remarks": ""
+  },
+  {
+    "id": "75732",
+    "issue_date": "2026-02-13",
+    "due_date": "2026-02-26",
+    "class_group": "全班",
+    "subject": "科學 -- SCI",
+    "homework_name": "1A WB  p.68 A （1-3）B （1-3,5） p.69 A (1-3) p.71 B (1a) p.72 A, B (1-2) p.73 A (1-2) p.74 B (a,b)",
+    "remarks": ""
+  },
+  {
+    "id": "75731",
+    "issue_date": "2026-02-13",
+    "due_date": "2026-02-26",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "閱讀報告",
+    "remarks": ""
+  },
+  {
+    "id": "75730",
+    "issue_date": "2026-02-13",
+    "due_date": "2026-02-26",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "步步升6",
+    "remarks": ""
+  },
+  {
+    "id": "75727",
+    "issue_date": "2026-02-13",
+    "due_date": "2026-02-26",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Phrasal verb p.2",
+    "remarks": ""
+  },
+  {
+    "id": "75724",
+    "issue_date": "2026-02-13",
+    "due_date": "2026-02-26",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Reading Booklet",
+    "remarks": ""
+  },
+  {
+    "id": "75721",
+    "issue_date": "2026-02-13",
+    "due_date": "2026-02-26",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "Holiday WS",
+    "remarks": ""
   }
 ]
