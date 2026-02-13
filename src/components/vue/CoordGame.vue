@@ -884,6 +884,33 @@ onUnmounted(() => {
           <canvas ref="canvasRef" class="cg-canvas"></canvas>
         </div>
 
+        <!-- Tips Panel -->
+        <div class="cg-tips">
+          <div class="cg-tips__header">
+            <span class="cg-tips__icon">💡</span>
+            <strong>Tips</strong>
+          </div>
+          <div class="cg-tips__content">
+            <div v-if="currentMode === 'simple'" class="cg-tips__item">
+              <p>Use the grid lines and number labels to help identify coordinates.</p>
+              <p>Remember: (x, y) where x is horizontal and y is vertical.</p>
+            </div>
+            <div v-else-if="currentMode === 'challenge'" class="cg-tips__item">
+              <p>Grid lines are removed! Count carefully from the axes.</p>
+              <p>Use the tick marks to find exact positions.</p>
+            </div>
+            <div v-else-if="currentMode === 'hell'" class="cg-tips__item">
+              <p>Use reference points A and B to deduce P's position.</p>
+              <p>Look at shared coordinates to narrow down the answer.</p>
+            </div>
+            <div v-else-if="currentMode === 'final'" class="cg-tips__item">
+              <p v-if="question?.type === 'area'">Calculate area using the coordinate formula.</p>
+              <p v-else>Use reference points to find the target coordinates.</p>
+              <p class="cg-tips__bonus">⚡ Speed bonus: finish faster for more points!</p>
+            </div>
+          </div>
+        </div>
+
         <!-- Info Panel -->
         <div class="cg-info">
           <div class="cg-stats-card">
@@ -1197,25 +1224,22 @@ onUnmounted(() => {
 
 .cg-game__top {
   display: grid;
-  grid-template-columns: 1fr 190px;
-  gap: 12px;
+  grid-template-columns: 1fr auto 220px;
+  gap: 16px;
   align-items: start;
-  background: var(--colorNeutralBackground3, #282828);
-  border: 1px solid var(--colorNeutralStroke2, #333);
-  border-radius: 12px;
-  padding: 12px;
 }
 
 /* Graph */
 .cg-graph-wrap {
   background: var(--colorNeutralBackground1, #1b1b1b);
-  border: 1px solid var(--colorNeutralStroke1, #404040);
-  border-radius: 10px;
+  border: 1px solid var(--colorNeutralStroke2, #333);
+  border-radius: 12px;
   overflow: hidden;
   aspect-ratio: 1 / 1;
   max-height: 440px;
   min-width: 220px;
   min-height: 220px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .cg-canvas {
@@ -1224,25 +1248,83 @@ onUnmounted(() => {
   height: 100%;
 }
 
+/* Tips Panel */
+.cg-tips {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: var(--colorNeutralBackground2, #202020);
+  border: 1px solid var(--colorNeutralStroke2, #333);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  max-width: 280px;
+}
+
+.cg-tips__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--colorNeutralStroke2, #333);
+  color: var(--colorNeutralForeground1, #fff);
+}
+
+.cg-tips__icon {
+  font-size: 20px;
+}
+
+.cg-tips__header strong {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cg-tips__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cg-tips__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cg-tips__item p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--colorNeutralForeground2, #d6d6d6);
+}
+
+.cg-tips__bonus {
+  padding: 8px;
+  background: rgba(168, 85, 247, 0.1);
+  border-radius: 6px;
+  color: #a855f7 !important;
+  font-weight: 500;
+}
+
 /* Info Panel */
 .cg-info {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 0;
-  background: transparent;
-  border: none;
-  border-radius: 0;
 }
 
 .cg-stats-card {
-  padding: 10px;
+  padding: 16px;
   background: var(--colorNeutralBackground2, #202020);
   border: 1px solid var(--colorNeutralStroke2, #333);
-  border-radius: 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .cg-stats-grid {
@@ -1652,37 +1734,51 @@ onUnmounted(() => {
 
 /* ── Responsive ────────────────────────────────────────── */
 
+@media (max-width: 1024px) {
+  .cg-game__top {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .cg-tips {
+    max-width: 100%;
+    min-width: auto;
+  }
+}
+
 @media (max-width: 720px) {
   .cg-game__top {
     grid-template-columns: 1fr;
-    padding: 0;
-    background: transparent;
-    border: none;
-    gap: 8px;
+    gap: 12px;
   }
   .cg-graph-wrap {
     max-height: 320px;
     aspect-ratio: 1 / 1;
   }
+  .cg-tips {
+    max-width: 100%;
+    min-width: auto;
+  }
   .cg-info {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 8px;
-    padding: 0;
     align-items: stretch;
   }
   .cg-info__badge {
-    grid-column: 1 / -1;
     margin-bottom: 0;
   }
   .cg-info__row {
     padding: 8px;
-    flex-direction: column;
-    text-align: center;
-    gap: 2px;
+    flex-direction: row;
+    text-align: left;
+    gap: 4px;
+  }
+  .cg-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
   }
   .cg-timer {
-    grid-column: 1 / -1;
     width: 100%;
     padding: 8px;
   }
