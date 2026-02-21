@@ -9,13 +9,13 @@ details .anchor {
   display: none;
 }
 
-.markdown-body > h1 > .anchor {
+.markdown-body>h1>.anchor {
   display: none;
 }
 
-.markdown-body > h2 > .anchor,
-.markdown-body > h3 > .anchor,
-.markdown-body > h4 > .anchor {
+.markdown-body>h2>.anchor,
+.markdown-body>h3>.anchor,
+.markdown-body>h4>.anchor {
   position: absolute;
   transform: translateX(calc(-100% - 0.5ch));
   opacity: 0;
@@ -433,11 +433,11 @@ details .anchor {
   content: "";
 }
 
-.markdown-body > *:first-child {
+.markdown-body>*:first-child {
   margin-top: 0 !important;
 }
 
-.markdown-body > *:last-child {
+.markdown-body>*:last-child {
   margin-bottom: 0 !important;
 }
 
@@ -462,11 +462,11 @@ details .anchor {
   margin-bottom: 1rem;
 }
 
-.markdown-body blockquote > :first-child {
+.markdown-body blockquote> :first-child {
   margin-top: 0;
 }
 
-.markdown-body blockquote > :last-child {
+.markdown-body blockquote> :last-child {
   margin-bottom: 0;
 }
 
@@ -540,7 +540,7 @@ details .anchor {
   list-style: decimal !important;
 }
 
-.markdown-body div > ol:not([type]) {
+.markdown-body div>ol:not([type]) {
   list-style: decimal !important;
 }
 
@@ -552,11 +552,11 @@ details .anchor {
   margin-bottom: 0;
 }
 
-.markdown-body li > p {
+.markdown-body li>p {
   margin-top: 1rem;
 }
 
-.markdown-body li + li {
+.markdown-body li+li {
   margin-top: 0.25em;
 }
 
@@ -589,7 +589,7 @@ details .anchor {
   border: 1px solid #3d444d;
 }
 
-.markdown-body table td > :last-child {
+.markdown-body table td> :last-child {
   margin-bottom: 0;
 }
 
@@ -627,7 +627,7 @@ details .anchor {
   overflow: hidden;
 }
 
-.markdown-body span.frame > span {
+.markdown-body span.frame>span {
   display: block;
   float: left;
   width: auto;
@@ -655,7 +655,7 @@ details .anchor {
   clear: both;
 }
 
-.markdown-body span.align-center > span {
+.markdown-body span.align-center>span {
   display: block;
   margin: 13px auto 0;
   overflow: hidden;
@@ -673,7 +673,7 @@ details .anchor {
   clear: both;
 }
 
-.markdown-body span.align-right > span {
+.markdown-body span.align-right>span {
   display: block;
   margin: 13px 0 0;
   overflow: hidden;
@@ -703,7 +703,7 @@ details .anchor {
   overflow: hidden;
 }
 
-.markdown-body span.float-right > span {
+.markdown-body span.float-right>span {
   display: block;
   margin: 13px auto 0;
   overflow: hidden;
@@ -738,7 +738,7 @@ details .anchor {
   font-size: 100%;
 }
 
-.markdown-body pre > code {
+.markdown-body pre>code {
   padding: 0;
   margin: 0;
   word-break: normal;
@@ -816,6 +816,12 @@ details .anchor {
 
 .markdown-body [data-footnote-ref]::after {
   content: "]";
+}
+
+.markdown-body [data-footnote-ref],
+.markdown-body [data-footnote-backref] {
+  /* Prefer text glyphs over emoji presentation for footnote markers */
+  font-variant-emoji: text;
 }
 
 .markdown-body .footnotes {
@@ -1059,12 +1065,12 @@ details .anchor {
 }
 
 /* 定义列表中的元素 */
-.markdown-body .definition-list > div {
+.markdown-body .definition-list>div {
   margin: 0 0 0 0;
 }
 
 /* 术语（奇数索引 0, 2, 4） */
-.markdown-body .definition-list > div:nth-child(4n + 1) {
+.markdown-body .definition-list>div:nth-child(4n + 1) {
   font-weight: 600;
   font-size: 1em;
   color: #79b8ff;
@@ -1074,24 +1080,24 @@ details .anchor {
   font-style: italic;
 }
 
-.markdown-body .definition-list > div:nth-child(4n + 1):first-child {
+.markdown-body .definition-list>div:nth-child(4n + 1):first-child {
   margin-top: 0;
 }
 
 /* 定义（偶数和其他索引 1, 2, 3, 5, 6, 7） */
-.markdown-body .definition-list > div:nth-child(4n + 2),
-.markdown-body .definition-list > div:nth-child(4n + 3),
-.markdown-body .definition-list > div:nth-child(4n) {
+.markdown-body .definition-list>div:nth-child(4n + 2),
+.markdown-body .definition-list>div:nth-child(4n + 3),
+.markdown-body .definition-list>div:nth-child(4n) {
   padding-left: 1rem;
   margin-bottom: 0.75rem;
   color: #9198a1;
 }
 
-.markdown-body .definition-list > div:last-child {
+.markdown-body .definition-list>div:last-child {
   margin-bottom: 0;
 }
 
-.markdown-body .definition-list > div p {
+.markdown-body .definition-list>div p {
   margin: 0.25rem 0;
 }
 
@@ -1134,7 +1140,7 @@ details .anchor {
   cursor: pointer;
 }
 
-.markdown-body .task-list-item + .task-list-item {
+.markdown-body .task-list-item+.task-list-item {
   margin-top: 0.25rem;
 }
 
@@ -1168,11 +1174,11 @@ details .anchor {
   border-left: 0.25em solid #3d444d;
 }
 
-.markdown-body .markdown-alert > :first-child {
+.markdown-body .markdown-alert> :first-child {
   margin-top: 0;
 }
 
-.markdown-body .markdown-alert > :last-child {
+.markdown-body .markdown-alert> :last-child {
   margin-bottom: 0;
 }
 
@@ -1223,7 +1229,7 @@ details .anchor {
   color: #f85149;
 }
 
-.markdown-body > *:first-child > .heading-element:first-child {
+.markdown-body>*:first-child>.heading-element:first-child {
   margin-top: 0 !important;
 }
 
