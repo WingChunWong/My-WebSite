@@ -2977,5 +2977,59 @@
     "subject": "數學 -- MATH",
     "homework_name": "Holiday WS",
     "remarks": ""
+  },
+  {
+    "id": "75772",
+    "issue_date": "2026-02-26",
+    "due_date": "2026-02-27",
+    "class_group": "全班",
+    "subject": "普話 -- PTH",
+    "homework_name": "第四課聆聽測驗+語文知識測驗",
+    "remarks": ""
+  },
+  {
+    "id": "75771",
+    "issue_date": "2026-02-26",
+    "due_date": "2026-02-27",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "CW 51 TSA WS #1-3, 12-18, 25-28",
+    "remarks": ""
+  },
+  {
+    "id": "75769",
+    "issue_date": "2026-02-26",
+    "due_date": "2026-02-27",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Bring Gramma WS",
+    "remarks": ""
+  },
+  {
+    "id": "75766",
+    "issue_date": "2026-02-26",
+    "due_date": "2026-02-27",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Recite phrase verbs 11-20",
+    "remarks": ""
+  },
+  {
+    "id": "75767",
+    "issue_date": "2026-02-26",
+    "due_date": "2026-02-27",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Recite phrase verbs 11-20",
+    "remarks": ""
+  },
+  {
+    "id": "75764",
+    "issue_date": "2026-02-26",
+    "due_date": "2026-02-27",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Gramma WS p.3",
+    "remarks": ""
   }
 ]
