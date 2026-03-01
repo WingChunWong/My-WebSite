@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import VueHwList from "../components/vue/HwList.vue";
+import HwList from "../components/HwList.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import {
   extractSubjects,
@@ -34,7 +34,7 @@ try {
     );
   }
 } catch (error) {
-  // If file read fails, data will be empty but Vue component can still show upload UI
+  // If file read fails, data will be empty but component can still show upload UI
   console.warn(
     "Could not load homework data during SSR - will load from client",
   );
@@ -46,8 +46,7 @@ const isDataLoaded = items.length > 0;
 ---
 
 <BaseLayout title="作業列表">
-  <VueHwList
-    client:visible
+  <HwList
     data={items}
     subjects={subjects}
     initialDate={todayYMD}

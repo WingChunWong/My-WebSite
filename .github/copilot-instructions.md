@@ -2,42 +2,51 @@
 
 ## Code Style
 
-- **Formatter**: Use Biome for linting and formatting. Run `pnpm format` before committing.
-- **TypeScript**: Strict mode enabled. See [tsconfig.json](../tsconfig.json) for configuration.
-- **Naming**: Pages use kebab-case (`.astro`), components use PascalCase (`.vue`, `.astro`), utilities use kebab-case (`.ts`, `.mjs`).
-- **Comments**: Use Chinese for UI-facing content, English for technical terms. See [homework.ts](../src/lib/homework.ts) for JSDoc style.
+- **Formatter**: Biome for linting and formatting. Run `pnpm format` before committing.
+- **TypeScript**: Strict mode enabled. See [tsconfig.json](../tsconfig.json).
+- **Naming**: Pages kebab-case (`.astro`), components PascalCase (`.astro`), utilities kebab-case (`.ts`, `.mjs`).
+- **Locale**: Chinese (zh-CN) for UI-facing content, English for code comments and class names.
 
 ## Architecture
 
-- **Framework**: Astro 5.x static site generator with Vue 3 for interactive components.
-- **Content Flow**: Markdown files in `src/data/blog/` → validated by [content.config.ts](../src/content.config.ts) → rendered via `[...slug].astro`.
-- **Vue Integration**: Pass SSR data to Vue components via props. Use `client:visible` for lazy loading. Example: [hw-list.astro](../src/pages/hw-list.astro).
-- **Layouts**: All pages extend [BaseLayout.astro](../src/layouts/BaseLayout.astro), which handles global styles, navigation, and Fluent UI setup.
-- **Custom Plugins**: [rehype-del-to-sub.mjs](../src/lib/rehype-del-to-sub.mjs) converts `~text~` to subscript and `^text^` to superscript. [remark-gemoji.mjs](../src/lib/remark-gemoji.mjs) converts `:emoji:` syntax.
+- **Framework**: Astro 5.x static site generator with Vue 3 for interactive islands.
+- **Content Flow**: Markdown in `src/data/blog/` → Zod-validated by [content.config.ts](../src/content.config.ts) → rendered via `[...slug].astro`.
+- **Component Islands**: Interactive components use Astro `define:vars` + vanilla JS (e.g., [HwList.astro](../src/components/HwList.astro)), or Vue with `client:visible` for lazy hydration.
+- **Layouts**: All pages extend [BaseLayout.astro](../src/layouts/BaseLayout.astro), which provides global styles (80+ CSS design tokens), navigation, and Fluent UI initialization.
+- **Custom Plugins**: [rehype-del-to-sub.mjs](../src/lib/rehype-del-to-sub.mjs) converts `~digits~` to `<sub>`, `^text^` to `<sup>`. [remark-gemoji.mjs](../src/lib/remark-gemoji.mjs) converts `:emoji:` syntax.
 
 ## Build and Test
 
 ```bash
-pnpm dev      # Start dev server at localhost:4321
-pnpm build    # Production build
+pnpm dev      # Dev server at localhost:4321
+pnpm build    # Production build (static output)
 pnpm preview  # Preview production build
-pnpm lint     # Lint with Biome
-pnpm format   # Format with Biome
+pnpm lint     # Biome lint check
+pnpm format   # Biome format with auto-write
 ```
+
+## UI Design
+
+- **Theme**: Dark mode with Fluent 2 design tokens. Cool-tinted neutrals (`#1b1b1f` base), muted slate blue accent (`#7ca6c4`).
+- **Colors**: All colors defined as CSS custom properties in BaseLayout.astro — use these tokens, not raw hex values.
+- **Components**: Use Fluent UI web components (`fluent-button`, `fluent-badge`, etc.). Register new ones in [fluent-init.ts](../src/lib/fluent-init.ts).
+- **Typography**: "Segoe UI Variable Display" system stack; "Cascadia Code" for monospace.
+- **Mobile**: 768px breakpoint triggers mobile blocker overlay.
 
 ## Project Conventions
 
-- **Homework Data**: Python crawler in `hw-list/` fetches data → `homework_data.json`. Astro reads this file and passes to Vue component. See [homework.ts](../src/lib/homework.ts) for type guards and validation.
-- **Fluent UI**: Register web components in [fluent-init.ts](../src/lib/fluent-init.ts). Import this file in BaseLayout to apply globally.
-- **Markdown**: Supports KaTeX math (`$...$`, `$$...$$`), GitHub alerts, callouts, and GFM. Configure in [astro.config.mjs](../astro.config.mjs).
-- **Blog Posts**: Add numbered `.md` files to `src/data/blog/` with required frontmatter: `title`, `date`, `description`, `tags`, `cover`.
+- **Homework Data**: Python crawler in `hw-list/` → `homework_data.json`. Astro reads at **build-time** via `readFileSync`, pre-computes filters, passes to [HwList.astro](../src/components/HwList.astro). Client-side file upload fallback when SSR data unavailable.
+- **Fluent UI**: Register web components in [fluent-init.ts](../src/lib/fluent-init.ts). Imported globally by BaseLayout.
+- **Markdown Pipeline**: Remark plugins (AST) run first, then rehype. GFM `~~text~~` → `<del>` gets converted to `<sub>`/`<sup>` by custom rehype plugin. Supports KaTeX math, GitHub alerts, callouts.
+- **Blog Posts**: Add numbered `.md` files to `src/data/blog/` with frontmatter: `title` (required), `date` (required), `description`, `tags`, `cover`.
+- **Date Format**: Use `YYYY-MM-DD` strings consistently across Python crawler output, TypeScript utilities, and filter logic.
 
 ## Integration Points
 
-- **Content Collections**: Use Astro's Content Collections API with Zod schemas in [content.config.ts](../src/content.config.ts).
-- **Python Crawler**: Uses environment variables `PORTAL_USERNAME` and `PORTAL_PASSWORD`. Outputs JSON with schema defined in [homework.ts](../src/lib/homework.ts).
+- **Content Collections**: Astro Content Collections API with Zod schemas in [content.config.ts](../src/content.config.ts).
+- **Python Crawler**: Environment variables `PORTAL_USERNAME` and `PORTAL_PASSWORD`. Schema in [homework.ts](../src/lib/homework.ts).
 
 ## Security
 
-- Homework crawler credentials stored in environment variables, never commit to repository.
-- Client-side file upload fallback in [HwList.vue](../src/components/vue/HwList.vue) when SSR data unavailable.
+- Crawler credentials in environment variables only — never commit.
+- No secrets in client-side code or build output.

@@ -1,5 +1,5 @@
 ---
-import VueCoordGame from "../components/vue/CoordGame.vue";
+import CoordGame from "../components/CoordGame.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
@@ -8,5 +8,5 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <i class="bi bi-arrow-left" aria-hidden="true" slot="start"></i>
     Back to Math Games
   </fluent-anchor-button>
-  <VueCoordGame client:load />
+  <CoordGame />
 </BaseLayout>

@@ -1,5 +1,5 @@
 ---
-import VueMathGame from "../components/vue/PercentageGame.vue";
+import PercentageGame from "../components/PercentageGame.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
@@ -8,5 +8,5 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <i class="bi bi-arrow-left" aria-hidden="true" slot="start"></i>
     Back to Math Games
   </fluent-anchor-button>
-  <VueMathGame client:load />
+  <PercentageGame />
 </BaseLayout>
