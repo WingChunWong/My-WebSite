@@ -1,7 +1,6 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import type { MarkdownHeading } from "astro";
-
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 type BlogPost = CollectionEntry<"blog">;
@@ -261,19 +260,19 @@ const formattedDate = post.data.date.toLocaleDateString("zh-CN", {
      ══════════════════════════════════════════════════════════ */
 
   :root {
-    --gh-bg: #0d1117;
-    --gh-bg-secondary: #161b22;
-    --gh-bg-tertiary: #21262d;
-    --gh-fg: #e6edf3;
-    --gh-fg-muted: #848d97;
-    --gh-fg-subtle: #6e7681;
-    --gh-border: #30363d;
-    --gh-border-muted: #21262d;
-    --gh-link: #2f81f7;
-    --gh-link-hover: #58a6ff;
-    --gh-accent: #1f6feb;
-    --gh-code-bg: rgba(110, 118, 129, 0.4);
-    --gh-code-block-bg: #161b22;
+    --gh-bg: #1e1e1e;
+    --gh-bg-secondary: #252525;
+    --gh-bg-tertiary: #2d2d2d;
+    --gh-fg: #e8e8e8;
+    --gh-fg-muted: #9a9a9a;
+    --gh-fg-subtle: #757575;
+    --gh-border: #2f2f2f;
+    --gh-border-muted: #282828;
+    --gh-link: #5ba6e6;
+    --gh-link-hover: #78b8ed;
+    --gh-accent: #0f6cbd;
+    --gh-code-bg: rgba(110, 118, 129, 0.3);
+    --gh-code-block-bg: #252525;
     --gh-font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
       Helvetica, Arial, sans-serif;
     --gh-font-mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas,
@@ -463,11 +462,7 @@ const formattedDate = post.data.date.toLocaleDateString("zh-CN", {
     align-items: center;
     justify-content: space-between;
     padding: 8px 16px;
-    background: linear-gradient(
-      180deg,
-      var(--gh-bg-secondary) 0%,
-      rgba(22, 27, 34, 0.5) 100%
-    );
+    background: var(--gh-bg-tertiary);
     border-bottom: 1px solid var(--gh-border);
     min-height: 40px;
     gap: 12px;

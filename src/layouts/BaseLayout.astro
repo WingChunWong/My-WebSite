@@ -57,6 +57,13 @@ function isActive(href: string): boolean {
       import "../lib/fluent-init";
     </script>
 
+    <div class="mobile-blocker" role="alert" aria-live="polite">
+      <div class="mobile-blocker-card">
+        <h2>请使用屏幕更大的设备访问</h2>
+        <p>请使用桌面端访问本站（建议宽度 >= 769px）。</p>
+      </div>
+    </div>
+
     <div class="app-container">
       <header class="site-header">
         <h1 class="site-title">{title}</h1>
@@ -103,23 +110,23 @@ function isActive(href: string): boolean {
       }
 
       :root {
-        --colorNeutralBackground1: #1b1b1b;
-        --colorNeutralBackground2: #202020;
-        --colorNeutralBackground3: #282828;
-        --colorNeutralBackground4: #333333;
-        --colorNeutralForeground1: #ffffff;
-        --colorNeutralForeground2: #d6d6d6;
-        --colorNeutralForeground3: #adadad;
-        --colorNeutralForeground4: #8a8a8a;
-        --colorNeutralStroke1: #404040;
-        --colorNeutralStroke2: #333333;
+        --colorNeutralBackground1: #1e1e1e;
+        --colorNeutralBackground2: #252525;
+        --colorNeutralBackground3: #2d2d2d;
+        --colorNeutralBackground4: #383838;
+        --colorNeutralForeground1: #e8e8e8;
+        --colorNeutralForeground2: #c4c4c4;
+        --colorNeutralForeground3: #9a9a9a;
+        --colorNeutralForeground4: #757575;
+        --colorNeutralStroke1: #3a3a3a;
+        --colorNeutralStroke2: #2f2f2f;
         --colorBrandBackground: #0f6cbd;
-        --colorBrandForeground1: #479ef5;
-        --colorBrandForeground2: #62abf5;
-        --colorBrandStroke1: #479ef5;
-        --colorBrandStroke2: rgba(71, 158, 245, 0.32);
-        --colorSubtleBackgroundHover: rgba(255, 255, 255, 0.06);
-        --colorSubtleBackgroundPressed: rgba(255, 255, 255, 0.04);
+        --colorBrandForeground1: #5ba6e6;
+        --colorBrandForeground2: #78b8ed;
+        --colorBrandStroke1: #5ba6e6;
+        --colorBrandStroke2: rgba(91, 166, 230, 0.24);
+        --colorSubtleBackgroundHover: rgba(255, 255, 255, 0.05);
+        --colorSubtleBackgroundPressed: rgba(255, 255, 255, 0.03);
         --colorStatusSuccess: #0e700e;
         --colorStatusSuccessForeground: #54b054;
         --colorStatusSuccessBackground: rgba(14, 112, 14, 0.15);
@@ -135,13 +142,11 @@ function isActive(href: string): boolean {
         --borderRadiusMedium: 6px;
         --borderRadiusLarge: 8px;
         --borderRadiusXLarge: 12px;
-        --shadow2: 0 0 2px rgba(0, 0, 0, 0.24), 0 1px 2px rgba(0, 0, 0, 0.28);
-        --shadow4: 0 0 2px rgba(0, 0, 0, 0.24), 0 2px 4px rgba(0, 0, 0, 0.28);
-        --shadow8: 0 0 2px rgba(0, 0, 0, 0.24), 0 4px 8px rgba(0, 0, 0, 0.28);
-        --shadow16: 0 0 2px rgba(0, 0, 0, 0.24),
-          0 8px 16px rgba(0, 0, 0, 0.28);
-        --shadow64: 0 0 2px rgba(0, 0, 0, 0.24),
-          0 32px 64px rgba(0, 0, 0, 0.28);
+        --shadow2: 0 1px 2px rgba(0, 0, 0, 0.16);
+        --shadow4: 0 2px 4px rgba(0, 0, 0, 0.18);
+        --shadow8: 0 4px 8px rgba(0, 0, 0, 0.20);
+        --shadow16: 0 8px 16px rgba(0, 0, 0, 0.22);
+        --shadow64: 0 32px 64px rgba(0, 0, 0, 0.28);
         --fontFamilyBase: "Segoe UI Variable Display", "Segoe UI", system-ui,
           -apple-system, sans-serif;
         --fontFamilyMono: "Cascadia Code", "Fira Code", Consolas, monospace;
@@ -270,14 +275,42 @@ function isActive(href: string): boolean {
         animation: fadeIn var(--durationSlow) var(--curveDecelerateMid) both;
       }
 
+      .mobile-blocker {
+        display: none;
+        min-height: 100vh;
+        padding: 24px;
+        align-items: center;
+        justify-content: center;
+        background: var(--colorNeutralBackground1);
+      }
+
+      .mobile-blocker-card {
+        width: min(420px, 100%);
+        padding: 20px;
+        background: var(--colorNeutralBackground2);
+        border: 1px solid var(--colorNeutralStroke2);
+        border-radius: var(--borderRadiusXLarge);
+      }
+
+      .mobile-blocker-card h2 {
+        margin: 0 0 10px;
+        font-size: 20px;
+        line-height: 1.3;
+        color: var(--colorNeutralForeground1);
+      }
+
+      .mobile-blocker-card p {
+        margin: 0;
+        color: var(--colorNeutralForeground2);
+      }
+
       /* ── Site Header ── */
       .site-header {
         background: var(--colorNeutralBackground2);
         border: 1px solid var(--colorNeutralStroke2);
         border-radius: var(--borderRadiusLarge);
-        padding: 16px 20px;
+        padding: 12px 20px;
         margin-bottom: 20px;
-        box-shadow: var(--shadow2);
         display: flex;
         align-items: center;
         gap: 20px;
@@ -324,12 +357,12 @@ function isActive(href: string): boolean {
       .nav-link.active::after {
         content: "";
         position: absolute;
-        bottom: 0;
-        left: 8px;
-        right: 8px;
-        height: 3px;
+        bottom: 2px;
+        left: 12px;
+        right: 12px;
+        height: 2px;
         background: var(--colorBrandForeground1);
-        border-radius: var(--borderRadiusSmall) var(--borderRadiusSmall) 0 0;
+        border-radius: 1px;
       }
       .nav-github {
         margin-left: auto;
@@ -344,11 +377,10 @@ function isActive(href: string): boolean {
       /* ── Page Card ── */
       .page-card {
         margin-top: 16px;
-        padding: 20px;
+        padding: 24px;
         background: var(--colorNeutralBackground2);
         border: 1px solid var(--colorNeutralStroke2);
         border-radius: var(--borderRadiusXLarge);
-        box-shadow: var(--shadow4);
       }
       .page-content {
         max-width: 100%;
@@ -365,6 +397,16 @@ function isActive(href: string): boolean {
         clip: rect(0, 0, 0, 0);
         white-space: nowrap;
         border: 0;
+      }
+
+      @media (max-width: 768px) {
+        .app-container {
+          display: none;
+        }
+
+        .mobile-blocker {
+          display: flex;
+        }
       }
     </style>
   </body>

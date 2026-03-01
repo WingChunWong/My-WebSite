@@ -97,16 +97,14 @@ const posts: CollectionEntry<"blog">[] = _posts.sort(
     padding: 0;
     cursor: pointer;
     height: 100%;
-    background: var(--colorNeutralBackground2);
+    background: var(--colorNeutralBackground3);
     border: 1px solid var(--colorNeutralStroke2);
-    border-radius: 12px;
-    box-shadow: 0 0 2px rgba(0,0,0,0.24), 0 2px 4px rgba(0,0,0,0.28);
-    transition: box-shadow 180ms var(--curveEasyEase), border-color 180ms var(--curveEasyEase), transform 180ms var(--curveEasyEase);
+    border-radius: var(--borderRadiusXLarge);
+    transition: border-color 180ms var(--curveEasyEase), box-shadow 180ms var(--curveEasyEase);
   }
   .blog-card-inner:hover {
     border-color: var(--colorNeutralStroke1);
-    box-shadow: 0 0 4px rgba(0,0,0,0.24), 0 8px 18px rgba(0,0,0,0.28);
-    transform: translateY(-6px);
+    box-shadow: var(--shadow8);
   }
   .blog-card-cover {
     height: 160px;

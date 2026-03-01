@@ -4,161 +4,292 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout title="WingChun's Website">
   <div class="profile-container">
-    <div class="hero-section">
-      <h1>Hi 👋, I'm WingChunWong</h1>
-      <h3>A student from Hong Kong</h3>
-    </div>
+    <section class="hero-section">
+      <h1>WingChunWong</h1>
+      <p class="hero-subtitle">A student from Hong Kong</p>
+    </section>
 
-    <fluent-divider></fluent-divider>
-
-    <div class="about-section">
-      <ul>
-        <li>🔭 I'm currently working on <a href="https://github.com/WingChunWong/My-WebSite">My Website</a></li>
-        <li>💬 Ask me about <strong>AI</strong></li>
-      </ul>
-    </div>
-
-    <fluent-divider></fluent-divider>
-
-    <div class="contact-section">
-      <h3>📫 Contact Me</h3>
-      <div class="contact-links" style="text-align: left;">
-        <a href="https://t.me/wingchunwong111">
-          <img src="https://img.shields.io/badge/Telegram-2CA5E0?style=flat&logo=telegram&logoColor=white" alt="Telegram" />
-        </a>
-        <a href="mailto:lshengevery@gmail.com">
-          <img src="https://img.shields.io/badge/Gmail-D14836?style=flat&logo=gmail&logoColor=white" alt="Gmail" />
-        </a>
-        <a>
-          <img src="https://img.shields.io/badge/QQ-2750821684-0099FF?style=flat&logo=tencentqq&logoColor=white" alt="QQ" />
-        </a>
+    <section class="info-cards">
+      <div class="info-card">
+        <div class="info-card-icon"><i class="bi bi-code-slash"></i></div>
+        <div class="info-card-content">
+          <h4>Current Project</h4>
+          <p>Building <a href="https://github.com/WingChunWong/My-WebSite">My Website</a></p>
+        </div>
       </div>
-    </div>
-
-    <fluent-divider></fluent-divider>
-
-    <div class="stats-section">
-      <h3>⚡ GitHub Stats</h3>
-      <div class="stats-grid">
-        <img src="https://grs.wing111.dpdns.org/api?username=wingchunwong&layout=compact&theme=dark&show_icons=true" alt="wingchunwong stats" height="140px" />
-        <img src="https://grs.wing111.dpdns.org/api/top-langs/?username=wingchunwong&layout=compact&theme=dark&show_icons=true" alt="wingchunwong toplangs" height="140px" />
-        <img src="https://github-readme-streak-stats.herokuapp.com/?user=wingchunwong&theme=dark" alt="GitHub Streak" height="140px" />
+      <div class="info-card">
+        <div class="info-card-icon"><i class="bi bi-chat-dots"></i></div>
+        <div class="info-card-content">
+          <h4>Interests</h4>
+          <p>Vibe Coding &amp; Play Games</p>
+        </div>
       </div>
-    </div>
+    </section>
+    
+    <section class="contact-section">
+      <h3 class="section-title">Contact</h3>
+      <div class="contact-links">
+        <a href="https://t.me/wingchunwong111" class="contact-chip" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-telegram"></i>
+          <span>Telegram</span>
+        </a>
+        <a href="mailto:lshengevery@gmail.com" class="contact-chip">
+          <i class="bi bi-envelope-fill"></i>
+          <span>Gmail</span>
+        </a>
+        <button class="contact-chip contact-chip-static" id="qq-copy" data-qq="2750821684" type="button">
+          <i class="bi bi-chat-square-fill"></i>
+          <span>QQ: 2750821684</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="stats-section">
+      <h3 class="section-title">GitHub Stats</h3>
+      <div class="stats-unified-card">
+        <div class="stats-grid">
+          <div class="stats-item">
+            <img
+              src="https://grs.wing111.dpdns.org/api?username=wingchunwong&layout=compact&theme=dark&show_icons=true&bg_color=00000000&border_color=00000000&hide_border=true&title_color=c4c4c4&text_color=9a9a9a&icon_color=5ba6e6"
+              alt="wingchunwong stats"
+            />
+          </div>
+          <div class="stats-item">
+            <img
+              src="https://grs.wing111.dpdns.org/api/top-langs/?username=wingchunwong&layout=compact&theme=dark&show_icons=true&bg_color=00000000&border_color=00000000&hide_border=true&title_color=c4c4c4&text_color=9a9a9a&icon_color=5ba6e6"
+              alt="wingchunwong toplangs"
+            />
+          </div>
+          <div class="stats-item">
+            <img
+              src="https://github-readme-streak-stats.herokuapp.com/?user=wingchunwong&theme=dark&background=00000000&border=00000000&stroke=00000000&ring=5ba6e6&fire=5ba6e6&currStreakLabel=c4c4c4&sideLabels=c4c4c4&currStreakNum=e8e8e8&sideNums=e8e8e8&dates=757575"
+              alt="GitHub Streak"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </BaseLayout>
 
 <style>
   .profile-container {
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: 860px;
+    width: 100%;
+    margin: 0;
   }
 
+  /* ── Hero ── */
   .hero-section {
-    text-align: center;
     margin-bottom: 32px;
   }
 
   .hero-section h1 {
-    font-size: 32px;
-    font-weight: 700;
-    margin: 0 0 16px 0;
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0 0 6px 0;
     color: var(--colorNeutralForeground1);
+    letter-spacing: -0.02em;
   }
 
-  .hero-section h3 {
-    font-size: 20px;
-    font-weight: 500;
+  .hero-subtitle {
+    font-size: 15px;
     margin: 0;
+    color: var(--colorNeutralForeground3);
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: var(--colorNeutralForeground2);
+    letter-spacing: 0.01em;
+  }
+
+  /* ── Info Cards ── */
+  .info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .info-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px;
+    background: var(--colorNeutralBackground3);
+    border: 1px solid var(--colorNeutralStroke2);
+    border-radius: var(--borderRadiusLarge);
+    transition:
+      border-color var(--durationNormal) var(--curveEasyEase),
+      background-color var(--durationNormal) var(--curveEasyEase);
+  }
+
+  .info-card:hover {
+    border-color: var(--colorNeutralStroke1);
+    background: color-mix(
+      in srgb,
+      var(--colorNeutralBackground3) 92%,
+      var(--colorBrandForeground1) 8%
+    );
+  }
+
+  .info-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--borderRadiusMedium);
+    background: rgba(91, 166, 230, 0.1);
+    color: var(--colorBrandForeground1);
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .info-card-content h4 {
+    margin: 0 0 4px 0;
+    font-size: 13px;
+    font-weight: 600;
     color: var(--colorNeutralForeground2);
   }
 
-  .about-section {
-    margin: 24px 0;
-  }
-
-  .about-section ul {
-    list-style: none;
-    padding: 0;
+  .info-card-content p {
     margin: 0;
+    font-size: 14px;
+    color: var(--colorNeutralForeground3);
+    line-height: 1.5;
   }
 
-  .about-section li {
-    padding: 8px 0;
-    font-size: 18px;
-    color: var(--colorNeutralForeground2);
-    line-height: 1.6;
-  }
-
-  .about-section a {
+  .info-card-content a {
     color: var(--colorBrandForeground1);
     text-decoration: none;
-    font-weight: 600;
   }
 
-  .about-section a:hover {
+  .info-card-content a:hover {
     text-decoration: underline;
   }
 
+  /* ── Contact ── */
   .contact-section {
-    margin: 24px 0;
+    margin-bottom: 28px;
   }
 
   .contact-section h3 {
-    font-size: 18px;
-    font-weight: 600;
-    margin: 0 0 16px 0;
-    color: var(--colorNeutralForeground1);
+    margin-bottom: 12px;
   }
 
   .contact-links {
     display: flex;
-    gap: 12px;
+    gap: 8px;
     flex-wrap: wrap;
+  }
+
+  .contact-chip {
+    display: inline-flex;
     align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--colorNeutralForeground2);
+    background: var(--colorNeutralBackground3);
+    border: 1px solid var(--colorNeutralStroke2);
+    border-radius: 20px;
+    text-decoration: none;
+    transition:
+      border-color var(--durationFast) var(--curveEasyEase),
+      color var(--durationFast) var(--curveEasyEase),
+      background-color var(--durationFast) var(--curveEasyEase);
   }
 
-  .contact-links a,
-  .contact-links span {
-    display: inline-block;
-    transition: transform 100ms ease;
+  a.contact-chip:hover {
+    border-color: var(--colorBrandStroke1);
+    color: var(--colorBrandForeground1);
+    background-color: color-mix(
+      in srgb,
+      var(--colorNeutralBackground3) 90%,
+      var(--colorBrandForeground1) 10%
+    );
   }
 
-  .contact-links a:hover {
-    transform: translateY(-2px);
+  .contact-chip i {
+    font-size: 14px;
   }
 
-  .contact-links img {
-    height: 24px;
+  .contact-chip-static {
+    cursor: pointer;
+    transition:
+      border-color var(--durationFast) var(--curveEasyEase),
+      color var(--durationFast) var(--curveEasyEase),
+      background-color var(--durationFast) var(--curveEasyEase);
   }
 
-  .stats-section {
-    margin: 24px 0;
+  .contact-chip-static:hover {
+    border-color: var(--colorBrandStroke1);
+    color: var(--colorBrandForeground1);
+    background-color: color-mix(
+      in srgb,
+      var(--colorNeutralBackground3) 90%,
+      var(--colorBrandForeground1) 10%
+    );
   }
 
+  button.contact-chip-static {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  /* ── Stats ── */
   .stats-section h3 {
-    font-size: 24px;
-    font-weight: 600;
-    margin: 0 0 20px 0;
-    text-align: center;
-    color: var(--colorNeutralForeground1);
+    margin-bottom: 14px;
+  }
+
+  .stats-unified-card {
+    background: var(--colorNeutralBackground3);
+    border: 1px solid var(--colorNeutralStroke2);
+    border-radius: var(--borderRadiusLarge);
+    padding: 12px 14px;
+    transition:
+      border-color var(--durationNormal) var(--curveEasyEase),
+      background-color var(--durationNormal) var(--curveEasyEase);
+  }
+
+  .stats-unified-card:hover {
+    border-color: var(--colorNeutralStroke1);
+    background: color-mix(
+      in srgb,
+      var(--colorNeutralBackground3) 92%,
+      var(--colorBrandForeground1) 8%
+    );
   }
 
   .stats-grid {
-    display: flex;
-    gap: 5px;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .stats-item {
+    min-width: 0;
   }
 
   .stats-grid img {
-    max-width: 100%;
-    height: 150px;
+    display: block;
+    width: 100%;
+    height: 148px;
+    object-fit: contain;
+    border-radius: var(--borderRadiusMedium);
   }
 
-  fluent-divider {
-    margin: 16px 0;
+  @media (max-width: 980px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
   @media (max-width: 768px) {
@@ -166,22 +297,60 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       font-size: 24px;
     }
 
-    .hero-section h3 {
-      font-size: 16px;
+    .info-cards {
+      grid-template-columns: 1fr;
     }
 
     .stats-grid {
-      flex-direction: column;
-      gap: 24px;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .stats-unified-card {
+      padding: 10px;
     }
 
     .stats-grid img {
-      height: auto;
+      height: 140px;
       max-width: 100%;
     }
+  }
 
-    .about-section li {
-      font-size: 14px;
+  @media (max-width: 420px) {
+    .contact-links {
+      gap: 6px;
+    }
+
+    .contact-chip {
+      padding: 5px 11px;
+      font-size: 12px;
+    }
+
+    .stats-grid img {
+      height: 130px;
     }
   }
 </style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const qqBtn = document.getElementById("qq-copy");
+    if (qqBtn) {
+      qqBtn.addEventListener("click", async () => {
+        const qq = qqBtn.dataset.qq;
+        try {
+          await navigator.clipboard.writeText(qq);
+          // Feedback: change text temporarily
+          const span = qqBtn.querySelector("span");
+          const originalText = span.textContent;
+          span.textContent = "Copied!";
+          setTimeout(() => {
+            span.textContent = originalText;
+          }, 2000);
+        } catch (err) {
+          console.error("Failed to copy QQ number:", err);
+        }
+      });
+    }
+  });
+</script>
