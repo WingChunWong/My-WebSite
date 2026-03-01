@@ -21,12 +21,10 @@
     "remark-definition-list": "^2.0.0",
     "remark-gfm": "^4.0.1",
     "remark-math": "^6.0.0",
-    "unist-util-visit": "^5.1.0",
-    "vue": "^3.5.28"
+    "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
     "@astrojs/mdx": "^4.3.13",
-    "@astrojs/vue": "^5.1.4",
     "@biomejs/biome": "^2.4.4",
     "@types/node": "^25.3.0",
     "astro": "^5.17.3",
