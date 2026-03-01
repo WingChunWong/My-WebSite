@@ -4,5 +4,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Coordinate Challenge">
+  <fluent-anchor-button href="/math-game" appearance="transparent" class="back-btn">
+    <i class="bi bi-arrow-left" aria-hidden="true" slot="start"></i>
+    Back to Math Games
+  </fluent-anchor-button>
   <VueCoordGame client:load />
 </BaseLayout>

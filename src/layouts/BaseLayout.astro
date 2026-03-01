@@ -13,13 +13,18 @@ const currentPath = Astro.url.pathname;
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/hw-list", label: "Hw List" },
-  { href: "/percentage-game", label: "Percentage Game" },
-  { href: "/coord-game", label: "Coordinate Game" },
+  { href: "/math-game", label: "Math Games" },
   { href: "/blog", label: "Blog" },
 ];
 
 function isActive(href: string): boolean {
   if (href === "/") return currentPath === "/";
+  if (href === "/math-game")
+    return (
+      currentPath.startsWith("/math-game") ||
+      currentPath.startsWith("/percentage-game") ||
+      currentPath.startsWith("/coord-game")
+    );
   return currentPath.startsWith(href);
 }
 ---
@@ -59,8 +64,8 @@ function isActive(href: string): boolean {
 
     <div class="mobile-blocker" role="alert" aria-live="polite">
       <div class="mobile-blocker-card">
-        <h2>请使用屏幕更大的设备访问</h2>
-        <p>请使用桌面端访问本站（建议宽度 >= 769px）。</p>
+        <h2>Please use a larger screen</h2>
+        <p>Please view this site on a desktop device (recommended width >= 769px).</p>
       </div>
     </div>
 
@@ -321,6 +326,23 @@ function isActive(href: string): boolean {
         margin-right: 12px;
         white-space: nowrap;
         letter-spacing: -0.01em;
+      }
+      .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 8px;
+        margin-right: 6px;
+        color: var(--colorNeutralForeground2);
+        border-radius: var(--borderRadiusMedium);
+        cursor: pointer;
+      }
+      .back-btn i {
+        font-size: 14px;
+      }
+      .back-btn:hover {
+        color: var(--colorBrandForeground1);
+        background: rgba(124, 166, 196, 0.03);
       }
       .site-nav {
         display: flex;

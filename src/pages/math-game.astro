@@ -1,0 +1,125 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const games = [
+  {
+    title: "Percentage Practice",
+    description: "Practice percentage increase/decrease calculations to improve speed and accuracy.",
+    href: "/percentage-game",
+    icon: "bi-percent",
+  },
+  {
+    title: "Coordinate Challenge",
+    description: "Challenge yourself on the coordinate plane and master basic coordinate geometry.",
+    href: "/coord-game",
+    icon: "bi-grid-3x3",
+  },
+];
+---
+
+<BaseLayout title="Math Games">
+  <div class="math-games-container">
+    <section class="hero-section">
+      <fluent-text block size="700" weight="bold">Math Games</fluent-text>
+      <fluent-text block size="300" class="hero-subtitle">Choose a game to start practicing</fluent-text>
+    </section>
+
+    <section class="games-grid">
+      {games.map((game) => (
+        <a href={game.href} class="game-card">
+          <div class="game-card-icon">
+            <i class={`bi ${game.icon}`} aria-hidden="true" />
+          </div>
+          <div class="game-card-body">
+            <fluent-label weight="semibold" size="large">{game.title}</fluent-label>
+            <fluent-text block size="300" class="game-card-desc">{game.description}</fluent-text>
+          </div>
+          <div class="game-card-arrow">
+            <i class="bi bi-arrow-right" aria-hidden="true" />
+          </div>
+        </a>
+      ))}
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .math-games-container {
+    max-width: 860px;
+    width: 100%;
+    margin: 0;
+  }
+
+  .hero-section {
+    margin-bottom: 32px;
+  }
+
+  .hero-subtitle {
+    color: var(--colorNeutralForeground3);
+    margin-top: 4px;
+  }
+
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .game-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: var(--colorNeutralBackground3);
+    border: 1px solid var(--colorNeutralStroke2);
+    border-radius: var(--borderRadiusLarge);
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition:
+      border-color var(--durationNormal) var(--curveEasyEase),
+      box-shadow var(--durationNormal) var(--curveEasyEase);
+  }
+
+  .game-card:hover {
+    border-color: var(--colorBrandStroke1);
+    box-shadow: var(--shadow4);
+  }
+
+  .game-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--borderRadiusMedium);
+    background: rgba(124, 166, 196, 0.10);
+    color: var(--colorBrandForeground1);
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .game-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .game-card-desc {
+    color: var(--colorNeutralForeground3);
+  }
+
+  .game-card-arrow {
+    color: var(--colorNeutralForeground4);
+    font-size: 16px;
+    flex-shrink: 0;
+    transition: transform var(--durationNormal) var(--curveEasyEase);
+  }
+
+  .game-card:hover .game-card-arrow {
+    color: var(--colorBrandForeground1);
+    transform: translateX(4px);
+  }
+</style>

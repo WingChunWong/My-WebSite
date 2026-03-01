@@ -15,13 +15,13 @@ const posts: CollectionEntry<"blog">[] = _posts.sort(
     posts.length === 0 ? (
       <div class="blog-empty">
         <fluent-text block weight="semibold" size="600">Blog</fluent-text>
-        <fluent-text block size="300">暫無文章。</fluent-text>
+        <fluent-text block size="300">No articles available.</fluent-text>
       </div>
     ) : (
       <div class="blog-list">
         <div class="blog-list-header">
           <fluent-text weight="semibold" size="600">Blog</fluent-text>
-          <fluent-badge appearance="ghost" size="small">{posts.length} 篇文章</fluent-badge>
+          <fluent-badge appearance="ghost" size="small">{posts.length} articles</fluent-badge>
         </div>
         <div class="blog-grid">
           {posts.map((post: CollectionEntry<"blog">) => (
