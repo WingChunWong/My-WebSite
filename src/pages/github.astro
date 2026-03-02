@@ -11,24 +11,28 @@ let events: TimelineEvent[] = [];
 
 if (token) {
   try {
-    console.log(`Fetching GitHub contributions for ${GITHUB_USERNAME} since ${SINCE_DATE.toISOString()}`);
+    console.log(
+      `Fetching GitHub contributions for ${GITHUB_USERNAME} since ${SINCE_DATE.toISOString()}`,
+    );
     events = await fetchGitHubContributions(token, GITHUB_USERNAME, SINCE_DATE);
     console.log(`Fetched ${events.length} total events`);
-    
+
     // 打印日期范围统计
     if (events.length > 0) {
-      const dates = events.map(e => new Date(e.date).getTime());
+      const dates = events.map((e) => new Date(e.date).getTime());
       const earliest = new Date(Math.min(...dates));
       const latest = new Date(Math.max(...dates));
-      console.log(`Date range: ${earliest.toISOString().split('T')[0]} to ${latest.toISOString().split('T')[0]}`);
-      
+      console.log(
+        `Date range: ${earliest.toISOString().split("T")[0]} to ${latest.toISOString().split("T")[0]}`,
+      );
+
       // 按年份统计
       const byYear = new Map<number, number>();
       for (const event of events) {
         const year = new Date(event.date).getFullYear();
         byYear.set(year, (byYear.get(year) || 0) + 1);
       }
-      console.log('Events by year:', Object.fromEntries(byYear));
+      console.log("Events by year:", Object.fromEntries(byYear));
     }
   } catch (error) {
     console.error("Failed to fetch GitHub contributions:", error);

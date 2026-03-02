@@ -170,7 +170,7 @@ const { data, subjects, initialDate, isDataLoaded } = Astro.props;
     const filtered = filterHomework(items, {
       issueDate,
       subject,
-      dueStatus: dueStatus as "overdue" | "today" | "future" | undefined || undefined,
+      dueStatus: (dueStatus || undefined) as "overdue" | "today" | "future" | undefined,
     });
 
     tbody.innerHTML = filtered
@@ -226,8 +226,6 @@ const { data, subjects, initialDate, isDataLoaded } = Astro.props;
     renderTable();
   });
 
-  // (文件上传功能已移除)
-
   // Screenshot download
   btnDownload?.addEventListener("click", async () => {
     try {
@@ -255,17 +253,11 @@ const { data, subjects, initialDate, isDataLoaded } = Astro.props;
       if (hwTable) {
         const clone = hwTable.cloneNode(true) as HTMLElement;
         clone.style.width = "100%";
-        // 修复：导出时移除表头的 sticky 定位，避免表头渲染到图片底部
-        try {
-          const ths = Array.from(clone.querySelectorAll('th')) as HTMLElement[];
-          ths.forEach((th) => {
-            th.style.position = 'static';
-            th.style.top = '';
-            th.style.zIndex = '1';
-          });
-        } catch (e) {
-          // ignore
-        }
+        clone.querySelectorAll<HTMLElement>('th').forEach((th) => {
+          th.style.position = 'static';
+          th.style.top = '';
+          th.style.zIndex = '1';
+        });
         temp.appendChild(clone);
       } else {
         throw new Error("找不到表格元素");

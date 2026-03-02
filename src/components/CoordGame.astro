@@ -285,53 +285,33 @@
   }
 
   function updateTips() {
-    if (currentMode === "final") {
-      const isArea = question?.type === "area";
-      const lines = isArea
-        ? ["Calculate area using the coordinate formula.", "Rectangle area: width times height from coordinate differences.", "Triangle area: half of base times height."]
-        : ["Use reference points to find the target coordinates.", "Lock x or y using a reference point, then solve the other axis."];
-      lines.push('<span class="cg-tips__bonus">⚡ Speed bonus: finish faster for more points!</span>');
-      elTipsContent.innerHTML = `<div class="cg-tips__item">${lines.map((l) => `<p>${l}</p>`).join("")}</div>`;
-    } else {
-      const lines = TIPS[currentMode];
-      elTipsContent.innerHTML = `<div class="cg-tips__item">${lines.map((l) => `<p>${l}</p>`).join("")}</div>`;
-    }
+    const lines = currentMode === "final"
+      ? [
+          ...(question?.type === "area"
+            ? ["Calculate area using the coordinate formula.", "Rectangle area: width times height from coordinate differences.", "Triangle area: half of base times height."]
+            : ["Use reference points to find the target coordinates.", "Lock x or y using a reference point, then solve the other axis."]),
+          '<span class="cg-tips__bonus">⚡ Speed bonus: finish faster for more points!</span>',
+        ]
+      : TIPS[currentMode];
+    elTipsContent.innerHTML = `<div class="cg-tips__item">${lines.map((l) => `<p>${l}</p>`).join("")}</div>`;
   }
 
   function renderChoices() {
     if (!question) return;
     elChoices.innerHTML = question.choices
-      .map(
-        (c, i) =>
-          `<button class="cg-choice" data-idx="${i}"><span class="cg-choice__key">${i + 1}</span><span class="cg-choice__label">${c}</span></button>`,
-      )
+      .map((c, i) => `<button class="cg-choice" data-idx="${i}"><span class="cg-choice__key">${i + 1}</span><span class="cg-choice__label">${c}</span></button>`)
       .join("");
-
-    for (const btn of elChoices.querySelectorAll<HTMLButtonElement>(".cg-choice")) {
-      btn.addEventListener("click", () => {
-        const idx = Number(btn.dataset.idx);
-        pickAnswer(idx);
-      });
-    }
   }
 
   function showFeedback() {
-    if (answerState === "idle") {
-      elFeedback.innerHTML = "";
-      return;
-    }
-    let cls = "";
-    let msg = "";
-    if (answerState === "correct") {
-      cls = "cg-feedback__msg--correct";
-      msg = `✓ Correct! +${POINTS_PER_MODE[currentMode]} pts`;
-    } else if (answerState === "wrong") {
-      cls = "cg-feedback__msg--wrong";
-      msg = `✗ Wrong! The answer was ${question?.choices[question?.correctIdx]}`;
-    } else if (answerState === "timeout") {
-      cls = "cg-feedback__msg--timeout";
-      msg = `⏱ Time's up! The answer was ${question?.choices[question?.correctIdx]}`;
-    }
+    if (answerState === "idle") { elFeedback.innerHTML = ""; return; }
+    const correctAnswer = question?.choices[question?.correctIdx];
+    const feedbackMap: Record<string, [string, string]> = {
+      correct: ["cg-feedback__msg--correct", `✓ Correct! +${POINTS_PER_MODE[currentMode]} pts`],
+      wrong: ["cg-feedback__msg--wrong", `✗ Wrong! The answer was ${correctAnswer}`],
+      timeout: ["cg-feedback__msg--timeout", `⏱ Time's up! The answer was ${correctAnswer}`],
+    };
+    const [cls, msg] = feedbackMap[answerState] ?? ["", ""];
     elFeedback.innerHTML = `<div class="cg-feedback__msg ${cls}">${msg}</div>`;
 
     // Update choice button styles
@@ -660,16 +640,9 @@
     const pct = maxTime > 0 ? (timeLeft / maxTime) * 100 : 100;
     elTimerVal.textContent = `${timeLeft}s`;
     elTimerFill.style.width = `${pct}%`;
-
-    elTimerVal.className = "cg-timer__val";
-    elTimerFill.className = "cg-timer__fill";
-    if (timeLeft <= 3) {
-      elTimerVal.classList.add("cg-timer__val--danger");
-      elTimerFill.classList.add("cg-timer__fill--danger");
-    } else if (timeLeft <= 5) {
-      elTimerVal.classList.add("cg-timer__val--warn");
-      elTimerFill.classList.add("cg-timer__fill--warn");
-    }
+    const suffix = timeLeft <= 3 ? "--danger" : timeLeft <= 5 ? "--warn" : "";
+    elTimerVal.className = `cg-timer__val${suffix && ` cg-timer__val${suffix}`}`;
+    elTimerFill.className = `cg-timer__fill${suffix && ` cg-timer__fill${suffix}`}`;
   }
 
   function startFinalClock() {
@@ -828,6 +801,11 @@
   document.getElementById("btn-continue")!.addEventListener("click", continueFromTransition);
   document.getElementById("btn-play-again")!.addEventListener("click", startGame);
   document.getElementById("btn-back-start")!.addEventListener("click", restartGame);
+
+  elChoices.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".cg-choice");
+    if (btn?.dataset.idx) pickAnswer(Number(btn.dataset.idx));
+  });
 
   window.addEventListener("keydown", (e) => {
     if (phase === "playing" && answerState === "idle" && question) {
