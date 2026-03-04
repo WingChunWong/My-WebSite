@@ -3157,5 +3157,41 @@
     "subject": "數學 -- MATH",
     "homework_name": "Form Test Ch.8",
     "remarks": ""
+  },
+  {
+    "id": "75894",
+    "issue_date": "2026-03-04",
+    "due_date": "2026-03-09",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Venn diagram (Notebook)",
+    "remarks": ""
+  },
+  {
+    "id": "75893",
+    "issue_date": "2026-03-04",
+    "due_date": "2026-03-09",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Grammar Workbook p.157",
+    "remarks": ""
+  },
+  {
+    "id": "75892",
+    "issue_date": "2026-03-04",
+    "due_date": "2026-03-09",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "CW53",
+    "remarks": ""
+  },
+  {
+    "id": "75890",
+    "issue_date": "2026-03-04",
+    "due_date": "2026-03-09",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "WS 8D p.1-7 (odd)",
+    "remarks": ""
   }
 ]
