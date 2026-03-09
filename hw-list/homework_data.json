@@ -3193,5 +3193,50 @@
     "subject": "數學 -- MATH",
     "homework_name": "WS 8D p.1-7 (odd)",
     "remarks": ""
+  },
+  {
+    "id": "75949",
+    "issue_date": "2026-03-09",
+    "due_date": "2026-03-10",
+    "class_group": "全班",
+    "subject": "中史 -- CHIS",
+    "homework_name": "12/3 級測",
+    "remarks": ""
+  },
+  {
+    "id": "75948",
+    "issue_date": "2026-03-09",
+    "due_date": "2026-03-10",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "Tmr Form Test Ch.8",
+    "remarks": ""
+  },
+  {
+    "id": "75947",
+    "issue_date": "2026-03-09",
+    "due_date": "2026-03-10",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "CW54",
+    "remarks": ""
+  },
+  {
+    "id": "75946",
+    "issue_date": "2026-03-09",
+    "due_date": "2026-03-10",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "明天共閲圖書測驗+匯報",
+    "remarks": ""
+  },
+  {
+    "id": "75945",
+    "issue_date": "2026-03-09",
+    "due_date": "2026-03-10",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "GB p.146-147",
+    "remarks": ""
   }
 ]
