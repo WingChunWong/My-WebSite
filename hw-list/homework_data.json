@@ -3238,5 +3238,32 @@
     "subject": "英文 -- ENG",
     "homework_name": "GB p.146-147",
     "remarks": ""
+  },
+  {
+    "id": "75991",
+    "issue_date": "2026-03-10",
+    "due_date": "2026-03-11",
+    "class_group": "全班",
+    "subject": "科學 -- SCI",
+    "homework_name": "Thur 交默書",
+    "remarks": ""
+  },
+  {
+    "id": "75990",
+    "issue_date": "2026-03-10",
+    "due_date": "2026-03-11",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Grammar WS",
+    "remarks": ""
+  },
+  {
+    "id": "75989",
+    "issue_date": "2026-03-10",
+    "due_date": "2026-03-11",
+    "class_group": "全班",
+    "subject": "其他z_etc",
+    "homework_name": "Complete video/my favourite festival(book2)",
+    "remarks": ""
   }
 ]
