@@ -3274,5 +3274,41 @@
     "subject": "中文 -- CHIN",
     "homework_name": "明天級測請溫書",
     "remarks": ""
+  },
+  {
+    "id": "記事7025",
+    "issue_date": "2026-03-12",
+    "due_date": "2026-03-13",
+    "class_group": "全班",
+    "subject": "中史 -- CHIS",
+    "homework_name": "統測範圍見 VLE",
+    "remarks": ""
+  },
+  {
+    "id": "記事7024",
+    "issue_date": "2026-03-12",
+    "due_date": "2026-03-13",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Vocab & Grammar Quiz",
+    "remarks": ""
+  },
+  {
+    "id": "76064",
+    "issue_date": "2026-03-12",
+    "due_date": "2026-03-16",
+    "class_group": "全班",
+    "subject": "科學 -- SCI",
+    "homework_name": "WB 1B p.1-3",
+    "remarks": ""
+  },
+  {
+    "id": "76061",
+    "issue_date": "2026-03-12",
+    "due_date": "2026-03-13",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "WS 9A p1-4",
+    "remarks": ""
   }
 ]
