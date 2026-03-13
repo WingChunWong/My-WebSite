@@ -24,10 +24,10 @@
     "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^4.3.13",
-    "@biomejs/biome": "^2.4.4",
-    "@types/node": "^25.3.3",
-    "astro": "^5.18.0",
+    "@astrojs/mdx": "^5.0.0",
+    "@biomejs/biome": "^2.4.6",
+    "@types/node": "^25.5.0",
+    "astro": "^6.0.4",
     "hastscript": "^9.0.1",
     "typescript": "^5.9.3"
   }
