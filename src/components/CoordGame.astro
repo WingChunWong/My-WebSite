@@ -5,7 +5,7 @@
     <h2 class="cg-start__title">Coordinate Challenge</h2>
     <p class="cg-start__desc">
       Test your coordinate geometry skills across 4 progressive levels.
-      Identify points, use reference clues, and calculate areas!
+      Identify points, use reference clues, calculate areas, and master reflections & translations!
     </p>
     <div class="cg-start__modes">
       <div class="cg-mode-pill cg-mode-pill--simple">
@@ -18,11 +18,11 @@
       </div>
       <div class="cg-mode-pill cg-mode-pill--hell">
         <strong>Hell</strong>
-        <span>No Grid / Labels &middot; 10 s &middot; 7 choices</span>
+        <span>No Grid / Labels &middot; Identify + Reflect + Translate</span>
       </div>
       <div class="cg-mode-pill cg-mode-pill--final">
         <strong>Final</strong>
-        <span>Area + Identify &middot; Speed bonus</span>
+        <span>Area + Identify + Reflect + Translate</span>
       </div>
     </div>
     <fluent-button id="btn-start-game" appearance="primary">Start Game</fluent-button>
@@ -142,10 +142,17 @@
   }
 
   interface Question {
-    type: "identify" | "area";
+    type: "identify" | "area" | "reflection" | "translation";
     target?: GraphPoint;
     refs?: GraphPoint[];
     shape?: GraphPoint[];
+    // Reflection specific
+    reflectionAxis?: "x" | "y" | "origin";
+    originalPoint?: GraphPoint;
+    reflectedPoint?: GraphPoint;
+    // Translation specific
+    translation?: { dx: number; dy: number };
+    translatedPoint?: GraphPoint;
     choices: string[];
     correctIdx: number;
     prompt: string;
@@ -172,7 +179,7 @@
   const TRANSITION_MSG: Record<string, { title: string; sub: string }> = {
     challenge: { title: "Level Up!", sub: "Entering Challenge Mode — Grid lines removed!" },
     hell: { title: "Impressive!", sub: "Welcome to Hell Mode — No grid, no number labels!" },
-    final: { title: "Final Challenge!", sub: "Mixed problems: area calculation & extreme identification. No time limit — speed is rewarded!" },
+    final: { title: "Final Challenge!", sub: "Mixed problems: area, identify, reflection & translation. No time limit — speed is rewarded!" },
   };
 
   const TIPS: Record<Mode, string[]> = {
@@ -285,14 +292,31 @@
   }
 
   function updateTips() {
-    const lines = currentMode === "final"
-      ? [
-          ...(question?.type === "area"
-            ? ["Calculate area using the coordinate formula.", "Rectangle area: width times height from coordinate differences.", "Triangle area: half of base times height."]
-            : ["Use reference points to find the target coordinates.", "Lock x or y using a reference point, then solve the other axis."]),
-          '<span class="cg-tips__bonus">⚡ Speed bonus: finish faster for more points!</span>',
-        ]
-      : TIPS[currentMode];
+    let lines: string[];
+    
+    const tipsByType: Record<string, string[]> = {
+      area: ["Calculate area using the coordinate formula.", "Rectangle area: width times height from coordinate differences.", "Triangle area: half of base times height."],
+      identify: ["Use reference points to find the target coordinates.", "Lock x or y using a reference point, then solve the other axis."],
+      reflection: [
+        "Reflection across x-axis: (x, y) → (x, -y)",
+        "Reflection across y-axis: (x, y) → (-x, y)",
+        "Reflection about origin: (x, y) → (-x, -y)"
+      ],
+      translation: [
+        "Translation adds to both coordinates.",
+        "Move right (+dx) or left (-dx) for x-coordinate.",
+        "Move up (+dy) or down (-dy) for y-coordinate."
+      ]
+    };
+    
+    if (currentMode === "final") {
+      lines = [...(tipsByType[question?.type || "identify"] || tipsByType.identify), '<span class="cg-tips__bonus">⚡ Speed bonus: finish faster for more points!</span>'];
+    } else if (currentMode === "hell") {
+      // Hell mode: show type-specific tips
+      lines = tipsByType[question?.type || "identify"] || tipsByType.identify;
+    } else {
+      lines = TIPS[currentMode];
+    }
     elTipsContent.innerHTML = `<div class="cg-tips__item">${lines.map((l) => `<p>${l}</p>`).join("")}</div>`;
   }
 
@@ -344,7 +368,16 @@
     if (ctx) ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
-  function drawGraph(opts: { showGrid: boolean; showNumbers: boolean; points: GraphPoint[]; edges?: [GraphPoint, GraphPoint][] }) {
+  function drawGraph(opts: { 
+    showGrid: boolean; 
+    showNumbers: boolean; 
+    points: GraphPoint[]; 
+    edges?: [GraphPoint, GraphPoint][];
+    reflectionAxis?: "x" | "y" | "origin";
+    translation?: { dx: number; dy: number };
+    translationFrom?: GraphPoint;
+    translationTo?: GraphPoint;
+  }) {
     const ctx = canvasEl.getContext("2d");
     if (!ctx) return;
     const dpr = window.devicePixelRatio || 1;
@@ -460,6 +493,60 @@
       }
     }
 
+    // Reflection axis highlight
+    if (opts.reflectionAxis) {
+      ctx.save();
+      ctx.strokeStyle = "#a855f7";
+      ctx.lineWidth = 2;
+      ctx.setLineDash([8, 4]);
+      if (opts.reflectionAxis === "x") {
+        ctx.beginPath(); ctx.moveTo(ox, cy); ctx.lineTo(ox + gSize, cy); ctx.stroke();
+        // Label
+        ctx.fillStyle = "#a855f7"; ctx.font = "bold 12px system-ui";
+        ctx.textAlign = "right"; ctx.textBaseline = "bottom";
+        ctx.fillText("reflection axis", ox + gSize - 4, cy - 6);
+      } else if (opts.reflectionAxis === "y") {
+        ctx.beginPath(); ctx.moveTo(cx, oy); ctx.lineTo(cx, oy + gSize); ctx.stroke();
+        // Label
+        ctx.fillStyle = "#a855f7"; ctx.font = "bold 12px system-ui";
+        ctx.textAlign = "left"; ctx.textBaseline = "top";
+        ctx.fillText("reflection axis", cx + 6, oy + 4);
+      } else {
+        // Origin reflection - draw a small circle at origin
+        ctx.beginPath(); ctx.arc(cx, cy, 8, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.fillStyle = "#a855f7"; ctx.font = "bold 12px system-ui";
+        ctx.textAlign = "left"; ctx.textBaseline = "bottom";
+        ctx.fillText("reflect about origin", cx + 12, cy - 4);
+      }
+      ctx.setLineDash([]);
+      ctx.restore();
+    }
+
+    // Translation arrow
+    if (opts.translation && opts.translationFrom && opts.translationTo) {
+      const [x1, y1] = toP(opts.translationFrom.x, opts.translationFrom.y);
+      const [x2, y2] = toP(opts.translationTo.x, opts.translationTo.y);
+      
+      ctx.save();
+      ctx.strokeStyle = "#a855f7";
+      ctx.lineWidth = 2;
+      ctx.setLineDash([6, 3]);
+      ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+      ctx.setLineDash([]);
+      
+      // Arrowhead
+      const angle = Math.atan2(y2 - y1, x2 - x1);
+      const arrowLen = 10;
+      ctx.beginPath();
+      ctx.moveTo(x2, y2);
+      ctx.lineTo(x2 - arrowLen * Math.cos(angle - Math.PI / 6), y2 - arrowLen * Math.sin(angle - Math.PI / 6));
+      ctx.moveTo(x2, y2);
+      ctx.lineTo(x2 - arrowLen * Math.cos(angle + Math.PI / 6), y2 - arrowLen * Math.sin(angle + Math.PI / 6));
+      ctx.stroke();
+      ctx.restore();
+    }
+
     // Points
     for (const pt of opts.points) {
       const [px, py] = toP(pt.x, pt.y);
@@ -500,6 +587,11 @@
     const c = MODE_CFG[currentMode];
     const points: GraphPoint[] = [];
     let edges: [GraphPoint, GraphPoint][] | undefined;
+    let reflectionAxis: "x" | "y" | "origin" | undefined;
+    let translation: { dx: number; dy: number } | undefined;
+    let translationFrom: GraphPoint | undefined;
+    let translationTo: GraphPoint | undefined;
+    
     if (question.type === "identify") {
       if (question.target) points.push({ ...question.target, color: question.target.color || "#479ef5" });
       if (question.refs) for (const rp of question.refs) points.push({ ...rp, color: rp.color || "#ff9800", showCoords: true });
@@ -507,8 +599,18 @@
       for (const sp of question.shape) points.push({ ...sp, color: sp.color || "#479ef5", showCoords: true });
       edges = [];
       for (let i = 0; i < question.shape.length; i++) edges.push([question.shape[i], question.shape[(i + 1) % question.shape.length]]);
+    } else if (question.type === "reflection") {
+      if (question.originalPoint) points.push({ ...question.originalPoint });
+      if (question.reflectedPoint) points.push({ ...question.reflectedPoint });
+      reflectionAxis = question.reflectionAxis;
+    } else if (question.type === "translation") {
+      if (question.originalPoint) points.push({ ...question.originalPoint });
+      if (question.translatedPoint) points.push({ ...question.translatedPoint });
+      translation = question.translation;
+      translationFrom = question.originalPoint;
+      translationTo = question.translatedPoint;
     }
-    drawGraph({ showGrid: c.grid, showNumbers: c.nums, points, edges });
+    drawGraph({ showGrid: c.grid, showNumbers: c.nums, points, edges, reflectionAxis, translation, translationFrom, translationTo });
   }
 
   // ══════════════════════════════════════════════════════════════
@@ -563,6 +665,104 @@
     return { type: "identify", target, refs: refs.length > 0 ? refs : undefined, choices: all, correctIdx: all.indexOf(correctStr), prompt: "What are the coordinates of point P?" };
   }
 
+  function genReflectionQ(numChoices: number): Question {
+    // Generate original point (not on axes for more interesting reflections)
+    let ox = 0, oy = 0;
+    while (ox === 0 || oy === 0) {
+      ox = randInt(-RANGE + 2, RANGE - 2);
+      oy = randInt(-RANGE + 2, RANGE - 2);
+    }
+    
+    // Randomly choose reflection axis
+    const axes: Array<"x" | "y" | "origin"> = ["x", "y", "origin"];
+    const axis = axes[randInt(0, 2)];
+    
+    // Calculate reflected point
+    let rx: number, ry: number;
+    let axisLabel: string;
+    
+    if (axis === "x") {
+      rx = ox;
+      ry = -oy;
+      axisLabel = "x-axis";
+    } else if (axis === "y") {
+      rx = -ox;
+      ry = oy;
+      axisLabel = "y-axis";
+    } else {
+      rx = -ox;
+      ry = -oy;
+      axisLabel = "origin";
+    }
+    
+    const originalPoint: GraphPoint = { x: ox, y: oy, label: "P", color: "#479ef5", showCoords: true };
+    const reflectedPoint: GraphPoint = { x: rx, y: ry, label: "P'", color: "#a855f7" };
+    
+    const correctStr = `(${rx}, ${ry})`;
+    const distractors = makeCoordDistractors(rx, ry, numChoices - 1);
+    const all = shuffle([correctStr, ...distractors]);
+    
+    const prompt = axis === "origin" 
+      ? `Point P is reflected about the origin. What are the coordinates of P'?`
+      : `Point P is reflected across the ${axisLabel}. What are the coordinates of P'?`;
+    
+    return {
+      type: "reflection",
+      originalPoint,
+      reflectedPoint,
+      reflectionAxis: axis,
+      choices: all,
+      correctIdx: all.indexOf(correctStr),
+      prompt
+    };
+  }
+
+  function genTranslationQ(numChoices: number): Question {
+    // Generate original point
+    let ox = 0, oy = 0;
+    while (ox === 0 && oy === 0) {
+      ox = randInt(-RANGE + 3, RANGE - 3);
+      oy = randInt(-RANGE + 3, RANGE - 3);
+    }
+    
+    // Generate translation vector (keep result in range)
+    const dx = randInt(-3, 3);
+    const dy = randInt(-3, 3);
+    
+    // Ensure translation is non-trivial and result stays in range
+    if (dx === 0 && dy === 0) {
+      return genTranslationQ(numChoices);
+    }
+    
+    const tx = ox + dx;
+    const ty = oy + dy;
+    
+    // Check if translated point is in range
+    if (Math.abs(tx) > RANGE - 1 || Math.abs(ty) > RANGE - 1) {
+      return genTranslationQ(numChoices);
+    }
+    
+    const originalPoint: GraphPoint = { x: ox, y: oy, label: "P", color: "#479ef5", showCoords: true };
+    const translatedPoint: GraphPoint = { x: tx, y: ty, label: "P'", color: "#a855f7" };
+    
+    const correctStr = `(${tx}, ${ty})`;
+    const distractors = makeCoordDistractors(tx, ty, numChoices - 1);
+    const all = shuffle([correctStr, ...distractors]);
+    
+    const dxStr = dx >= 0 ? `+${dx}` : `${dx}`;
+    const dyStr = dy >= 0 ? `+${dy}` : `${dy}`;
+    
+    return {
+      type: "translation",
+      originalPoint,
+      translatedPoint,
+      translation: { dx, dy },
+      choices: all,
+      correctIdx: all.indexOf(correctStr),
+      prompt: `Point P is translated by (${dxStr}, ${dyStr}). What are the coordinates of P'?`
+    };
+  }
+
   function genRectAreaQ(): Question {
     const rw = randInt(2, 5), rh = randInt(2, 5);
     const x1 = randInt(-RANGE + 1, RANGE - rw - 1), y1 = randInt(-RANGE + 1, RANGE - rh - 1);
@@ -612,8 +812,28 @@
   }
 
   function genFinalQ(idx: number): Question {
-    if (idx % 2 === 0) return idx % 4 === 0 ? genRectAreaQ() : genTriAreaQ();
-    return genIdentifyQ(5, true);
+    // Cycle through all question types: area, identify, reflection, translation
+    const typeIdx = idx % 6;
+    switch (typeIdx) {
+      case 0: return genRectAreaQ();
+      case 1: return genIdentifyQ(5, true);
+      case 2: return genReflectionQ(5);
+      case 3: return genTranslationQ(5);
+      case 4: return genTriAreaQ();
+      case 5: return genReflectionQ(5);
+      default: return genIdentifyQ(5, true);
+    }
+  }
+
+  function genHellQ(idx: number, numChoices: number): Question {
+    // Cycle through identify, reflection, translation (no area in hell mode)
+    const typeIdx = idx % 3;
+    switch (typeIdx) {
+      case 0: return genIdentifyQ(numChoices, true);
+      case 1: return genReflectionQ(numChoices);
+      case 2: return genTranslationQ(numChoices);
+      default: return genIdentifyQ(numChoices, true);
+    }
   }
 
   // ══════════════════════════════════════════════════════════════
@@ -684,11 +904,11 @@
     answerState = "idle";
 
     if (currentMode === "final") question = genFinalQ(modeQIdx);
-    else if (currentMode === "hell") question = genIdentifyQ(c.choices, true);
+    else if (currentMode === "hell") question = genHellQ(modeQIdx, c.choices);
     else question = genIdentifyQ(c.choices, false);
 
-    // Show/hide hint & timer
-    const showHint = currentMode === "hell" || (currentMode === "final" && question?.type === "identify");
+    // Show/hide hint & timer (hint for hell mode and identify/reflection/translation in final)
+    const showHint = currentMode === "hell" || (currentMode === "final" && question?.type !== "area");
     elHint.style.display = showHint ? "" : "none";
     elTimer.style.display = c.time > 0 ? "" : "none";
     elElapsedRow.style.display = currentMode === "final" ? "" : "none";
