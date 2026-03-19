@@ -1,7 +1,6 @@
 ---
 import { readFileSync } from "node:fs";
-import { dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { resolve } from "node:path";
 
 import HwList from "../components/HwList.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -17,9 +16,8 @@ let items: HwItem[] = [];
 const todayYMD = getTodayYMD();
 
 try {
-  // Get the directory of this Astro file and resolve relative to project root
-  const __dirname = dirname(fileURLToPath(import.meta.url));
-  const projectRoot = resolve(__dirname, "../../");
+  // Use process.cwd() to get project root - reliable during both dev and build
+  const projectRoot = process.cwd();
   const filePath = resolve(projectRoot, "hw-list/homework_data.json");
 
   const fileContent = readFileSync(filePath, "utf-8");
