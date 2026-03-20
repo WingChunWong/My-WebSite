@@ -3400,5 +3400,32 @@
     "subject": "中文 -- CHIN",
     "homework_name": "統測簽改",
     "remarks": ""
+  },
+  {
+    "id": "記事7054",
+    "issue_date": "2026-03-20",
+    "due_date": "2026-03-23",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Check UT revision paper answer on VLE",
+    "remarks": "Just check not homework"
+  },
+  {
+    "id": "76234",
+    "issue_date": "2026-03-20",
+    "due_date": "2026-04-08",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Sentence  skill practice booklet(Easter holiday assignment)",
+    "remarks": ""
+  },
+  {
+    "id": "76232",
+    "issue_date": "2026-03-20",
+    "due_date": "2026-03-21",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "Ch 5, 7, 8 Supp. Exercise",
+    "remarks": ""
   }
 ]
