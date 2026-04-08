@@ -3490,5 +3490,86 @@
     "subject": "中文 -- CHIN",
     "homework_name": "抄成語101-120（兩次）",
     "remarks": ""
+  },
+  {
+    "id": "記事7064",
+    "issue_date": "2026-04-08",
+    "due_date": "2026-04-09",
+    "class_group": "全班",
+    "subject": "普話 -- PTH",
+    "homework_name": "聆測5",
+    "remarks": ""
+  },
+  {
+    "id": "76312",
+    "issue_date": "2026-04-08",
+    "due_date": "2026-04-09",
+    "class_group": "全班",
+    "subject": "中史 -- CHIS",
+    "homework_name": "帶書及file",
+    "remarks": ""
+  },
+  {
+    "id": "76310",
+    "issue_date": "2026-04-08",
+    "due_date": "2026-04-09",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "UT corr+sign",
+    "remarks": ""
+  },
+  {
+    "id": "76309",
+    "issue_date": "2026-04-08",
+    "due_date": "2026-04-09",
+    "class_group": "全班",
+    "subject": "普話 -- PTH",
+    "homework_name": "聆測5 VLE",
+    "remarks": ""
+  },
+  {
+    "id": "76307",
+    "issue_date": "2026-04-08",
+    "due_date": "2026-04-09",
+    "class_group": "全班",
+    "subject": "中史 -- CHIS",
+    "homework_name": "帶書及file",
+    "remarks": ""
+  },
+  {
+    "id": "76306",
+    "issue_date": "2026-04-08",
+    "due_date": "2026-04-09",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "UT Corr Sign",
+    "remarks": ""
+  },
+  {
+    "id": "76293",
+    "issue_date": "2026-04-08",
+    "due_date": "2026-04-08",
+    "class_group": "全班",
+    "subject": "歷史 -- HIST",
+    "homework_name": "VLE",
+    "remarks": ""
+  },
+  {
+    "id": "76297",
+    "issue_date": "2026-04-08",
+    "due_date": "2026-04-08",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "抄成語",
+    "remarks": ""
+  },
+  {
+    "id": "76292",
+    "issue_date": "2026-04-08",
+    "due_date": "2026-04-08",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "步步升8",
+    "remarks": ""
   }
 ]
