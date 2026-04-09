@@ -3571,5 +3571,86 @@
     "subject": "中文 -- CHIN",
     "homework_name": "步步升8",
     "remarks": ""
+  },
+  {
+    "id": "76368",
+    "issue_date": "2026-04-09",
+    "due_date": "2026-04-10",
+    "class_group": "全班",
+    "subject": "中史 -- CHIS",
+    "homework_name": "統測簽改",
+    "remarks": ""
+  },
+  {
+    "id": "記事7072",
+    "issue_date": "2026-04-09",
+    "due_date": "2026-04-10",
+    "class_group": "全班",
+    "subject": "歷史 -- HIST",
+    "homework_name": "帶 1A 1B 書",
+    "remarks": ""
+  },
+  {
+    "id": "76362",
+    "issue_date": "2026-04-09",
+    "due_date": "2026-04-13",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Reading booklet",
+    "remarks": ""
+  },
+  {
+    "id": "記事7068",
+    "issue_date": "2026-04-09",
+    "due_date": "2026-04-13",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Soild memory",
+    "remarks": ""
+  },
+  {
+    "id": "76354",
+    "issue_date": "2026-04-09",
+    "due_date": "2026-04-13",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "UT corrections and sign (next Monday)",
+    "remarks": ""
+  },
+  {
+    "id": "76350",
+    "issue_date": "2026-04-09",
+    "due_date": "2026-04-10",
+    "class_group": "全班",
+    "subject": "科學 -- SCI",
+    "homework_name": "默書簿改正",
+    "remarks": ""
+  },
+  {
+    "id": "76348",
+    "issue_date": "2026-04-09",
+    "due_date": "2026-04-10",
+    "class_group": "全班",
+    "subject": "科學 -- SCI",
+    "homework_name": "1A作業（已改正）",
+    "remarks": ""
+  },
+  {
+    "id": "76347",
+    "issue_date": "2026-04-09",
+    "due_date": "2026-04-10",
+    "class_group": "全班",
+    "subject": "科學 -- SCI",
+    "homework_name": "UT 卷簽名",
+    "remarks": ""
+  },
+  {
+    "id": "76346",
+    "issue_date": "2026-04-09",
+    "due_date": "2026-04-10",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "CW58",
+    "remarks": ""
   }
 ]
