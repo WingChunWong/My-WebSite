@@ -3652,5 +3652,50 @@
     "subject": "數學 -- MATH",
     "homework_name": "CW58",
     "remarks": ""
+  },
+  {
+    "id": "76400",
+    "issue_date": "2026-04-10",
+    "due_date": "2026-04-11",
+    "class_group": "全班",
+    "subject": "公經社 -- CES",
+    "homework_name": "評分功課",
+    "remarks": ""
+  },
+  {
+    "id": "76398",
+    "issue_date": "2026-04-10",
+    "due_date": "2026-04-11",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "UT Corr",
+    "remarks": ""
+  },
+  {
+    "id": "76397",
+    "issue_date": "2026-04-10",
+    "due_date": "2026-04-11",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Gramma WB",
+    "remarks": ""
+  },
+  {
+    "id": "76396",
+    "issue_date": "2026-04-10",
+    "due_date": "2026-04-11",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Bring Postcard Go to Luen Ho Hui",
+    "remarks": ""
+  },
+  {
+    "id": "76382",
+    "issue_date": "2026-04-10",
+    "due_date": "2026-04-10",
+    "class_group": "全班",
+    "subject": "歷史 -- HIST",
+    "homework_name": "歷史 UT Sign",
+    "remarks": ""
   }
 ]
