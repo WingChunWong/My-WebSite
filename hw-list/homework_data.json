@@ -3742,5 +3742,32 @@
     "subject": "英文 -- ENG",
     "homework_name": "Grammar WS",
     "remarks": ""
+  },
+  {
+    "id": "76486",
+    "issue_date": "2026-04-14",
+    "due_date": "2026-04-15",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "默書簽改",
+    "remarks": ""
+  },
+  {
+    "id": "76484",
+    "issue_date": "2026-04-14",
+    "due_date": "2026-04-15",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Grammar WB",
+    "remarks": ""
+  },
+  {
+    "id": "76483",
+    "issue_date": "2026-04-14",
+    "due_date": "2026-04-15",
+    "class_group": "全班",
+    "subject": "音樂 -- MUS",
+    "homework_name": "CW61",
+    "remarks": ""
   }
 ]
