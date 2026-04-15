@@ -3769,5 +3769,59 @@
     "subject": "音樂 -- MUS",
     "homework_name": "CW61",
     "remarks": ""
+  },
+  {
+    "id": "76529",
+    "issue_date": "2026-04-15",
+    "due_date": "2026-04-16",
+    "class_group": "全班",
+    "subject": "音樂 -- MUS",
+    "homework_name": "WS 9B #4-6",
+    "remarks": ""
+  },
+  {
+    "id": "記事7084",
+    "issue_date": "2026-04-15",
+    "due_date": "2026-04-16",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Listening Test",
+    "remarks": ""
+  },
+  {
+    "id": "76512",
+    "issue_date": "2026-04-15",
+    "due_date": "2026-04-16",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "CW62",
+    "remarks": ""
+  },
+  {
+    "id": "76510",
+    "issue_date": "2026-04-15",
+    "due_date": "2026-04-16",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "筆記p.2-3",
+    "remarks": ""
+  },
+  {
+    "id": "記事7083",
+    "issue_date": "2026-04-15",
+    "due_date": "2026-04-16",
+    "class_group": "全班",
+    "subject": "體育 -- PE",
+    "homework_name": "RoboCoach login+更新",
+    "remarks": ""
+  },
+  {
+    "id": "76509",
+    "issue_date": "2026-04-15",
+    "due_date": "2026-04-15",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "默書簽改",
+    "remarks": ""
   }
 ]
