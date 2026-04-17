@@ -3868,5 +3868,23 @@
     "subject": "數學 -- MATH",
     "homework_name": "CW63",
     "remarks": ""
+  },
+  {
+    "id": "76582",
+    "issue_date": "2026-04-17",
+    "due_date": "2026-04-20",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "步步升 15",
+    "remarks": ""
+  },
+  {
+    "id": "76581",
+    "issue_date": "2026-04-17",
+    "due_date": "2026-04-20",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Grammar WB",
+    "remarks": ""
   }
 ]
