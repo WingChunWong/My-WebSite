@@ -3985,5 +3985,32 @@
     "subject": "歷史 -- HIST",
     "homework_name": "古羅馬",
     "remarks": ""
+  },
+  {
+    "id": "76766",
+    "issue_date": "2026-04-27",
+    "due_date": "2026-04-28",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Writing plan",
+    "remarks": ""
+  },
+  {
+    "id": "76765",
+    "issue_date": "2026-04-27",
+    "due_date": "2026-04-28",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "CW69",
+    "remarks": ""
+  },
+  {
+    "id": "記事7143",
+    "issue_date": "2026-04-27",
+    "due_date": "2026-04-28",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "Tmr Form Test Ch.9",
+    "remarks": ""
   }
 ]
