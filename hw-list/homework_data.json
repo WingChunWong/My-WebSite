@@ -4012,5 +4012,23 @@
     "subject": "數學 -- MATH",
     "homework_name": "Tmr Form Test Ch.9",
     "remarks": ""
+  },
+  {
+    "id": "76801",
+    "issue_date": "2026-04-28",
+    "due_date": "2026-04-29",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Speech ws",
+    "remarks": ""
+  },
+  {
+    "id": "76800",
+    "issue_date": "2026-04-28",
+    "due_date": "2026-04-29",
+    "class_group": "全班",
+    "subject": "電腦 -- CL",
+    "homework_name": "VlE上載圖片及提示詞",
+    "remarks": ""
   }
 ]
