@@ -4183,5 +4183,41 @@
     "subject": "數學 -- MATH",
     "homework_name": "CW78",
     "remarks": ""
+  },
+  {
+    "id": "77203",
+    "issue_date": "2026-05-20",
+    "due_date": "2026-05-21",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Speaking assessment presentation notes",
+    "remarks": ""
+  },
+  {
+    "id": "77202",
+    "issue_date": "2026-05-20",
+    "due_date": "2026-05-21",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Reading comprehension book p.13-14",
+    "remarks": ""
+  },
+  {
+    "id": "77200",
+    "issue_date": "2026-05-20",
+    "due_date": "2026-05-21",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "Book p.14 instant drill 4",
+    "remarks": ""
+  },
+  {
+    "id": "77196",
+    "issue_date": "2026-05-20",
+    "due_date": "2026-05-21",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Reading Book 4 P.10-12",
+    "remarks": ""
   }
 ]
