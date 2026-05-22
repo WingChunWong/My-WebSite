@@ -4219,5 +4219,68 @@
     "subject": "英文 -- ENG",
     "homework_name": "Reading Book 4 P.10-12",
     "remarks": ""
+  },
+  {
+    "id": "77285",
+    "issue_date": "2026-05-22",
+    "due_date": "2026-05-26",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Reading comprehension bk passage 8",
+    "remarks": ""
+  },
+  {
+    "id": "77284",
+    "issue_date": "2026-05-22",
+    "due_date": "2026-05-26",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Exam revision p.1-4 reading",
+    "remarks": ""
+  },
+  {
+    "id": "77283",
+    "issue_date": "2026-05-22",
+    "due_date": "2026-05-26",
+    "class_group": "全班",
+    "subject": "英文 -- ENG",
+    "homework_name": "Speaking exam notes p.1-2",
+    "remarks": ""
+  },
+  {
+    "id": "77281",
+    "issue_date": "2026-05-22",
+    "due_date": "2026-05-26",
+    "class_group": "全班",
+    "subject": "公經社 -- CES",
+    "homework_name": "評分功課四 改正",
+    "remarks": ""
+  },
+  {
+    "id": "77277",
+    "issue_date": "2026-05-22",
+    "due_date": "2026-05-26",
+    "class_group": "全班",
+    "subject": "中文 -- CHIN",
+    "homework_name": "級測簽改",
+    "remarks": ""
+  },
+  {
+    "id": "77275",
+    "issue_date": "2026-05-22",
+    "due_date": "2026-05-26",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "Form test sign corr",
+    "remarks": ""
+  },
+  {
+    "id": "77272",
+    "issue_date": "2026-05-22",
+    "due_date": "2026-05-26",
+    "class_group": "全班",
+    "subject": "數學 -- MATH",
+    "homework_name": "CW80",
+    "remarks": ""
   }
 ]
