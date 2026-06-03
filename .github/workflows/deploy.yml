@@ -33,27 +33,20 @@ jobs:
         with:
           fetch-depth: 0 # 获取完整的 git 历史记录用于时间戳
 
-      - uses: pnpm/action-setup@v3
-        with:
-          version: latest
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Install dependencies
-        run: pnpm install
+        run: bun install
 
       - name: Format Code
-        run: pnpm format
+        run: bun run format
         
       - name: Build
-        run: pnpm build
+        run: bun run build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
